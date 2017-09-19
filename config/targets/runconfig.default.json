@@ -1,0 +1,27 @@
+{
+  "runconfig": {
+    "target": "http://google.com",
+    "params": {
+      "valid": {
+        "get": {
+          "urlencode": true,
+          "q": "xss"
+        },
+        "post": {
+        },
+        "cookies": {
+        }
+      },
+      "attack": {
+        "get": {
+          "urlencode": true,
+          "q": "<script>alert(1)</script>"
+        },
+        "post": {
+        },
+        "cookies": {
+        }
+      }
+    }
+  }
+}

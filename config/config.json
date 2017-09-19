@@ -1,0 +1,73 @@
+{
+  "smartgrazer": {
+    "logging": {
+      "output": "stout",
+      "level": 20
+    },
+    "imps": {
+      "smithy": {
+        "generate": {
+          "amount": 5
+        },
+        "generator": "dharma"
+      },
+      "simpy": {
+        "checks": {
+          "max_get_length": true,
+          "specialchars": true,
+          "keywords": true,
+          "jsfuck": true
+        }
+      },
+      "dharma": {
+        "script": "dharma.py",
+        "grammar": "xss.dg"
+      },
+      "smarty": {
+        "grammar": "grammars.json",
+        "elements": "elements.json"
+      },
+      "mutty": {},
+      "jsfuck": {
+        "enabled": true,
+        "script": "jsfuck3.py"
+      },
+      "charly": {
+        "enabled": true
+      },
+      "whitey": {
+        "enabled": true
+      },
+      "uppy": {
+        "enabled": true
+      },
+      "webber": {},
+      "sandy": {
+        "response": {
+          "savedir": "../results/sandy/",
+          "extension": "html",
+          "namepattern": "YYYY-mm-dd-hh:ii - response - NAME"
+        },
+        "get": {
+          "urlencode": true,
+          "replace": "PAYLOAD"
+        },
+        "post": {
+          "urlencode": false,
+          "replace": "PAYLOAD"
+        },
+        "cookies": {
+          "urlencode": false,
+          "replace": "PAYLOAD"
+        },
+        "header": {
+          "urlencode": false,
+          "replace": "PAYLOAD"
+        }
+      },
+      "annelysa": {},
+      "clint": {},
+      "confy": {}
+    }
+  }
+}
