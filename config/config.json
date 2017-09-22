@@ -12,20 +12,53 @@
         "generator": "dharma"
       },
       "simpy": {
+        "stringgenerator": {
+          "length": {
+            "min": 5,
+            "max": 35
+          },
+          "specialchars": [
+            33,
+            34,
+            37,
+            39,
+            40,
+            41,
+            43,
+            45,
+            46,
+            47,
+            58,
+            60,
+            61,
+            62,
+            91,
+            93,
+            94,
+            95,
+            96,
+            92,
+            123,
+            125
+          ]
+        },
         "checks": {
-          "max_get_length": true,
-          "specialchars": true,
           "keywords": true,
+          "chars": true,
+          "specialchars": true,
+          "max_get_length": false,
           "jsfuck": true
         }
       },
       "dharma": {
-        "script": "dharma.py",
-        "grammar": "xss.dg"
+        "script": "../../../dharma-github/trunk/dharma/dharma.py",
+        "grammar": "../../../dharma-github/trunk/dharma/grammars/xss.dg",
+        "urlencode": false
       },
       "smarty": {
         "grammar": "grammars.json",
-        "elements": "elements.json"
+        "elements": "elements.json",
+        "urlencode": false
       },
       "mutty": {},
       "jsfuck": {
@@ -44,9 +77,7 @@
       "webber": {},
       "sandy": {
         "response": {
-          "savedir": "../results/sandy/",
-          "extension": "html",
-          "namepattern": "YYYY-mm-dd-hh:ii - response - NAME"
+          "savedir": "results/sandy/"
         },
         "get": {
           "urlencode": true,

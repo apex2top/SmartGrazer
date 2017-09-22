@@ -1,25 +1,24 @@
 {
   "runconfig": {
-    "target": "http://google.com",
-    "params": {
-      "valid": {
-        "get": {
-          "urlencode": true,
-          "q": "xss"
-        },
-        "post": {
-        },
-        "cookies": {
+    "valid": {
+      "precondition": {},
+      "action": {
+        "target": "https://www.google.de/",
+        "params": {
+          "get": {
+            "q": "xss"
+          }
         }
-      },
-      "attack": {
-        "get": {
-          "urlencode": true,
-          "q": "<script>alert(1)</script>"
-        },
-        "post": {
-        },
-        "cookies": {
+      }
+    },
+    "attack": {
+      "precondition": {},
+      "action": {
+        "target": "https://www.google.de/a",
+        "params": {
+          "get": {
+            "q": "PAYLOAD"
+          }
         }
       }
     }

@@ -1,9 +1,6 @@
-import imps.confy.JSONConfigManager.JSONConfigManager as Confy
+class PayloadGenerator(object):
+    def applyConfig(self, configuration):
+        pass
 
-
-class SmartPayloadGenerator(object):
-    confy = None
-
-    def __init__(self):
-        self.confy = Confy()
+    def generate(self, amount):
         pass
