@@ -41,6 +41,10 @@ class PayloadGenerator(object):
             if line == b'\r\n':
                 continue
 
-            output.append(line.replace(b'dharma', b'#smartgrazer'))
+            line = line.replace(b'dharma', b'#smartgrazer')
+            line = line.decode("utf-8")
+            line = str(line)
+
+            output.append(line)
 
         return output

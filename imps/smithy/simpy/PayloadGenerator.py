@@ -30,11 +30,11 @@ class PayloadGenerator(object):
     def _getRandomString(self, type):
         stringconf = self.config['stringgenerator']['length']
         rs = RandomStringGenerator(stringconf['min'], stringconf['max'])
-        return rs.get(type).encode()
+        return rs.get(type)
 
     def _getLongRandomString(self, type=RandomStringGenerator.MIXEDCASE):
         rs = RandomStringGenerator(1000, 16000)
-        return rs.get(type).encode()
+        return rs.get(type)
 
     def _getSpecialCharsString(self):
         chars = ''
@@ -44,7 +44,7 @@ class PayloadGenerator(object):
         return chars
 
     def _getJSFUCKCharsString(self):
-        return b'()[]!+'
+        return '()[]!+'
 
     def _getKeyWords(self):
         return "<img /> <IMG /> src SRC javascript alert xss script SCRIPT <a onerror </body> <iframe <input style= onload="

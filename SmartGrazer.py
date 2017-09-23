@@ -43,14 +43,25 @@ class SmartGrazer(object):
 
         self.webber = Webber(self.confy)
 
-        executeValidRun = True
-        self.webber.run(executeValidRun)
+        # Execute valid request to know the pages' default response
+        self.webber.validRun()
 
+        # Simple tests to teach smarty how to generate
         simpy = self.smithy.getSimpy()
         simplePayloads = simpy.generate()
 
+        # Send simple payloads to webpage.
         self.webber.setPayloads(simplePayloads)
-        self.webber.run(False)
+        # execute and analyze
+        self.webber.run()
+
+        # Send generated payloads to webpage.
+        self.webber.setPayloads(payloads)
+        # execute and analyze
+        print(self.webber.run())
+
+
+
 
         return 0
 
