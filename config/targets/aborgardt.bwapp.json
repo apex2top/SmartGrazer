@@ -16,7 +16,7 @@
         "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
         "params": {
           "get": {
-            "firstname": "aborgardt",
+            "firstname": "alexander",
             "lastname": "borgardt"
           }
         }

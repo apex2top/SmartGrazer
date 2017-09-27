@@ -1,0 +1,301 @@
+{
+  "elements": {
+    "TAG_HTML": "sub_HTML",
+    "EVENT": "sub_EVENT",
+    "TAG_JS": [
+      {
+        "value": "javascript",
+        "life": 100
+      }
+    ],
+    "TAG_SCRIPT": [
+      {
+        "value": "script",
+        "life": 100
+      }
+    ],
+    "BACKSLASH": [
+      {
+        "value": 92,
+        "life": 100
+      }
+    ],
+    "CLOSECURLYBRACKET": [
+      {
+        "value": 125,
+        "life": 100
+      }
+    ],
+    "CLOSEPOINTEDBRACKET": [
+      {
+        "value": 62,
+        "life": 100
+      }
+    ],
+    "CLOSEROUNDBRACKET": [
+      {
+        "value": 41,
+        "life": 100
+      }
+    ],
+    "CLOSESQUAREBRACKET": [
+      {
+        "value": 93,
+        "life": 100
+      }
+    ],
+    "COLON": [
+      {
+        "value": 58,
+        "life": 100
+      }
+    ],
+    "DOT": [
+      {
+        "value": 46,
+        "life": 100
+      }
+    ],
+    "EQUAL": [
+      {
+        "value": 61,
+        "life": 100
+      }
+    ],
+    "HASHTAG": [
+      {
+        "value": 35,
+        "life": 100
+      }
+    ],
+    "MINUS": [
+      {
+        "value": 45,
+        "life": 100
+      }
+    ],
+    "MULTIPLY": [
+      {
+        "value": 42,
+        "life": 100
+      }
+    ],
+    "OPENCURLYBRACKET": [
+      {
+        "value": 123,
+        "life": 100
+      }
+    ],
+    "OPENPOINTEDBRACKET": [
+      {
+        "value": 60,
+        "life": 100
+      }
+    ],
+    "OPENROUNDBRACKET": [
+      {
+        "value": 40,
+        "life": 100
+      }
+    ],
+    "OPENSQUAREBRACKET": [
+      {
+        "value": 91,
+        "life": 100
+      }
+    ],
+    "PERCENT": [
+      {
+        "value": 37,
+        "life": 100
+      }
+    ],
+    "PLUS": [
+      {
+        "value": 43,
+        "life": 100
+      }
+    ],
+    "POWER": [
+      {
+        "value": 94,
+        "life": 100
+      }
+    ],
+    "QUOTE": [
+      {
+        "value": "",
+        "life": 100
+      },
+      {
+        "value": 34,
+        "life": 100
+      },
+      {
+        "value": 39,
+        "life": 100
+      },
+      {
+        "value": 96,
+        "life": 100
+      }
+    ],
+    "SEMICOLON": [
+      {
+        "value": "",
+        "life": 100
+      },
+      {
+        "value": 59,
+        "life": 100
+      }
+    ],
+    "SLASH": [
+      {
+        "value": 47,
+        "life": 100
+      }
+    ],
+    "SPACE": [
+      {
+        "value": "",
+        "life": 100
+      },
+      {
+        "value": 7,
+        "life": 100
+      },
+      {
+        "value": 9,
+        "life": 100
+      },
+      {
+        "value": 10,
+        "life": 100
+      },
+      {
+        "value": 11,
+        "life": 100
+      },
+      {
+        "value": 12,
+        "life": 100
+      },
+      {
+        "value": 32,
+        "life": 100
+      },
+      {
+        "value": 47,
+        "life": 100
+      }
+    ],
+    "UNDERLINE": [
+      {
+        "value": 95,
+        "life": 100
+      }
+    ]
+  },
+  "sub_HTML": [
+    "a",
+    "img",
+    "input",
+    "textarea",
+    "button",
+    "frame",
+    "frameset",
+    "submit",
+    "option"
+  ],
+  "sub_EVENT": [
+    "onclick",
+    "oncontextmenu",
+    "ondblclick",
+    "onmousedown",
+    "onmouseenter",
+    "onmouseleave",
+    "onmousemove",
+    "onmouseover",
+    "onmouseout",
+    "onmouseup",
+    "onkeydown",
+    "onkeypress",
+    "onkeyup",
+    "onabort",
+    "onbeforeunload",
+    "onerror",
+    "onhashchange",
+    "onload",
+    "onpageshow",
+    "onpagehide",
+    "onresize",
+    "onscroll",
+    "onunload",
+    "onblur",
+    "onchange",
+    "onfocus",
+    "onfocusin",
+    "onfocusout",
+    "oninput",
+    "oninvalid",
+    "onreset",
+    "onsearch",
+    "onselect",
+    "onsubmit",
+    "ondrag",
+    "ondragend",
+    "ondragenter",
+    "ondragleave",
+    "ondragover",
+    "ondragstart",
+    "ondrop",
+    "oncopy",
+    "oncut",
+    "onpaste",
+    "onafterprint",
+    "onbeforeprint",
+    "onabort",
+    "oncanplay",
+    "oncanplaythrough",
+    "ondurationchange",
+    "onemptied",
+    "onended",
+    "onerror",
+    "onloadeddata",
+    "onloadedmetadata",
+    "onloadstart",
+    "onpause",
+    "onplay",
+    "onplaying",
+    "onprogress",
+    "onratechange",
+    "onseeked",
+    "onseeking",
+    "onstalled",
+    "onsuspend",
+    "ontimeupdate",
+    "onvolumechange",
+    "onwaiting",
+    "animationend",
+    "animationiteration",
+    "animationstart",
+    "transitionend",
+    "onerror",
+    "onmessage",
+    "onopen",
+    "onmessage",
+    "onmousewheel",
+    "ononline",
+    "onoffline",
+    "onpopstate",
+    "onshow",
+    "onstorage",
+    "ontoggle",
+    "onwheel",
+    "ontouchcancel",
+    "ontouchend",
+    "ontouchmove",
+    "ontouchstart"
+  ]
+}

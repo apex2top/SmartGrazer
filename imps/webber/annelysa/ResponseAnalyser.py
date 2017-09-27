@@ -1,3 +1,8 @@
+from pygments.util import xrange
+
+from imps.webber.annelysa.Converter import Converter
+
+
 class ResponseAnalyser(object):
     response = ''
     runConfig = {}
@@ -7,7 +12,7 @@ class ResponseAnalyser(object):
 
     def loadResponse(self, file):
         f = open(file, 'r')
-        self.response = f.read().encode("UTF-8")
+        self.response = Converter.getDecimal(f.read().encode("UTF-8"))
 
     def loadRunConfig(self, file):
         renamed = file.replace(".html", '.json')
@@ -18,7 +23,6 @@ class ResponseAnalyser(object):
 
     def analyze(self):
         results = {
-            "found": []
         }
 
         params = self.runConfig["action"]["params"]
@@ -26,9 +30,25 @@ class ResponseAnalyser(object):
         for type in params:
             for key in params[type]:
                 value = params[type][key]
-                if value.encode() in self.response:
-                    results.append({key: "found"})
+
+                # can entry be found?
+                deciarray = Converter.getDecimal(value.encode())
+                indexes = self.contains(deciarray, self.response)
+                if not indexes is False:
+                    results[value.encode()] = {"found": True}
+
+                    print(indexes)
+
                 else:
-                    results.append({value: "not found"})
+                    results[value.encode()] = {"found": False}
 
         return results
+
+    def contains(self, small, big):
+        for i in xrange(len(big) - len(small) + 1):
+            for j in xrange(len(small)):
+                if big[i + j] != small[j]:
+                    break
+            else:
+                return i, i + len(small)
+        return False

@@ -77,7 +77,7 @@ class PayloadTester(object):
         else:
             saves = self._attackRun()
 
-        return self._analyze(saves)
+        return saves
 
     def validRun(self):
         return self.run(True)

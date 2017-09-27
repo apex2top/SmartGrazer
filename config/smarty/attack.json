@@ -1,0 +1,29 @@
+[
+  [
+    "alert",
+    "OPENROUNDBRACKET",
+    "QUOTE9",
+    "HASHTAG",
+    "smartgrazer",
+    "QUOTE9",
+    "CLOSEROUNDBRACKET"
+  ],
+  [
+    "prompt",
+    "OPENROUNDBRACKET",
+    "QUOTE9",
+    "HASHTAG",
+    "smartgrazer",
+    "QUOTE9",
+    "CLOSEROUNDBRACKET"
+  ],
+  [
+    "confirm",
+    "OPENROUNDBRACKET",
+    "QUOTE9",
+    "HASHTAG",
+    "smartgrazer",
+    "QUOTE9",
+    "CLOSEROUNDBRACKET"
+  ]
+]
