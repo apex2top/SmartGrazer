@@ -1,7 +1,7 @@
 import copy
 import os
 
-from imps.webber.annelysa.ResponseAnalyser import ResponseAnalyser as Annelysa
+from imps.annelysa import ResponseAnalyser as Annelysa
 from imps.webber.sandy.RequestExecutor import RequestExecutor as Sandy
 
 
