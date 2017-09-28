@@ -3,30 +3,30 @@
     "alert",
     "SPACE",
     "OPENROUNDBRACKET",
-    "QUOTE9",
+    "QUOTE:x",
     "HASHTAG",
     "smartgrazer",
-    "QUOTE9",
+    "QUOTE:x",
     "CLOSEROUNDBRACKET"
   ],
   [
     "prompt",
     "SPACE",
     "OPENROUNDBRACKET",
-    "QUOTE9",
+    "QUOTE:y",
     "HASHTAG",
     "smartgrazer",
-    "QUOTE9",
+    "QUOTE:y",
     "CLOSEROUNDBRACKET"
   ],
   [
     "confirm",
     "SPACE",
     "OPENROUNDBRACKET",
-    "QUOTE9",
+    "QUOTE:z",
     "HASHTAG",
     "smartgrazer",
-    "QUOTE9",
+    "QUOTE:z",
     "CLOSEROUNDBRACKET"
   ]
 ]

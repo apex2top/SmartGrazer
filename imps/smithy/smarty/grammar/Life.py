@@ -6,18 +6,24 @@ class Life(object):
     _life = 100
 
     def getLife(self):
-        return randint(0, 100)
+        return self._life
 
     def decreaseLife(self):
-        self._life = floor(self._life / 2)
+        self._life = floor(self._life * 0.75)
+
+        if self._life < 1:
+            self._life = 1
 
     def increaseLife(self):
         self._life = floor(self._life + (self._life * .5))
 
+        if self._life > 100:
+            self._life = 100
+
     def getLifeFromList(listOfValues):
         health = 0
         for entry in listOfValues:
-            health += entry.getLife()
+            health = health + entry.getLife()
 
         return health
 
@@ -30,4 +36,4 @@ class Life(object):
 
             health += entry.getLife()
 
-        return None
+        return entry

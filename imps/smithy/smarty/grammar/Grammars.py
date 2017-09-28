@@ -1,0 +1,2 @@
+class Grammars(object):
+    pass

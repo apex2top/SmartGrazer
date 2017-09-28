@@ -1,5 +1,6 @@
-from imps.smithy.simpy.grammar.Attacks import Attacks
-from imps.smithy.simpy.grammar.Elements import Elements
+from imps.smithy.smarty.grammar.Attacks import Attacks
+
+from imps.smithy.smarty.grammar.Elements import Elements
 
 
 class PayloadGenerator(object):
@@ -14,6 +15,8 @@ class PayloadGenerator(object):
         attackGenerator = Attacks(self.config["attacks"])
         attackGenerator.setElements(elements)
 
-        print(attackGenerator.getAttack())
+        attacks = []
+        for _ in range(0, amount):
+            attacks.append(str(attackGenerator.getAttack()))
 
-        return []
+        return attacks

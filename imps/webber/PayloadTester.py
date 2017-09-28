@@ -51,7 +51,6 @@ class PayloadTester(object):
             for type in params["action"]['params']:
                 for param in params["action"]['params'][type]:
                     if params["action"]['params'][type][param] == 'PAYLOAD':
-
                         params["action"]['params'][type][param] = payload
 
             save = self._sandy.request(params)

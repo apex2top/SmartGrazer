@@ -1,7 +1,8 @@
-import random
+from random import randint
 
 from imps.confy.JSONConfigManager import JSONConfigManager
-from imps.smithy.simpy.grammar.elements.Life import Life
+from imps.smithy.smarty.grammar.RandomPicker import RandomPicker
+from imps.smithy.smarty.grammar.attacks.Attack import Attack
 
 
 class Attacks(object):
@@ -17,42 +18,32 @@ class Attacks(object):
         if not self._attacks:
             self._loadAttacks()
 
-        return random.choice(self._attacks)
+        return RandomPicker.pickWeightedRandom(self._attacks)
 
     def setElements(self, elements):
         self._elements = elements
 
     def _loadAttacks(self):
         for pattern in self._attackPatterns:
-            attack = []
+            components = []
 
             for entry in pattern:
                 if self._elements is None:
                     raise ValueError(
                         "Elements are not initialized! Please provide an elements instance via setElements.")
                 element = self._elements.getElement(entry)
-                attack.append(element)
 
-            self._attacks.append(Attack(attack))
+                '''
+                print("Before %s" % element.getLife())
 
+                for i in range(0, randint(0, 3)):
+                    element.decreaseLife()
 
-class Attack(Life):
-    _life = 100
-    _elements = []
-    _populated = []
+                print("After %s" % element.getLife())
+                print("_______________________________")
+                '''
+                components.append(element)
 
-    def __init__(self, elements):
-        self._elements = elements
+            attack = Attack(components)
 
-    def __str__(self):
-        return "".join(self.getPopulated())
-
-    def getPopulated(self):
-        populated = []
-        for element in self._elements:
-            populated.append(str(element))
-
-        return populated
-
-    def getElements(self):
-        return self._elements
+            self._attacks.append(attack)
