@@ -1,6 +1,7 @@
 [
   [
     "alert",
+    "SPACE",
     "OPENROUNDBRACKET",
     "QUOTE9",
     "HASHTAG",
@@ -10,6 +11,7 @@
   ],
   [
     "prompt",
+    "SPACE",
     "OPENROUNDBRACKET",
     "QUOTE9",
     "HASHTAG",
@@ -19,6 +21,7 @@
   ],
   [
     "confirm",
+    "SPACE",
     "OPENROUNDBRACKET",
     "QUOTE9",
     "HASHTAG",

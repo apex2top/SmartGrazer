@@ -1,47 +1,58 @@
 import random
-from math import floor
 
 from imps.confy.JSONConfigManager import JSONConfigManager
+from imps.smithy.simpy.grammar.elements.Life import Life
 
 
 class Attacks(object):
+    _elements = None
+
     _attackPatterns = []
     _attacks = []
 
     def __init__(self, filePath):
         self._attackPatterns = (JSONConfigManager(filePath)).getConfig()
-        for pattern in self._attackPatterns:
-            self._attacks.append(Attack(pattern))
 
     def getAttack(self):
+        if not self._attacks:
+            self._loadAttacks()
+
         return random.choice(self._attacks)
 
+    def setElements(self, elements):
+        self._elements = elements
 
-class Attack(object):
+    def _loadAttacks(self):
+        for pattern in self._attackPatterns:
+            attack = []
+
+            for entry in pattern:
+                if self._elements is None:
+                    raise ValueError(
+                        "Elements are not initialized! Please provide an elements instance via setElements.")
+                element = self._elements.getElement(entry)
+                attack.append(element)
+
+            self._attacks.append(Attack(attack))
+
+
+class Attack(Life):
     _life = 100
-    _pattern = []
+    _elements = []
     _populated = []
 
-    def __init__(self, pattern):
-        self._pattern = pattern
+    def __init__(self, elements):
+        self._elements = elements
 
     def __str__(self):
         return "".join(self.getPopulated())
 
     def getPopulated(self):
-        return "attack goes here!"
+        populated = []
+        for element in self._elements:
+            populated.append(str(element))
 
-    def getPattern(self):
-        return self._pattern
+        return populated
 
     def getElements(self):
-        return
-
-    def getLife(self):
-        return self._life
-
-    def decreaseLife(self):
-        self._life = floor(self._life / 2)
-
-    def increaseLife(self):
-        self._life = floor(self._life + (self._life * .5))
+        return self._elements

@@ -1,103 +1,101 @@
 {
-  "elements": {
-    "TAG_HTML": [
-      "a",
-      "img",
-      "input",
-      "textarea",
-      "button",
-      "frame",
-      "frameset",
-      "submit",
-      "option"
-    ],
-    "TAG_JS": [
-      "javascript"
-    ],
-    "TAG_SCRIPT": [
-      "script"
-    ],
-    "BACKSLASH": [
-      92
-    ],
-    "CLOSECURLYBRACKET": [
-      125
-    ],
-    "CLOSEPOINTEDBRACKET": [
-      62
-    ],
-    "CLOSEROUNDBRACKET": [
-      41
-    ],
-    "CLOSESQUAREBRACKET": [
-      93
-    ],
-    "COLON": [
-      58
-    ],
-    "DOT": [
-      46
-    ],
-    "EQUAL": [
-      61
-    ],
-    "HASHTAG": [
-      35
-    ],
-    "MINUS": [
-      45
-    ],
-    "MULTIPLY": [
-      42
-    ],
-    "OPENCURLYBRACKET": [
-      123
-    ],
-    "OPENPOINTEDBRACKET": [
-      60
-    ],
-    "OPENROUNDBRACKET": [
-      40
-    ],
-    "OPENSQUAREBRACKET": [
-      91
-    ],
-    "PERCENT": [
-      37
-    ],
-    "PLUS": [
-      43
-    ],
-    "POWER": [
-      94
-    ],
-    "QUOTE": [
-      "",
-      34,
-      39,
-      96
-    ],
-    "SEMICOLON": [
-      "",
-      59
-    ],
-    "SLASH": [
-      47
-    ],
-    "SPACE": [
-      "",
-      7,
-      9,
-      10,
-      11,
-      12,
-      32,
-      47
-    ],
-    "UNDERLINE": [
-      95
-    ]
-  },
+  "TAG_HTML": [
+    "a",
+    "img",
+    "input",
+    "textarea",
+    "button",
+    "frame",
+    "frameset",
+    "submit",
+    "option"
+  ],
+  "TAG_JS": [
+    "javascript"
+  ],
+  "TAG_SCRIPT": [
+    "script"
+  ],
+  "BACKSLASH": [
+    92
+  ],
+  "CLOSECURLYBRACKET": [
+    125
+  ],
+  "CLOSEPOINTEDBRACKET": [
+    62
+  ],
+  "CLOSEROUNDBRACKET": [
+    41
+  ],
+  "CLOSESQUAREBRACKET": [
+    93
+  ],
+  "COLON": [
+    58
+  ],
+  "DOT": [
+    46
+  ],
+  "EQUAL": [
+    61
+  ],
+  "HASHTAG": [
+    35
+  ],
+  "MINUS": [
+    45
+  ],
+  "MULTIPLY": [
+    42
+  ],
+  "OPENCURLYBRACKET": [
+    123
+  ],
+  "OPENPOINTEDBRACKET": [
+    60
+  ],
+  "OPENROUNDBRACKET": [
+    40
+  ],
+  "OPENSQUAREBRACKET": [
+    91
+  ],
+  "PERCENT": [
+    37
+  ],
+  "PLUS": [
+    43
+  ],
+  "POWER": [
+    94
+  ],
+  "QUOTE": [
+    "",
+    34,
+    39,
+    96
+  ],
+  "SEMICOLON": [
+    "",
+    59
+  ],
+  "SLASH": [
+    47
+  ],
+  "SPACE": [
+    "",
+    7,
+    9,
+    10,
+    11,
+    12,
+    32,
+    47
+  ],
+  "UNDERLINE": [
+    95
+  ],
   "EVENT": [
     "onclick",
     "oncontextmenu",
