@@ -1,6 +1,6 @@
 from pygments.util import xrange
 
-from imps.webber.annelysa.Converter import Converter
+from imps.annelysa import Converter
 
 
 class ResponseAnalyser(object):

@@ -1,0 +1,17 @@
+{
+  "charly": [
+    "OPENCURLYBRACKET",
+    "OPENPOINTEDBRACKET",
+    "OPENROUNDBRACKET",
+    "OPENSQUAREBRACKET",
+    "QUOTE",
+    "SPACE"
+  ],
+  "uppy": [
+    "TAG_HMTL",
+    "TAG_JS",
+    "TAG_SCRIPT",
+    "EVENT",
+    "TEXT"
+  ]
+}

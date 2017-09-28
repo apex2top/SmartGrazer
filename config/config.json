@@ -7,7 +7,7 @@
     "imps": {
       "smithy": {
         "generate": {
-          "amount": 5
+          "amount": 1
         },
         "generator": "dharma"
       },
@@ -56,8 +56,9 @@
         "urlencode": false
       },
       "smarty": {
-        "grammar": "grammars.json",
-        "elements": "elements.json",
+        "attacks": "smarty/attacks.json",
+        "elements": "smarty/elements.json",
+        "grammar": "smarty/grammars.json",
         "urlencode": false
       },
       "mutty": {},

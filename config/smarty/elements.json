@@ -1,214 +1,104 @@
 {
   "elements": {
-    "TAG_HTML": "sub_HTML",
-    "EVENT": "sub_EVENT",
+    "TAG_HTML": [
+      "a",
+      "img",
+      "input",
+      "textarea",
+      "button",
+      "frame",
+      "frameset",
+      "submit",
+      "option"
+    ],
     "TAG_JS": [
-      {
-        "value": "javascript",
-        "life": 100
-      }
+      "javascript"
     ],
     "TAG_SCRIPT": [
-      {
-        "value": "script",
-        "life": 100
-      }
+      "script"
     ],
     "BACKSLASH": [
-      {
-        "value": 92,
-        "life": 100
-      }
+      92
     ],
     "CLOSECURLYBRACKET": [
-      {
-        "value": 125,
-        "life": 100
-      }
+      125
     ],
     "CLOSEPOINTEDBRACKET": [
-      {
-        "value": 62,
-        "life": 100
-      }
+      62
     ],
     "CLOSEROUNDBRACKET": [
-      {
-        "value": 41,
-        "life": 100
-      }
+      41
     ],
     "CLOSESQUAREBRACKET": [
-      {
-        "value": 93,
-        "life": 100
-      }
+      93
     ],
     "COLON": [
-      {
-        "value": 58,
-        "life": 100
-      }
+      58
     ],
     "DOT": [
-      {
-        "value": 46,
-        "life": 100
-      }
+      46
     ],
     "EQUAL": [
-      {
-        "value": 61,
-        "life": 100
-      }
+      61
     ],
     "HASHTAG": [
-      {
-        "value": 35,
-        "life": 100
-      }
+      35
     ],
     "MINUS": [
-      {
-        "value": 45,
-        "life": 100
-      }
+      45
     ],
     "MULTIPLY": [
-      {
-        "value": 42,
-        "life": 100
-      }
+      42
     ],
     "OPENCURLYBRACKET": [
-      {
-        "value": 123,
-        "life": 100
-      }
+      123
     ],
     "OPENPOINTEDBRACKET": [
-      {
-        "value": 60,
-        "life": 100
-      }
+      60
     ],
     "OPENROUNDBRACKET": [
-      {
-        "value": 40,
-        "life": 100
-      }
+      40
     ],
     "OPENSQUAREBRACKET": [
-      {
-        "value": 91,
-        "life": 100
-      }
+      91
     ],
     "PERCENT": [
-      {
-        "value": 37,
-        "life": 100
-      }
+      37
     ],
     "PLUS": [
-      {
-        "value": 43,
-        "life": 100
-      }
+      43
     ],
     "POWER": [
-      {
-        "value": 94,
-        "life": 100
-      }
+      94
     ],
     "QUOTE": [
-      {
-        "value": "",
-        "life": 100
-      },
-      {
-        "value": 34,
-        "life": 100
-      },
-      {
-        "value": 39,
-        "life": 100
-      },
-      {
-        "value": 96,
-        "life": 100
-      }
+      "",
+      34,
+      39,
+      96
     ],
     "SEMICOLON": [
-      {
-        "value": "",
-        "life": 100
-      },
-      {
-        "value": 59,
-        "life": 100
-      }
+      "",
+      59
     ],
     "SLASH": [
-      {
-        "value": 47,
-        "life": 100
-      }
+      47
     ],
     "SPACE": [
-      {
-        "value": "",
-        "life": 100
-      },
-      {
-        "value": 7,
-        "life": 100
-      },
-      {
-        "value": 9,
-        "life": 100
-      },
-      {
-        "value": 10,
-        "life": 100
-      },
-      {
-        "value": 11,
-        "life": 100
-      },
-      {
-        "value": 12,
-        "life": 100
-      },
-      {
-        "value": 32,
-        "life": 100
-      },
-      {
-        "value": 47,
-        "life": 100
-      }
+      "",
+      7,
+      9,
+      10,
+      11,
+      12,
+      32,
+      47
     ],
     "UNDERLINE": [
-      {
-        "value": 95,
-        "life": 100
-      }
+      95
     ]
   },
-  "sub_HTML": [
-    "a",
-    "img",
-    "input",
-    "textarea",
-    "button",
-    "frame",
-    "frameset",
-    "submit",
-    "option"
-  ],
-  "sub_EVENT": [
+  "EVENT": [
     "onclick",
     "oncontextmenu",
     "ondblclick",
