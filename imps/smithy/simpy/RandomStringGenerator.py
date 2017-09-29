@@ -11,7 +11,7 @@ class RandomStringGenerator(object):
     MIXEDCASE = 3
 
     minlength = 1
-    maxlength = 16000
+    maxlength = 50
 
     def __init__(self, minLength, maxLength):
         self.minlength = minLength

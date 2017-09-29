@@ -36,7 +36,6 @@ class CLIManager(object):
 
         self.parser.add_argument('-r',
                                  '--runconfig',
-                                 default='runconfig.default.json',
                                  help='Name of the configuration file containing the config.')
 
         self.parser.add_argument('--overwrite',
@@ -45,6 +44,10 @@ class CLIManager(object):
                                  help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite imps.smithy.payload.amount=10 imps.smithy.generator=smarty")
 
         self.args = self.parser.parse_args()
+
+        if self.args.runconfig is None:
+            raise ValueError("You have selected the execution mode. Please provide a runconfig via the -r option.")
+
         return self
 
     def getArgs(self):

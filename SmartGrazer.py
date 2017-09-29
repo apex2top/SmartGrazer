@@ -20,7 +20,6 @@ class SmartGrazer(object):
 
         self.clint = Clint()
         self.confy = Confy()
-        pass
 
     def run(self):
         # Handle the cli args
@@ -45,12 +44,7 @@ class SmartGrazer(object):
 
         # Execute valid request to know the pages' default response
         reports = self.webber.validRun()
-        print(reports)
 
-        return 0
-
-
-'''
         # Simple tests to teach smarty how to generate
         simpy = self.smithy.getSimpy()
         simplePayloads = simpy.generate()
@@ -58,13 +52,12 @@ class SmartGrazer(object):
         # Send simple payloads to webpage.
         self.webber.setPayloads(simplePayloads)
         # execute and analyze
-        self.webber.run()
+        reports = self.webber.run()
 
         # Send generated payloads to webpage.
         self.webber.setPayloads(payloads)
         # execute and analyze
-        print(self.webber.run())
-'''
+        reports = self.webber.run()
 
 if __name__ == "__main__":
     sys.exit((SmartGrazer()).run())

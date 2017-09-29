@@ -58,7 +58,11 @@
       "smarty": {
         "attacks": "smarty/attacks.json",
         "elements": "smarty/elements.json",
-        "grammar": "smarty/grammars.json",
+        "grammars": "smarty/grammars.json",
+        "life": {
+          "default": 100,
+          "999" : "set default to 999 to get random life values"
+        },
         "urlencode": false
       },
       "mutty": {},

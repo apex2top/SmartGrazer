@@ -2,8 +2,14 @@ from math import floor
 from random import randint
 
 
+def getKey(entry):
+    return entry.getLife()
+
 class Life(object):
-    _life = 100
+    _life = 1
+
+    def setLife(self, amount):
+        self._life = amount
 
     def getLife(self):
         return self._life
@@ -37,3 +43,6 @@ class Life(object):
             health += entry.getLife()
 
         return entry
+
+    def sortASC(payloads):
+        return sorted(payloads, key=getKey, reverse=True)

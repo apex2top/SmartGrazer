@@ -1,4 +1,7 @@
+from random import randint
+
 from imps.smithy.smarty.grammar.Attacks import Attacks
+from imps.smithy.smarty.grammar.Grammars import Grammars
 
 from imps.smithy.smarty.grammar.Elements import Elements
 
@@ -12,11 +15,16 @@ class PayloadGenerator(object):
 
     def generate(self, amount):
         elements = Elements(self.config["elements"])
-        attackGenerator = Attacks(self.config["attacks"])
-        attackGenerator.setElements(elements)
 
-        attacks = []
+        default = int(self.config["life"]["default"])
+        elements.setDefaultLife(default)
+
+        grammarGenerator = Grammars(self.config['grammars'])
+        grammarGenerator.setElements(elements)
+        grammarGenerator.setAttackConfig(self.config['attacks'])
+
+        grammars = []
         for _ in range(0, amount):
-            attacks.append(str(attackGenerator.getAttack()))
+            grammars.append(str(grammarGenerator.getPayload()))
 
-        return attacks
+        return grammars

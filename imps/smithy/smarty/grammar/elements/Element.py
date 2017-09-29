@@ -1,3 +1,5 @@
+from random import randint
+
 from imps.smithy.smarty.grammar.Life import Life
 
 
@@ -20,3 +22,6 @@ class Element(Life):
 
     def getValue(self):
         return self._value
+
+    def setValue(self, value):
+        self._value = value
