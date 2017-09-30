@@ -2,7 +2,6 @@ from imps.smithy.smarty.grammar.Life import Life
 
 
 class Attack(Life):
-    _life = 100
     _elements = []
     _populated = []
 
@@ -17,6 +16,7 @@ class Attack(Life):
         for element in self._elements:
             string = str(element)
             populated.append(string)
+
         return populated
 
     def getElements(self):

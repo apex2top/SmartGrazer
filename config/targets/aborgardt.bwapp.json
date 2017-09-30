@@ -2,6 +2,7 @@
   "runconfig": {
     "valid": {
       "precondition": {
+        "filesuffix": "precondition",
         "target": "https://aborgardt.com/master/bWAPP/login.php",
         "params": {
           "post": {
@@ -13,17 +14,20 @@
         }
       },
       "action": {
+        "filesuffix": "valid",
         "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
         "params": {
           "get": {
-            "firstname": "alexander",
+            "firstname": "PAYLOAD",
             "lastname": "borgardt"
           }
         }
-      }
+      },
+      "PAYLOAD": "#smartgrazer"
     },
     "attack": {
       "precondition": {
+        "filesuffix": "precondition",
         "target": "https://aborgardt.com/master/bWAPP/login.php",
         "params": {
           "post": {
@@ -35,6 +39,7 @@
         }
       },
       "action": {
+        "filesuffix": "payload",
         "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
         "params": {
           "get": {

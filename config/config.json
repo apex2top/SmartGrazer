@@ -7,9 +7,14 @@
     "imps": {
       "smithy": {
         "generate": {
-          "amount": 1
+          "amount": 10
         },
-        "generator": "dharma"
+        "generator": "smarty",
+        "elements": "smarty/elements.json",
+        "life": {
+          "default": 999,
+          "999": "set default to 999 to get random life values"
+        }
       },
       "simpy": {
         "stringgenerator": {
@@ -18,28 +23,29 @@
             "max": 35
           },
           "specialchars": [
-            33,
-            34,
-            37,
-            39,
-            40,
-            41,
-            43,
-            45,
-            46,
-            47,
-            58,
-            60,
-            61,
-            62,
-            91,
-            93,
-            94,
-            95,
-            96,
-            92,
-            123,
-            125
+            "EXCLAMATIONMARK",
+            "QUOTE:0",
+            "QUOTE:1",
+            "QUOTE:2",
+            "QUOTE:3",
+            "PERCENT",
+            "OPENROUNDBRACKET",
+            "CLOSEROUNDBRACKET",
+            "PLUS",
+            "MINUS",
+            "DOT",
+            "SLASH",
+            "COLON",
+            "OPENPOINTEDBRACKET",
+            "CLOSEPOINTEDBRACKET",
+            "EQUAL",
+            "OPENSQUAREBRACKET",
+            "CLOSESQUAREBRACKET",
+            "POWER",
+            "UNDERLINE",
+            "BACKSLASH",
+            "OPENCURLYBRACKET",
+            "CLOSECURLYBRACKET"
           ]
         },
         "checks": {
@@ -57,12 +63,7 @@
       },
       "smarty": {
         "attacks": "smarty/attacks.json",
-        "elements": "smarty/elements.json",
         "grammars": "smarty/grammars.json",
-        "life": {
-          "default": 100,
-          "999" : "set default to 999 to get random life values"
-        },
         "urlencode": false
       },
       "mutty": {},

@@ -1,13 +1,13 @@
 {
   "TAG_HTML": [
-    "a",
+    "textarea",
+    "frame",
+    "submit",
     "img",
     "input",
-    "textarea",
     "button",
-    "frame",
+    "a",
     "frameset",
-    "submit",
     "option"
   ],
   "TAG_JS": [
@@ -18,6 +18,9 @@
   ],
   "BACKSLASH": [
     92
+  ],
+  "EXCLAMATIONMARK": [
+    33
   ],
   "CLOSECURLYBRACKET": [
     125

@@ -1,9 +1,5 @@
 from math import floor
-from random import randint
 
-
-def getKey(entry):
-    return entry.getLife()
 
 class Life(object):
     _life = 1
@@ -33,16 +29,8 @@ class Life(object):
 
         return health
 
-    def getEntryForLife(index, listOfValues):
-        health = 0
+    def getKey(entry):
+        return entry.getLife()
 
-        for entry in listOfValues:
-            if index <= health:
-                return entry
-
-            health += entry.getLife()
-
-        return entry
-
-    def sortASC(payloads):
-        return sorted(payloads, key=getKey, reverse=True)
+    def sortASC(listOfValues):
+        return sorted(listOfValues, key=Life.getKey, reverse=True)

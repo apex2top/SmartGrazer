@@ -1,4 +1,3 @@
-from math import ceil, sqrt
 from random import randint
 
 from imps.smithy.smarty.grammar.Life import Life
@@ -6,15 +5,16 @@ from imps.smithy.smarty.grammar.Life import Life
 
 class RandomPicker(object):
     def pickWeightedRandom(weightedList):
-        maxValue = Life.getLifeFromList(weightedList)
-        if maxValue > 1:
-            nearlymax = maxValue - 1
-            value = randint(1, nearlymax)
-        else:
-            value = 1
+        sortedList = Life.sortASC(weightedList)
 
-        calcIndex = int(ceil(-.5 + sqrt(.25 + 2 * value)))
+        maxValue = Life.getLifeFromList(sortedList)
+        currentLimit = randint(0, maxValue + 1)
 
-        entry = Life.getEntryForLife(calcIndex, weightedList)
+        currentSum = 0
+        for entry in sortedList:
+            currentSum = currentSum + entry.getLife()
+
+            if (currentSum >= currentLimit):
+                return entry
 
         return entry

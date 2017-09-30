@@ -1,8 +1,8 @@
 from random import randint
 
 from imps.confy.JSONConfigManager import JSONConfigManager
+from imps.smithy.elements.Element import Element
 from imps.smithy.smarty.grammar.RandomPicker import RandomPicker
-from imps.smithy.smarty.grammar.elements.Element import Element
 
 
 class Elements(object):

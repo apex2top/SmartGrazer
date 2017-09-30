@@ -1,10 +1,7 @@
-from random import randint
-
 from imps.smithy.smarty.grammar.Life import Life
 
 
 class Grammar(Life):
-    _life = 1
     _elements = []
     _populated = []
 
@@ -24,6 +21,13 @@ class Grammar(Life):
     def getElements(self):
         return self._elements
 
+    def printKeys(self):
+        result = ''
+        for e in self.getElements():
+            result = result + " " + e.getKey() + "[" + str(e) + "]"
+
+        print(result[1:])
+
     def getLife(self):
         life = Life.getLifeFromList(self._elements)
         return life
@@ -32,11 +36,12 @@ class Grammar(Life):
         payload = []
         for element in self._elements:
             if element.getKey() == "ATTACK":
-                element.setValue(str(attack))
                 for attackElements in attack.getElements():
                     payload.append(attackElements)
             else:
                 payload.append(element)
+
+        self._elements = payload
 
     def populateRandomText(self, text):
         for element in self._elements:

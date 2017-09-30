@@ -56,19 +56,18 @@ class RequestExecutor(object):
         return self._getFilePath(runconfig)
 
     def _getFilePath(self, params):
-        hash = str(params)
         m = hashlib.md5()
-        m.update(hash.encode())
-        hex = m.hexdigest()
-        now = datetime.datetime.now().strftime("%Y-%m-%d-%H")
+        m.update(str(params).encode())
+        hex = m.hexdigest()[:8]
+        now = datetime.datetime.now().strftime("%Y-%m-%d")
         url = urlparse(params["target"])
 
-        dir = self.config["response"]["savedir"] + url.netloc + "/" + now + "/"
+        dir = self.config["response"]["savedir"] + url.netloc + "/"
 
         if not os.path.exists(dir):
             os.makedirs(dir)
 
-        return dir + hex + ".html"
+        return dir + now + " - " + hex + "." + params["filesuffix"] + ".html"
 
     def _saveResponse(self, save):
         file = open(save, "w")

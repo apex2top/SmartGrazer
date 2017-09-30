@@ -3,6 +3,7 @@ from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
 
 class PayloadGenerator(object):
     config = None
+    _elements = None
 
     def applyConfig(self, configuration):
         self.config = configuration
@@ -19,9 +20,6 @@ class PayloadGenerator(object):
         if self.config["checks"]['specialchars']:
             payloads.append(self._getSpecialCharsString())
 
-        if self.config["checks"]['jsfuck']:
-            payloads.append(self._getJSFUCKCharsString())
-
         if self.config["checks"]['chars']:
             payloads.append(self._getRandomString(RandomStringGenerator.MIXEDCASE))
 
@@ -36,15 +34,18 @@ class PayloadGenerator(object):
         rs = RandomStringGenerator(1000, 16000)
         return rs.get(type)
 
+    def setElements(self, elements):
+        self._elements = elements
+
+    def getElements(self):
+        return self._elements
+
     def _getSpecialCharsString(self):
-        chars = ''
-        for digit in self.config['stringgenerator']['specialchars']:
-            chars = chars + chr(digit)
+        elements = []
+        for key in self.config['stringgenerator']['specialchars']:
+            elements.append(str(self.getElements().getElement(key)))
 
-        return chars
-
-    def _getJSFUCKCharsString(self):
-        return '()[]!+'
+        return ''.join(elements)
 
     def _getKeyWords(self):
         return "<img /> <IMG /> src SRC javascript alert xss script SCRIPT <a onerror </body> <iframe <input style= onload="

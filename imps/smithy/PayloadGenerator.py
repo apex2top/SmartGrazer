@@ -1,26 +1,34 @@
 import importlib
 
+from imps.smithy.Elements import Elements
+
 
 class PayloadGenerator(object):
-    impName = ''
-    config = {}
-    impConfig = {}
-    amount = 1
+    _impName = ''
+    _config = {}
+    _impConfig = {}
+    _amount = 1
 
     def __init__(self, configuration):
-        self.config = configuration
-        self.impName = self.config["smithy"]["generator"]
+        self._config = configuration
+        self._impName = self._config["smithy"]["generator"]
 
     def getImpString(self, name):
-        self.amount = self.config["smithy"]["generate"]["amount"]
-        self.impConfig = self.config[name]
+        self._amount = self._config["smithy"]["generate"]["amount"]
+        self._impConfig = self._config[name]
 
         return "imps.smithy.{0}".format(name)
 
     def _getGenerator(self, name):
         module = importlib.import_module(self.getImpString(name) + ".PayloadGenerator")
         generator = module.PayloadGenerator()
-        generator.applyConfig(self.impConfig)
+        generator.applyConfig(self._impConfig)
+
+        elements = Elements(self._config["smithy"]["elements"])
+        default = int(self._config["smithy"]["life"]["default"])
+        elements.setDefaultLife(default)
+
+        generator.setElements(elements)
 
         return generator
 
@@ -28,4 +36,4 @@ class PayloadGenerator(object):
         return self._getGenerator("simpy")
 
     def generate(self):
-        return self._getGenerator(self.impName).generate(self.amount)
+        return self._getGenerator(self._impName).generate(self._amount)

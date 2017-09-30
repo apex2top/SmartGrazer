@@ -1,16 +1,16 @@
+from random import choice
+
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
-from imps.smithy.smarty.grammar.Life import Life
-from imps.smithy.smarty.grammar.RandomPicker import RandomPicker
-from imps.smithy.smarty.grammar.grammars.Grammar import Grammar
 from imps.smithy.smarty.grammar.Attacks import Attacks
+from imps.smithy.smarty.grammar.grammars.Grammar import Grammar
 
 
 class Grammars(object):
     _elements = None
 
     _grammarPatterns = []
-    _payloads = []
+    _payload = None
 
     _attackConfig = ''
 
@@ -18,13 +18,14 @@ class Grammars(object):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
 
     def getPayload(self):
-        if not self._payloads:
-            self._loadPayloads()
-
-        return Life.sortASC(self._payloads)[0]
+        self._loadPayload()
+        return self._payload
 
     def setElements(self, elements):
         self._elements = elements
+
+    def getElements(self):
+        return self._elements
 
     def _getAttackGenerator(self):
         attackGenerator = Attacks(self._attackConfig)
@@ -32,40 +33,33 @@ class Grammars(object):
 
         return attackGenerator
 
-    def _loadPayloads(self):
-        for pattern in self._grammarPatterns:
-            components = []
+    def _loadPayload(self):
+        pattern = choice(self._grammarPatterns)
 
-            for entry in pattern:
-                if self._elements is None:
-                    raise ValueError(
-                        "Elements are not initialized! Please provide an elements instance via setElements.")
-                element = self._elements.getElement(entry)
+        # creating elements
+        components = []
+        for entry in pattern:
+            if self._elements is None:
+                raise ValueError(
+                    "Elements are not initialized! Please provide an elements instance via setElements.")
+            element = self._elements.getElement(entry)
+            components.append(element)
 
-                '''
-                print("Before %s" % element.getLife())
+        # choose an attack and populating it
+        attackGenerator = self._getAttackGenerator()
+        attack = attackGenerator.getAttack()
 
-                for i in range(0, randint(0, 3)):
-                    element.decreaseLife()
+        # setting up the random string generator
+        text = (RandomStringGenerator(RandomStringGenerator.minlength, RandomStringGenerator.maxlength)).get(
+            RandomStringGenerator.MIXEDCASE)
 
-                print("After %s" % element.getLife())
-                print("_______________________________")
-                '''
-                components.append(element)
+        # populating the chosen grammar
+        grammar = Grammar(components)
 
-            attackGenerator = self._getAttackGenerator()
-            attack = attackGenerator.getAttack()
+        grammar.populateAttack(attack)
+        grammar.populateRandomText(text)
 
-            text = (RandomStringGenerator(RandomStringGenerator.minlength, RandomStringGenerator.maxlength)).get(RandomStringGenerator.MIXEDCASE)
-
-            grammar = Grammar(components)
-
-            grammar.populateAttack(attack)
-            grammar.populateRandomText(text)
-
-            #print(str(grammar) + " with a life of: %s!" %  grammar.getLife())
-
-            self._payloads.append(grammar)
+        self._payload = grammar
 
     def setAttackConfig(self, attackConfig):
         self._attackConfig = attackConfig
