@@ -1,8 +1,7 @@
 {
   "smartgrazer": {
     "logging": {
-      "output": "stout",
-      "level": 20
+      "level": 10
     },
     "imps": {
       "smithy": {

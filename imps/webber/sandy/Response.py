@@ -1,4 +1,8 @@
+from imps.annelysa.Converter import Converter
+
+
 class Response(object):
+    _file = ''
     _html = ''
     _decHtml = None
 
@@ -9,9 +13,13 @@ class Response(object):
         pass
 
     # html handling + conversion to decimal
-    def loadHtmlFromFile(self, file):
-        with open(file, "r") as report:
+    def _loadHtmlFromFile(self):
+        with open(self._file, "r") as report:
             self.setHtml(str(report.readlines()))
+
+    def setResponseFile(self, file):
+        self._file = file
+        self._loadHtmlFromFile()
 
     def setHtml(self, html):
         self._html = html
@@ -20,7 +28,7 @@ class Response(object):
         return self._html
 
     def getDecimalHtml(self):
-        return self._getDecimalFromString(self.getHtml())
+        return Converter.getDecimal(self.getHtml())
 
     # payload handling + conversion to decimal
     def setPayload(self, payload):
@@ -37,12 +45,11 @@ class Response(object):
 
     def getDecPayload(self):
         payload = []
-        for element in self.getPayload():
+
+        for element in self.getPayload().getElements():
             if element.getValue().isdigit():
                 return element.getValue()
             else:
-                return self._getDecimalFromString(element.getValue())
-        return payload
+                return Converter.getDecimal(element.getValue())
 
-    def _getDecimalFromString(self, string):
-        return ''.join(str(ord(c)) for c in string)
+        return payload

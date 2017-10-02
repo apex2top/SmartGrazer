@@ -34,3 +34,12 @@ class Action(object):
 
     def getCookies(self):
         return self._cookies
+
+    def getParams(self):
+        return {
+            "target": self.getTarget(),
+            "filesuffix": self.getFileSuffix(),
+            "get": self.getGet(),
+            "post": self.getPost(),
+            "cookies": self.getPost()
+        }

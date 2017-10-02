@@ -1,5 +1,5 @@
-import datetime
-import hashlib
+import json
+import logging
 import os
 import urllib
 from urllib.parse import urlparse
@@ -9,67 +9,56 @@ import requests
 
 class RequestExecutor(object):
     config = {}
-    response = ''
     session = None
-    action = ""
-    skipPreCondition = False
+
+    _logger = logging.getLogger("SmartGrazer")
 
     def __init__(self, config):
         self.config = config
         self.session = requests.Session()
-        self.skipPreCondition = False
 
-    def request(self, runconfig):
-        if runconfig["precondition"] and not self.skipPreCondition:
-            self._request(runconfig["precondition"])
+    def request(self, request):
+        actionFile = ''
 
-        file = self._request(runconfig["action"])
-        self._saveResponse(file)
+        for action in request.getActions():
+            requeststring = action.getTarget()
 
-        return file
+            if action.getGet():
+                query = urllib.parse.urlencode(action.getGet())
+                requeststring = '?'.join([requeststring, query])
 
-    def _request(self, runconfig):
-        params = runconfig["params"]
+            if action.getPost():
+                r = self.session.post(requeststring, action.getPost())
+                self._logger.debug("Request: " + requeststring + " | Params: " + json.dumps(action.getPost()))
+            else:
+                r = self.session.get(requeststring)
+                self._logger.debug("Request: " + requeststring)
 
-        if not "get" in params:
-            params['get'] = {}
+            filePath = request.getFilePath(action)
+            fileName = request.getFileName(action)
 
-        if not "post" in params:
-            params['post'] = {}
+            if not fileName is None:
+                # save the response html
+                self._save(filePath, fileName + ".html", r.text)
 
-        if not "cookies" in params:
-            params['cookies'] = {}
+                # save the request file
+                actionFile = self._save(filePath, fileName, json.dumps(action.getParams(), indent=4))
 
-        requeststring = runconfig["target"]
+        return actionFile
 
-        if params['get']:
-            query = urllib.parse.urlencode(params['get'])
-
-            requeststring = '?'.join([runconfig["target"], query])
-
-        if params['post']:
-            r = self.session.post(requeststring, params['post'])
-        else:
-            r = self.session.get(requeststring)
-
-        self.response = r.text
-        return self._getFilePath(runconfig)
-
-    def _getFilePath(self, params):
-        m = hashlib.md5()
-        m.update(str(params).encode())
-        hex = m.hexdigest()[:8]
-        now = datetime.datetime.now().strftime("%Y-%m-%d")
-        url = urlparse(params["target"])
-
-        dir = self.config["response"]["savedir"] + url.netloc + "/"
+    def _getFilePath(self, filePath, fileName):
+        dir = self.config["response"]["savedir"] + filePath
 
         if not os.path.exists(dir):
             os.makedirs(dir)
 
-        return dir + now + " - " + hex + "." + params["filesuffix"] + ".html"
+        return dir + fileName
 
-    def _saveResponse(self, save):
+    def _save(self, filePath, fileName, data):
+        save = self._getFilePath(filePath, fileName)
+
         file = open(save, "w")
-        file.write(self.response)
+        file.write(data)
         file.close()
+
+        return save

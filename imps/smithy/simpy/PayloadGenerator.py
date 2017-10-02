@@ -1,4 +1,6 @@
+from imps.smithy.elements.Element import Element
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
+from imps.smithy.smarty.grammar.attacks.Attack import Attack
 
 
 class PayloadGenerator(object):
@@ -10,9 +12,6 @@ class PayloadGenerator(object):
 
     def generate(self):
         payloads = []
-
-        if self.config["checks"]['keywords']:
-            payloads.append(self._getKeyWords())
 
         if self.config["checks"]['max_get_length']:
             payloads.append(self._getLongRandomString())
@@ -28,11 +27,14 @@ class PayloadGenerator(object):
     def _getRandomString(self, type):
         stringconf = self.config['stringgenerator']['length']
         rs = RandomStringGenerator(stringconf['min'], stringconf['max'])
-        return rs.get(type)
+        element = Element('RANDOMSTRING', rs.get(type))
+        return Attack([element])
 
     def _getLongRandomString(self, type=RandomStringGenerator.MIXEDCASE):
         rs = RandomStringGenerator(1000, 16000)
-        return rs.get(type)
+        element = Element('RANDOMLONGSTRING', rs.get(type))
+
+        return Attack([element])
 
     def setElements(self, elements):
         self._elements = elements
@@ -45,7 +47,4 @@ class PayloadGenerator(object):
         for key in self.config['stringgenerator']['specialchars']:
             elements.append(str(self.getElements().getElement(key)))
 
-        return ''.join(elements)
-
-    def _getKeyWords(self):
-        return "<img /> <IMG /> src SRC javascript alert xss script SCRIPT <a onerror </body> <iframe <input style= onload="
+        return Attack(elements)

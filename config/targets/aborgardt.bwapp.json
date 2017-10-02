@@ -2,7 +2,6 @@
   "runconfig": {
     "valid": {
       "precondition": {
-        "filesuffix": "precondition",
         "target": "https://aborgardt.com/master/bWAPP/login.php",
         "params": {
           "post": {
@@ -19,7 +18,7 @@
         "params": {
           "get": {
             "firstname": "PAYLOAD",
-            "lastname": "borgardt"
+            "lastname": "smartgrazer"
           }
         }
       },
@@ -27,7 +26,6 @@
     },
     "attack": {
       "precondition": {
-        "filesuffix": "precondition",
         "target": "https://aborgardt.com/master/bWAPP/login.php",
         "params": {
           "post": {
@@ -44,7 +42,7 @@
         "params": {
           "get": {
             "firstname": "PAYLOAD",
-            "lastname": "borgardt"
+            "lastname": "smartgrazer"
           }
         }
       }

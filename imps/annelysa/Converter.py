@@ -15,6 +15,8 @@ class Converter(object):
         result = ''
 
         for n in deciarray:
+            if n.isdigit():
+                n = int(n)
             result = result + chr(n)
 
         return result
