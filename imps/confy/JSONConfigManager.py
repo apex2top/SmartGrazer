@@ -35,7 +35,7 @@ class JSONConfigManager(object):
         return self.config
 
     def _loadRunconfig(self, name):
-        runConfig = JSONConfigManager(name, "/../../config/targets/")
+        runConfig = JSONConfigManager(name, self.config["smartgrazer"]["directories"]["runconfigs"])
         return runConfig.getConfig()
 
     def _merge(self, name):

@@ -48,8 +48,9 @@ class Response(object):
 
         for element in self.getPayload().getElements():
             if element.getValue().isdigit():
-                return element.getValue()
+                payload.append(element.getValue())
             else:
-                return Converter.getDecimal(element.getValue())
+                for digit in Converter.getDecimal(element.getValue()):
+                    payload.append(digit)
 
         return payload

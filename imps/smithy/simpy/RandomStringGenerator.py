@@ -16,13 +16,12 @@ class RandomStringGenerator(object):
     def __init__(self, minLength, maxLength):
         self.minlength = minLength
         self.maxlength = maxLength
+        self.chars = ''
 
     def _getRandomLength(self):
         return random.randint(self.minlength, self.maxlength)
 
     def get(self, type):
-        self.chars = ''
-
         if type == self.LOWERCASE:
             self.chars = string.ascii_lowercase
         if type == self.UPPERCASE:
@@ -35,4 +34,4 @@ class RandomStringGenerator(object):
         if self.chars != "":
             return get_random_string(self._getRandomLength(), self.chars)
 
-        return ""
+        return self.chars

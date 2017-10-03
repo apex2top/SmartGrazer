@@ -45,6 +45,6 @@ class PayloadGenerator(object):
     def _getSpecialCharsString(self):
         elements = []
         for key in self.config['stringgenerator']['specialchars']:
-            elements.append(str(self.getElements().getElement(key)))
+            elements.append(self.getElements().getElement(key))
 
         return Attack(elements)

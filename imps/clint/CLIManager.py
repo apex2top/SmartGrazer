@@ -9,7 +9,7 @@ class CLIManager(object):
     def __init__(self):
         self.parser = argparse.ArgumentParser(
             prog='SmartGrazer',
-            usage='%(prog)s [options]',
+            usage='%(prog)s [-h | [-g | -x path/to/runconfig.json] | --overwrite [key1=value1 ... keyn=valuen]]',
             description='A smart tools based fuzzer.',
             formatter_class=RawTextHelpFormatter)
         pass
@@ -28,15 +28,7 @@ class CLIManager(object):
 
         mutual.add_argument('-x',
                             '--execute',
-                            const=True,
-                            nargs='?',
-                            action='store',
-                            default=False,
                             help='Name of the configuration file containing the config.')
-
-        self.parser.add_argument('-r',
-                                 '--runconfig',
-                                 help='Name of the configuration file containing the config.')
 
         self.parser.add_argument('--overwrite',
                                  nargs='*',
@@ -45,8 +37,9 @@ class CLIManager(object):
 
         self.args = self.parser.parse_args()
 
-        if self.args.runconfig is None:
-            raise ValueError("You have selected the execution mode. Please provide a runconfig via the -r option.")
+        if self.args.execute is False and self.args.generate is False:
+            raise ValueError("You either have to set the -g or the -x mode. Please see help with the -h option!")
+            exit(1)
 
         return self
 

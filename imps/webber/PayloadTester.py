@@ -44,7 +44,7 @@ class PayloadTester(object):
 
         # Create a Request for each payload
         for payload in self._payloads:
-            print("\n\n => " + str(payload))
+            self._logger.info("\t\t\t\tStart Request with payload: %s " % payload)
             request = Request()
             request.setPayload(payload)
             request.setRunConfig(params)

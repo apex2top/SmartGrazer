@@ -12,9 +12,11 @@ class Request(object):
     _actions = []
 
     def getActions(self):
+        # remove previous actions<
+        self._actions = []
+
         # creating precondition and action actions:
         for type in self.getRunConfig():
-            print("Type: " + type)
             actionConfig = self._insertPayload(self.getRunConfig()[type])
 
             action = Action()
@@ -42,7 +44,6 @@ class Request(object):
         for type in actionConfig['params']:
             for params in actionConfig['params'][type]:
                 if actionConfig['params'][type][params] == 'PAYLOAD':
-                    print("\t\t => Replacing: PAYLOAD with: " + self.getPayloadString())
                     actionConfig['params'][type][params] = self.getPayloadString()
 
         return actionConfig

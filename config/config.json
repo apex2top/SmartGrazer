@@ -1,17 +1,20 @@
 {
   "smartgrazer": {
     "logging": {
-      "level": 10
+      "level": 0
+    },
+    "directories" : {
+        "runconfigs" : "/../../config/targets/"
     },
     "imps": {
       "smithy": {
         "generate": {
-          "amount": 10
+          "amount": 3
         },
         "generator": "smarty",
         "elements": "smarty/elements.json",
         "life": {
-          "default": 999,
+          "default": 100,
           "999": "set default to 999 to get random life values"
         }
       },
