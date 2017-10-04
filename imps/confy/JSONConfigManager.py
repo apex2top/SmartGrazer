@@ -26,7 +26,7 @@ class JSONConfigManager(object):
             self.config = json.load(datafile)
 
     def getConfig(self, name=None, overwrites=None):
-        if name is None:
+        if name is None and overwrites is None:
             return self.config
 
         self._merge(name)
@@ -39,6 +39,9 @@ class JSONConfigManager(object):
         return runConfig.getConfig()
 
     def _merge(self, name):
+        if name is None:
+            return self.config
+
         self.config = merge(self.config, self._loadRunconfig(name))
 
     def _overwrite(self, overwrites):

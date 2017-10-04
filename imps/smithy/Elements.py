@@ -13,7 +13,7 @@ class Elements(object):
 
     def __init__(self, filePath):
         self._rawElements = (JSONConfigManager(filePath)).getConfig()
-        
+
     def setDefaultLife(self, amount):
         self._defaultLife = amount
 
@@ -22,72 +22,89 @@ class Elements(object):
             return randint(1, 101)
         return self._defaultLife
 
+    def getElement(self, identifier):
+        if identifier in self._loadedElements.keys():
+            return self._loadedElements[identifier]
 
-    def getElement(self, key):
+        raw = self._getRawElement(identifier)
+
+        if raw['key'] in self._loadedElements.keys():
+            element = self._loadedElements[raw['key']]
+        else:
+            element = Element(raw['key'])
+            element.setValue(raw['key'])
+            element.setUsage(raw['usage'])
+            element.setLife(self.getDefaultLife())
+
+        return element
+
+    def getElementForUsage(self, usage):
         memkey = None
-
-        # get the instance from memory
-        if key in self._loadedElements.keys():
-            value = self._loadedElements[key]
-
-            if type(value) is list:
-                return RandomPicker.pickWeightedRandom(self._loadedElements[key])
 
         # Important! some elements must be the same char e.g. QUOTES
         # Therefore the user can attach ':[0-9]' to some tags
         # these randomly chosen chars will be saved to _memory[key][memkey]
-        if key[-2] == ':':
-            memkey = key[-1]
-            key = key[0:-2]
+        if usage[-2] == ':':
+            memkey = usage[-1]
+            usage = usage[0:-2]
 
-            if not key in self._memory:
-                self._memory[key] = {}
+            if not usage in self._memory:
+                self._memory[usage] = {}
 
-            if not memkey in self._memory[key]:
-                self._memory[key][memkey] = None
+            if not memkey in self._memory[usage]:
+                self._memory[usage][memkey] = None
             else:
-                return self._memory[key][memkey]
+                return self._memory[usage][memkey]
 
-        # create a list of possible values
-        self._loadedElements[key] = []
+        # get all element identifiers for usage e.g. SPACE
+        elements = self._getElementsWithUsage(usage)
+        if not elements:
+            # all other identifier e.g. ATTACK, SPACE
+            elements.append(usage)
 
-        ### create the instance(s)
+        # get element instances
+        candidates = []
+        for elementid in elements:
+            element = None
 
-        # a normal string or number is given e.g. plaintext -> alert
-        if not key in self._rawElements.keys():
-            element = Element(key, key)
-            element.setLife(self.getDefaultLife())
-            # store the created instance to memory
-            self._loadedElements[key].append(element)
-        elif not type(self._rawElements[key]) is list:
-            # a value representing a tag e.g. TAG_SCRIPT
-            element = Element(key, self._rawElements[key])
-            element.setLife(self.getDefaultLife())
-
-            # store the created instance to memory
-            self._loadedElements[key].append(element)
-        else:
-            # in case there are multiple chars for one key e.g. SPACE
-            for representation in self._rawElements[key]:
-                if type(representation) is int:
-                    representation = str(representation)
-
-                value = representation
-
-                element = Element(key, value)
+            if elementid in self._loadedElements.keys():
+                element = self._loadedElements[elementid]
+            else:
+                element = Element(elementid)
+                element.setValue(elementid)
+                element.setUsage(usage)
                 element.setLife(self.getDefaultLife())
 
-                # store the created instance to memory
-                self._loadedElements[key].append(element)
+                self._loadedElements[elementid] = element
 
-            # after all chars has been added, pick one random, depending on its weight
-            element = RandomPicker.pickWeightedRandom(self._loadedElements[key])
+            candidates.append(element)
+
+        element = RandomPicker.pickWeightedRandom(candidates)
 
         # now we can store the picked element for later
         if memkey:
-            self._memory[key][memkey] = element
+            self._memory[usage][memkey] = element
 
         return element
+
+    def _getElementsWithUsage(self, usage):
+        elements = []
+
+        for entry in self._rawElements:
+            if usage in self._rawElements[entry]:
+                elements.append(entry)
+
+        return elements
+
+    def _getRawElement(self, identifier):
+        # handle dharmas fixed generated one char elements e.g. '='
+        if not identifier.isdigit() and len(identifier) == 1:
+            identifier = ord(identifier)
+
+        if identifier in self._rawElements.keys():
+            return {'key': identifier, 'usage': self._rawElements[identifier]}
+
+        return {'key': identifier, 'usage': []}
 
     def getRawElements(self):
         return self._rawElements

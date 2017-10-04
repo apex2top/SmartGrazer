@@ -39,7 +39,6 @@ class SmartGrazer(object):
         # Generate the payloads and exit
         if self.clint.get('generate'):
             for p in payloads:
-                # p.printKeys()
                 print(p)
             exit(0)
 

@@ -27,7 +27,7 @@ class Response(object):
     def getHtml(self):
         return self._html
 
-    def getDecimalHtml(self):
+    def getDecHtml(self):
         return Converter.getDecimal(self.getHtml())
 
     # payload handling + conversion to decimal

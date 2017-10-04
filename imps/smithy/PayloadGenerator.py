@@ -36,4 +36,5 @@ class PayloadGenerator(object):
         return self._getGenerator("simpy")
 
     def generate(self):
+        print("Using: " + self._impName)
         return self._getGenerator(self._impName).generate(self._amount)

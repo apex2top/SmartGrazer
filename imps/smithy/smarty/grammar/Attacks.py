@@ -31,7 +31,7 @@ class Attacks(object):
             if self._elements is None:
                 raise ValueError(
                     "Elements are not initialized! Please provide an elements instance via setElements.")
-            element = self._elements.getElement(entry)
+            element = self._elements.getElementForUsage(entry)
             components.append(element)
 
         self._attack = Attack(components)

@@ -1,10 +1,10 @@
+from imps.smithy.Generator import Generator
 from imps.smithy.smarty.grammar.Grammars import Grammars
 
 
-class PayloadGenerator(object):
+class PayloadGenerator(Generator):
     _config = None
     _grammar = None
-    _elements = None
 
     def applyConfig(self, configuration):
         self._config = configuration
@@ -13,12 +13,6 @@ class PayloadGenerator(object):
         if self._grammar is None:
             self._grammar = Grammars(self._config['grammars'])
         return self._grammar
-
-    def setElements(self, elements):
-        self._elements = elements
-
-    def getElements(self):
-        return self._elements
 
     def generate(self, amount):
         grammarGenerator = self.getGrammar()

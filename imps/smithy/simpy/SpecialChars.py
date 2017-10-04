@@ -11,9 +11,9 @@ class SpecialChars(object):
 
         tmp = []
 
-        for elem in self.special_chars:
-            elem = Element(elem, elem)
-            tmp.append(elem.getElement())
+        #for elem in self.special_chars:
+        #    elem = Element(elem, elem)
+        #    tmp.append(elem.getElement())
 
         self.special_chars = tmp
 

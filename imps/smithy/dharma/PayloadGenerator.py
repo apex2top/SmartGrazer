@@ -1,8 +1,14 @@
+import json
 import os
 import subprocess
 
+from simplejson import JSONDecodeError
 
-class PayloadGenerator(object):
+from imps.smithy.Generator import Generator
+from imps.smithy.smarty.grammar.attacks.Attack import Attack
+
+
+class PayloadGenerator(Generator):
     """This class represents the context free tools generators from the open source project dharma.
 
         This software is using this generators in combination with the xss tools file "xss.dg".
@@ -41,10 +47,21 @@ class PayloadGenerator(object):
             if line == b'\r\n':
                 continue
 
-            line = line.replace(b'dharma', b'#smartgrazer')
             line = line.decode("utf-8")
             line = str(line)
 
-            output.append(line)
+            elements = self._parse(line[1:-3])
+            attack = Attack(elements)
+            output.append(attack)
 
         return output
+
+    def _parse(self, payload):
+        list = payload.split(",")
+
+        elements = []
+        for entry in list:
+            element = self.getElements().getElement(entry)
+            elements.append(element)
+
+        return elements

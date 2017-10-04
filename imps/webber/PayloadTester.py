@@ -34,7 +34,8 @@ class PayloadTester(object):
 
         if "PAYLOAD" in params.keys():
             self._logger.debug("Replacing with fixed payload! Should be a valid run!")
-            element = Element("PAYLOAD", params["PAYLOAD"])
+            element = Element("VALID")
+            element.setValue(params["PAYLOAD"])
             attack = Attack([element])
 
             self._payloads = [attack]

@@ -14,7 +14,7 @@ class RandomPicker(object):
         for entry in sortedList:
             currentSum = currentSum + entry.getLife()
 
-            if (currentSum >= currentLimit):
+            if currentSum >= currentLimit:
                 return entry
 
         return entry

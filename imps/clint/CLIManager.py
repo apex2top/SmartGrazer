@@ -37,7 +37,7 @@ class CLIManager(object):
 
         self.args = self.parser.parse_args()
 
-        if self.args.execute is False and self.args.generate is False:
+        if self.args.execute == None and self.args.generate is False:
             raise ValueError("You either have to set the -g or the -x mode. Please see help with the -h option!")
             exit(1)
 

@@ -1,192 +1,705 @@
 {
-  "TAG_HTML": [
-    "textarea",
-    "frame",
-    "submit",
-    "img",
-    "input",
-    "button",
-    "a",
-    "frameset",
-    "option"
+  "7": [
+    "SPACE"
   ],
-  "TAG_JS": [
-    "javascript"
+  "9": [
+    "SPACE"
   ],
-  "TAG_SCRIPT": [
-    "script"
+  "10": [
+    "SPACE"
   ],
-  "BACKSLASH": [
-    92
+  "11": [
+    "SPACE"
   ],
-  "EXCLAMATIONMARK": [
-    33
+  "12": [
+    "SPACE"
   ],
-  "CLOSECURLYBRACKET": [
-    125
+  "32": [
+    "SPACE"
   ],
-  "CLOSEPOINTEDBRACKET": [
-    62
+  "33": [
+    "EXCLAMATIONMARK"
   ],
-  "CLOSEROUNDBRACKET": [
-    41
+  "34": [
+    "QUOTE"
   ],
-  "CLOSESQUAREBRACKET": [
-    93
+  "35": [
+    "HASHTAG"
   ],
-  "COLON": [
-    58
+  "37": [
+    "PERCENT"
   ],
-  "DOT": [
-    46
+  "39": [
+    "QUOTE"
   ],
-  "EQUAL": [
-    61
+  "40": [
+    "OPENROUNDBRACKET"
   ],
-  "HASHTAG": [
-    35
+  "41": [
+    "CLOSEROUNDBRACKET"
   ],
-  "MINUS": [
-    45
+  "42": [
+    "MULTIPLY"
   ],
-  "MULTIPLY": [
-    42
+  "43": [
+    "SPACE",
+    "PLUS"
   ],
-  "OPENCURLYBRACKET": [
-    123
+  "45": [
+    "MINUS"
   ],
-  "OPENPOINTEDBRACKET": [
-    60
+  "46": [
+    "DOT"
   ],
-  "OPENROUNDBRACKET": [
-    40
+  "47": [
+    "SPACE",
+    "SLASH"
   ],
-  "OPENSQUAREBRACKET": [
-    91
+  "58": [
+    "COLON"
   ],
-  "PERCENT": [
-    37
+  "59": [
+    "SEMICOLON"
   ],
-  "PLUS": [
-    43
+  "60": [
+    "OPENPOINTEDBRACKET"
   ],
-  "POWER": [
-    94
+  "61": [
+    "EQUAL"
   ],
-  "QUOTE": [
-    "",
-    34,
-    39,
-    96
+  "62": [
+    "CLOSEPOINTEDBRACKET"
   ],
-  "SEMICOLON": [
-    "",
-    59
+  "91": [
+    "OPENSQUAREBRACKET"
   ],
-  "SLASH": [
-    47
+  "92": [
+    "BACKSLASH"
   ],
-  "SPACE": [
-    "",
-    7,
-    9,
-    10,
-    11,
-    12,
-    32,
-    47
+  "93": [
+    "CLOSESQUAREBRACKET"
   ],
-  "UNDERLINE": [
-    95
+  "94": [
+    "POWER"
   ],
-  "EVENT": [
-    "onclick",
-    "oncontextmenu",
-    "ondblclick",
-    "onmousedown",
-    "onmouseenter",
-    "onmouseleave",
-    "onmousemove",
-    "onmouseover",
-    "onmouseout",
-    "onmouseup",
-    "onkeydown",
-    "onkeypress",
-    "onkeyup",
-    "onabort",
-    "onbeforeunload",
-    "onerror",
-    "onhashchange",
-    "onload",
-    "onpageshow",
-    "onpagehide",
-    "onresize",
-    "onscroll",
-    "onunload",
-    "onblur",
-    "onchange",
-    "onfocus",
-    "onfocusin",
-    "onfocusout",
-    "oninput",
-    "oninvalid",
-    "onreset",
-    "onsearch",
-    "onselect",
-    "onsubmit",
-    "ondrag",
-    "ondragend",
-    "ondragenter",
-    "ondragleave",
-    "ondragover",
-    "ondragstart",
-    "ondrop",
-    "oncopy",
-    "oncut",
-    "onpaste",
-    "onafterprint",
-    "onbeforeprint",
-    "onabort",
-    "oncanplay",
-    "oncanplaythrough",
-    "ondurationchange",
-    "onemptied",
-    "onended",
-    "onerror",
-    "onloadeddata",
-    "onloadedmetadata",
-    "onloadstart",
-    "onpause",
-    "onplay",
-    "onplaying",
-    "onprogress",
-    "onratechange",
-    "onseeked",
-    "onseeking",
-    "onstalled",
-    "onsuspend",
-    "ontimeupdate",
-    "onvolumechange",
-    "onwaiting",
-    "animationend",
-    "animationiteration",
-    "animationstart",
-    "transitionend",
-    "onerror",
-    "onmessage",
-    "onopen",
-    "onmessage",
-    "onmousewheel",
-    "ononline",
-    "onoffline",
-    "onpopstate",
-    "onshow",
-    "onstorage",
-    "ontoggle",
-    "onwheel",
-    "ontouchcancel",
-    "ontouchend",
-    "ontouchmove",
-    "ontouchstart"
+  "95": [
+    "UNDERLINE"
+  ],
+  "96": [
+    "QUOTE"
+  ],
+  "123": [
+    "OPENCURLYBRACKET"
+  ],
+  "125": [
+    "CLOSECURLYBRACKET"
+  ],
+  "abbr": [
+    "TAG_HTML"
+  ],
+  "acronym": [
+    "TAG_HTML"
+  ],
+  "address": [
+    "TAG_HTML"
+  ],
+  "applet": [
+    "TAG_HTML"
+  ],
+  "area": [
+    "TAG_HTML"
+  ],
+  "article": [
+    "TAG_HTML"
+  ],
+  "aside": [
+    "TAG_HTML"
+  ],
+  "audio": [
+    "TAG_HTML"
+  ],
+  "b": [
+    "TAG_HTML"
+  ],
+  "base": [
+    "TAG_HTML"
+  ],
+  "basefont": [
+    "TAG_HTML"
+  ],
+  "bdi": [
+    "TAG_HTML"
+  ],
+  "bdo": [
+    "TAG_HTML"
+  ],
+  "big": [
+    "TAG_HTML"
+  ],
+  "blockquote": [
+    "TAG_HTML"
+  ],
+  "body": [
+    "TAG_HTML"
+  ],
+  "br": [
+    "TAG_HTML"
+  ],
+  "button": [
+    "TAG_HTML"
+  ],
+  "canvas": [
+    "TAG_HTML"
+  ],
+  "caption": [
+    "TAG_HTML"
+  ],
+  "center": [
+    "TAG_HTML"
+  ],
+  "cite": [
+    "TAG_HTML"
+  ],
+  "code": [
+    "TAG_HTML"
+  ],
+  "col": [
+    "TAG_HTML"
+  ],
+  "colgroup": [
+    "TAG_HTML"
+  ],
+  "datalist": [
+    "TAG_HTML"
+  ],
+  "dd": [
+    "TAG_HTML"
+  ],
+  "del": [
+    "TAG_HTML"
+  ],
+  "details": [
+    "TAG_HTML"
+  ],
+  "dfn": [
+    "TAG_HTML"
+  ],
+  "dialog": [
+    "TAG_HTML"
+  ],
+  "dir": [
+    "TAG_HTML"
+  ],
+  "div": [
+    "TAG_HTML"
+  ],
+  "dl": [
+    "TAG_HTML"
+  ],
+  "dt": [
+    "TAG_HTML"
+  ],
+  "em": [
+    "TAG_HTML"
+  ],
+  "embed": [
+    "TAG_HTML"
+  ],
+  "fieldset": [
+    "TAG_HTML"
+  ],
+  "figcaption": [
+    "TAG_HTML"
+  ],
+  "figure": [
+    "TAG_HTML"
+  ],
+  "font": [
+    "TAG_HTML"
+  ],
+  "footer": [
+    "TAG_HTML"
+  ],
+  "form": [
+    "TAG_HTML"
+  ],
+  "frame": [
+    "TAG_HTML"
+  ],
+  "frameset": [
+    "TAG_HTML"
+  ],
+  "h1": [
+    "TAG_HTML"
+  ],
+  "head": [
+    "TAG_HTML"
+  ],
+  "header": [
+    "TAG_HTML"
+  ],
+  "hr": [
+    "TAG_HTML"
+  ],
+  "html": [
+    "TAG_HTML"
+  ],
+  "i": [
+    "TAG_HTML"
+  ],
+  "iframe": [
+    "TAG_HTML"
+  ],
+  "img": [
+    "TAG_HTML"
+  ],
+  "input": [
+    "TAG_HTML"
+  ],
+  "ins": [
+    "TAG_HTML"
+  ],
+  "kbd": [
+    "TAG_HTML"
+  ],
+  "keygen": [
+    "TAG_HTML"
+  ],
+  "label": [
+    "TAG_HTML"
+  ],
+  "legend": [
+    "TAG_HTML"
+  ],
+  "li": [
+    "TAG_HTML"
+  ],
+  "link": [
+    "TAG_HTML"
+  ],
+  "main": [
+    "TAG_HTML"
+  ],
+  "map": [
+    "TAG_HTML"
+  ],
+  "mark": [
+    "TAG_HTML"
+  ],
+  "menu": [
+    "TAG_HTML"
+  ],
+  "menuitem": [
+    "TAG_HTML"
+  ],
+  "meta": [
+    "TAG_HTML"
+  ],
+  "meter": [
+    "TAG_HTML"
+  ],
+  "nav": [
+    "TAG_HTML"
+  ],
+  "noframes": [
+    "TAG_HTML"
+  ],
+  "object": [
+    "TAG_HTML"
+  ],
+  "ol": [
+    "TAG_HTML"
+  ],
+  "optgroup": [
+    "TAG_HTML"
+  ],
+  "option": [
+    "TAG_HTML"
+  ],
+  "output": [
+    "TAG_HTML"
+  ],
+  "p": [
+    "TAG_HTML"
+  ],
+  "param": [
+    "TAG_HTML"
+  ],
+  "picture": [
+    "TAG_HTML"
+  ],
+  "pre": [
+    "TAG_HTML"
+  ],
+  "progress": [
+    "TAG_HTML"
+  ],
+  "q": [
+    "TAG_HTML"
+  ],
+  "rp": [
+    "TAG_HTML"
+  ],
+  "rt": [
+    "TAG_HTML"
+  ],
+  "ruby": [
+    "TAG_HTML"
+  ],
+  "s": [
+    "TAG_HTML"
+  ],
+  "samp": [
+    "TAG_HTML"
+  ],
+  "script": [
+    "TAG_SCRIPT"
+  ],
+  "section": [
+    "TAG_HTML"
+  ],
+  "select": [
+    "TAG_HTML"
+  ],
+  "small": [
+    "TAG_HTML"
+  ],
+  "source": [
+    "TAG_HTML"
+  ],
+  "span": [
+    "TAG_HTML"
+  ],
+  "strike": [
+    "TAG_HTML"
+  ],
+  "strong": [
+    "TAG_HTML"
+  ],
+  "style": [
+    "TAG_HTML"
+  ],
+  "sub": [
+    "TAG_HTML"
+  ],
+  "summary": [
+    "TAG_HTML"
+  ],
+  "sup": [
+    "TAG_HTML"
+  ],
+  "table": [
+    "TAG_HTML"
+  ],
+  "tbody": [
+    "TAG_HTML"
+  ],
+  "td": [
+    "TAG_HTML"
+  ],
+  "textarea": [
+    "TAG_HTML"
+  ],
+  "tfoot": [
+    "TAG_HTML"
+  ],
+  "th": [
+    "TAG_HTML"
+  ],
+  "thead": [
+    "TAG_HTML"
+  ],
+  "time": [
+    "TAG_HTML"
+  ],
+  "title": [
+    "TAG_HTML"
+  ],
+  "tr": [
+    "TAG_HTML"
+  ],
+  "track": [
+    "TAG_HTML"
+  ],
+  "tt": [
+    "TAG_HTML"
+  ],
+  "u": [
+    "TAG_HTML"
+  ],
+  "ul": [
+    "TAG_HTML"
+  ],
+  "var": [
+    "TAG_HTML"
+  ],
+  "video": [
+    "TAG_HTML"
+  ],
+  "wbr": [
+    "TAG_HTML"
+  ],
+  "javascript": [
+    "TAG_JS"
+  ],
+  "onclick": [
+    "EVENT"
+  ],
+  "oncontextmenu": [
+    "EVENT"
+  ],
+  "ondblclick": [
+    "EVENT"
+  ],
+  "onmousedown": [
+    "EVENT"
+  ],
+  "onmouseenter": [
+    "EVENT"
+  ],
+  "onmouseleave": [
+    "EVENT"
+  ],
+  "onmousemove": [
+    "EVENT"
+  ],
+  "onmouseover": [
+    "EVENT"
+  ],
+  "onmouseout": [
+    "EVENT"
+  ],
+  "onmouseup": [
+    "EVENT"
+  ],
+  "onkeydown": [
+    "EVENT"
+  ],
+  "onkeypress": [
+    "EVENT"
+  ],
+  "onkeyup": [
+    "EVENT"
+  ],
+  "onabort": [
+    "EVENT"
+  ],
+  "onbeforeunload": [
+    "EVENT"
+  ],
+  "onerror": [
+    "EVENT"
+  ],
+  "onhashchange": [
+    "EVENT"
+  ],
+  "onload": [
+    "EVENT"
+  ],
+  "onpageshow": [
+    "EVENT"
+  ],
+  "onpagehide": [
+    "EVENT"
+  ],
+  "onresize": [
+    "EVENT"
+  ],
+  "onscroll": [
+    "EVENT"
+  ],
+  "onunload": [
+    "EVENT"
+  ],
+  "onblur": [
+    "EVENT"
+  ],
+  "onchange": [
+    "EVENT"
+  ],
+  "onfocus": [
+    "EVENT"
+  ],
+  "onfocusin": [
+    "EVENT"
+  ],
+  "onfocusout": [
+    "EVENT"
+  ],
+  "oninput": [
+    "EVENT"
+  ],
+  "oninvalid": [
+    "EVENT"
+  ],
+  "onreset": [
+    "EVENT"
+  ],
+  "onsearch": [
+    "EVENT"
+  ],
+  "onselect": [
+    "EVENT"
+  ],
+  "onsubmit": [
+    "EVENT"
+  ],
+  "ondrag": [
+    "EVENT"
+  ],
+  "ondragend": [
+    "EVENT"
+  ],
+  "ondragenter": [
+    "EVENT"
+  ],
+  "ondragleave": [
+    "EVENT"
+  ],
+  "ondragover": [
+    "EVENT"
+  ],
+  "ondragstart": [
+    "EVENT"
+  ],
+  "ondrop": [
+    "EVENT"
+  ],
+  "oncopy": [
+    "EVENT"
+  ],
+  "oncut": [
+    "EVENT"
+  ],
+  "onpaste": [
+    "EVENT"
+  ],
+  "onafterprint": [
+    "EVENT"
+  ],
+  "onbeforeprint": [
+    "EVENT"
+  ],
+  "oncanplay": [
+    "EVENT"
+  ],
+  "oncanplaythrough": [
+    "EVENT"
+  ],
+  "ondurationchange": [
+    "EVENT"
+  ],
+  "onemptied": [
+    "EVENT"
+  ],
+  "onended": [
+    "EVENT"
+  ],
+  "onloadeddata": [
+    "EVENT"
+  ],
+  "onloadedmetadata": [
+    "EVENT"
+  ],
+  "onloadstart": [
+    "EVENT"
+  ],
+  "onpause": [
+    "EVENT"
+  ],
+  "onplay": [
+    "EVENT"
+  ],
+  "onplaying": [
+    "EVENT"
+  ],
+  "onprogress": [
+    "EVENT"
+  ],
+  "onratechange": [
+    "EVENT"
+  ],
+  "onseeked": [
+    "EVENT"
+  ],
+  "onseeking": [
+    "EVENT"
+  ],
+  "onstalled": [
+    "EVENT"
+  ],
+  "onsuspend": [
+    "EVENT"
+  ],
+  "ontimeupdate": [
+    "EVENT"
+  ],
+  "onvolumechange": [
+    "EVENT"
+  ],
+  "onwaiting": [
+    "EVENT"
+  ],
+  "animationend": [
+    "EVENT"
+  ],
+  "animationiteration": [
+    "EVENT"
+  ],
+  "animationstart": [
+    "EVENT"
+  ],
+  "transitionend": [
+    "EVENT"
+  ],
+  "onmessage": [
+    "EVENT"
+  ],
+  "onopen": [
+    "EVENT"
+  ],
+  "onmousewheel": [
+    "EVENT"
+  ],
+  "ononline": [
+    "EVENT"
+  ],
+  "onoffline": [
+    "EVENT"
+  ],
+  "onpopstate": [
+    "EVENT"
+  ],
+  "onshow": [
+    "EVENT"
+  ],
+  "onstorage": [
+    "EVENT"
+  ],
+  "ontoggle": [
+    "EVENT"
+  ],
+  "onwheel": [
+    "EVENT"
+  ],
+  "ontouchcancel": [
+    "EVENT"
+  ],
+  "ontouchend": [
+    "EVENT"
+  ],
+  "ontouchmove": [
+    "EVENT"
+  ],
+  "ontouchstart": [
+    "EVENT"
+  ],
+  "": [
+    "QUOTE",
+    "SEMICOLON",
+    "SPACE"
+  ],
+  "&nbsp;": [
+    "SPACE"
   ]
 }

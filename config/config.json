@@ -14,7 +14,7 @@
         "generator": "smarty",
         "elements": "smarty/elements.json",
         "life": {
-          "default": 100,
+          "default": 999,
           "999": "set default to 999 to get random life values"
         }
       },
@@ -60,7 +60,7 @@
       },
       "dharma": {
         "script": "../../../dharma-github/trunk/dharma/dharma.py",
-        "grammar": "../../../dharma-github/trunk/dharma/grammars/xss.dg",
+        "grammar": "../../../dharma-github/trunk/dharma/grammars/smartgrazer.dg",
         "urlencode": false
       },
       "smarty": {
