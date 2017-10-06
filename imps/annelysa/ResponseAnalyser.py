@@ -14,7 +14,7 @@ class ResponseAnalyser(object):
         return self
 
     def getResponse(self):
-        return self._valid
+        return self._response
 
     def analyze(self):
         # Is the first run SmartGrazer does.
@@ -24,22 +24,13 @@ class ResponseAnalyser(object):
         if self._startIndex < 0:
             raise ValueError("Valid entry was not found!")
 
-        payloadSliceOfHTML = self._response.getDecHtml()[self._startIndex - 1:]
+        sliceOfHTML = self._response.getDecHtml()[self._startIndex:]
 
-        if payloadSliceOfHTML == self._response.getPayload():
-            print("Found payload!")
+        if str(self._response.getPayload()) in Converter.getString(sliceOfHTML):
+            print("Found payload without analyzing!\t\t>>>>>>>>>>>>>>>\t" + str(self._response.getPayload()))
             return True
 
-        # @TODO Hier jetzt alle elemente des payload durchgehen und prüfen, ob diese vorhanden sind.
-        # alle nicht druckbaren zeichen werden in 0x00 oder \n dargestellt, hier muss dementspechende
-        # konvertierung vorgenommen werden.
-
-        # @TODO das elements-object vom smartgrazer übernehmen.
-        # für jedes element welches nicht gefunden wird, wird decreaseLife aufgerufen. min. 1
-        # für jedes gefundene wird increaseLife aufgerufen. max. 100
-
-
-        pass
+        return False
 
     def findSubList(self, sub, bigger):
         if not bigger:
@@ -52,6 +43,6 @@ class ResponseAnalyser(object):
             while True:
                 pos = bigger.index(first, pos) + 1
                 if not rest or bigger[pos:pos + len(rest)] == rest:
-                    return pos
+                    return pos - 1
         except ValueError:
             return -1

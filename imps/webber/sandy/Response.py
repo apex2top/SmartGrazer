@@ -14,8 +14,11 @@ class Response(object):
 
     # html handling + conversion to decimal
     def _loadHtmlFromFile(self):
+        lines = []
         with open(self._file, "r") as report:
-            self.setHtml(str(report.readlines()))
+            lines = report.readlines()
+
+        self.setHtml("".join(lines))
 
     def setResponseFile(self, file):
         self._file = file

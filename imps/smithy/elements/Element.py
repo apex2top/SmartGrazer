@@ -35,4 +35,7 @@ class Element(Life):
         self._usage = usage
 
     def getHex(self):
-        return binascii.hexlify(self.getValue().encode())
+        if self._value.isdigit():
+            return "0x"+format(int(self._value), "02x")
+
+        return self._value

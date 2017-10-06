@@ -47,7 +47,7 @@ class RequestExecutor(object):
 
         return actionFile
 
-    def _getFilePath(self, filePath, fileName):
+    def getFilePath(self, filePath = '', fileName = ''):
         dir = self.config["response"]["savedir"] + filePath
 
         if not os.path.exists(dir):
@@ -56,7 +56,7 @@ class RequestExecutor(object):
         return dir + fileName
 
     def _save(self, filePath, fileName, data):
-        save = self._getFilePath(filePath, fileName)
+        save = self.getFilePath(filePath, fileName)
 
         file = open(save, "w")
         file.write(data)

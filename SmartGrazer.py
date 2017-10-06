@@ -67,12 +67,27 @@ class SmartGrazer(object):
         for response in self.webber.run(attackConfig):
             responseAnalyser.setResponseObject(response).analyze()
 
-        # Send generated payloads to webpage.
-        self.webber.setPayloads(payloads)
-        # execute and analyze
-        for response in self.webber.run(attackConfig):
-            responseAnalyser.setResponseObject(response).analyze()
+        self.smithy = Smithy(self.confy.getConfig()["smartgrazer"]["imps"])
 
+
+        successfull = None
+
+        while not successfull:
+            # Send generated payloads to webpage.
+            self.webber.setPayloads(payloads)
+
+            for response in self.webber.run(attackConfig):
+                # execute and analyze
+                if responseAnalyser.setResponseObject(response).analyze():
+                    successfull = responseAnalyser.getResponse().getPayload()
+                    break
+                else:
+                    payloads = self.smithy.generate()
+
+        print("Found a good one: " + str(successfull))
+
+        if self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"]:
+            self.webber.cleanUp()
 
 if __name__ == "__main__":
     sys.exit((SmartGrazer()).run())
