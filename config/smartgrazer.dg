@@ -15,7 +15,7 @@ attacks_js :=
 attacks_html :=
 	+bracket_lt+,+tag_html+,+space+,+event+,=,+payload_attack+,+bracket_gt+
 	+bracket_lt+,img,+space+,src,=,0,+space+,onerror,=,+payload_attack+,+space+,/,+bracket_gt+
-	+bracket_lt+,+tag_html+,+bracket_gt+,+quote+,+space+,+event+,+space+,+quote+,+payload_attack+,+bracket_lt+,+tag_html+,+bracket_gt+
+	+bracket_lt+,+tag_html+,+bracket_gt+,+quote+,+space+,+event+,+space+,+quote+,+payload_attack+,+bracket_lt+,/,+tag_html+,+bracket_gt+
 
 outbreak := 
 	+quote+,+bracket_gt+
