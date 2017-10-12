@@ -3,10 +3,10 @@
     "valid": {
       "action": {
         "filesuffix": "valid",
-        "target": "https://www.google.de/search",
+        "target": "https://xss-game.appspot.com/level1/frame",
         "params": {
           "get": {
-            "q": "PAYLOAD"
+            "query": "PAYLOAD"
           }
         }
       },
@@ -15,10 +15,10 @@
     "attack": {
       "action": {
         "filesuffix": "attack",
-        "target": "https://www.google.de/search",
+        "target": "https://xss-game.appspot.com/level1/frame",
         "params": {
           "get": {
-            "q": "PAYLOAD"
+            "query": "PAYLOAD"
           }
         }
       }

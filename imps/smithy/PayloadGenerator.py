@@ -9,6 +9,8 @@ class PayloadGenerator(object):
     _impConfig = {}
     _amount = 1
 
+    _instances = {}
+
     def __init__(self, configuration):
         self._config = configuration
         self._impName = self._config["smithy"]["generator"]
@@ -20,21 +22,25 @@ class PayloadGenerator(object):
         return "imps.smithy.{0}".format(name)
 
     def _getGenerator(self, name):
-        module = importlib.import_module(self.getImpString(name) + ".PayloadGenerator")
-        generator = module.PayloadGenerator()
-        generator.applyConfig(self._impConfig)
+        if not name in self._instances.keys():
+            module = importlib.import_module(self.getImpString(name) + ".PayloadGenerator")
+            generator = module.PayloadGenerator()
+            generator.applyConfig(self._impConfig)
 
-        elements = Elements(self._config["smithy"]["elements"])
-        default = int(self._config["smithy"]["life"]["default"])
-        elements.setDefaultLife(default)
+            elements = Elements(self._config["smithy"]["elements"])
+            default = int(self._config["smithy"]["life"]["default"])
+            elements.setDefaultLife(default)
 
-        generator.setElements(elements)
+            generator.setElements(elements)
+            self._instances[name] = generator
 
-        return generator
+        return self._instances[name]
+
+    def adjustElements(self, elements):
+        self._getGenerator(self._impName).adjustElements(elements)
 
     def getSimpy(self):
         return self._getGenerator("simpy")
 
     def generate(self):
-        print("Using: " + self._impName)
         return self._getGenerator(self._impName).generate(self._amount)

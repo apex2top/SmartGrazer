@@ -7,7 +7,7 @@
           "post": {
             "login": "bee",
             "password": "bug",
-            "security_level": 0,
+            "security_level": 2,
             "form": "submit"
           }
         }
@@ -31,7 +31,7 @@
           "post": {
             "login": "bee",
             "password": "bug",
-            "security_level": 0,
+            "security_level": 1,
             "form": "submit"
           }
         }

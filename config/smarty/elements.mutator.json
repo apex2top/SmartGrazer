@@ -1,0 +1,19 @@
+{
+  "charly": {
+    "enabled": false,
+    "elements": [
+      "CLOSEPOINTEDBRACKET",
+      "OPENPOINTEDBRACKET"
+    ]
+  },
+  "uppy": {
+    "enabled": true,
+    "elements": [
+      "TAG_HMTL",
+      "TAG_JS",
+      "TAG_SCRIPT",
+      "EVENT",
+      "TEXT"
+    ]
+  }
+}

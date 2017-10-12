@@ -16,12 +16,6 @@ class Life(object):
         if self._life < 1:
             self._life = 1
 
-    def increaseLife(self):
-        self._life = floor(self._life + (self._life * .5))
-
-        if self._life > 100:
-            self._life = 100
-
     def getLifeFromList(listOfValues):
         health = 0
         for entry in listOfValues:

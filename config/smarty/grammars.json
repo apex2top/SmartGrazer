@@ -97,5 +97,15 @@
     "SPACE",
     "ATTACK",
     "CLOSEPOINTEDBRACKET"
+  ],
+  [
+    "OPENPOINTEDBRACKET",
+    "TAG_HTML:7",
+    "SPACE",
+    "EVENT",
+    "EQUAL",
+    "SPACE",
+    "ATTACK",
+    "CLOSEPOINTEDBRACKET"
   ]
 ]

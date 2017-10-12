@@ -1,6 +1,6 @@
-from imps.smithy.Generator import Generator
 from imps.smithy.elements.Element import Element
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
+from imps.smithy.Generator import Generator
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 
 

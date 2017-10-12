@@ -1,7 +1,11 @@
 from random import randint
 
+import math
+
 from imps.confy.JSONConfigManager import JSONConfigManager
+from imps.mutty.PayloadMutator import PayloadMutator
 from imps.smithy.elements.Element import Element
+from imps.smithy.smarty.grammar.Life import Life
 from imps.smithy.smarty.grammar.RandomPicker import RandomPicker
 
 
@@ -10,9 +14,32 @@ class Elements(object):
     _loadedElements = {}
     _memory = {}
     _defaultLife = 1
+    _mutator = None
+
+    # private
 
     def __init__(self, filePath):
         self._rawElements = (JSONConfigManager(filePath)).getConfig()
+        self._mutator = PayloadMutator(filePath.replace(".json",".mutator.json"))
+
+    def _getElementsWithUsage(self, usage):
+        elements = []
+
+        for entry in self._rawElements:
+            if usage in self._rawElements[entry]:
+                elements.append(entry)
+
+        return elements
+
+    def _getRawElement(self, identifier):
+        # handle dharmas fixed generated one char elements e.g. '='
+        if not identifier.isdigit() and len(identifier) == 1:
+            identifier = ord(identifier)
+
+        if identifier in self._rawElements.keys():
+            return {'key': identifier, 'usage': self._rawElements[identifier]}
+
+        return {'key': identifier, 'usage': []}
 
     def setDefaultLife(self, amount):
         self._defaultLife = amount
@@ -36,7 +63,12 @@ class Elements(object):
             element.setUsage(raw['usage'])
             element.setLife(self.getDefaultLife())
 
-        return element
+        return self._mutator.mutate(element)
+
+    def clearMutations(self):
+        for key in self._loadedElements.keys():
+            self._loadedElements[key].setMutated(None)
+        return self
 
     def getElementForUsage(self, usage):
         memkey = None
@@ -56,6 +88,17 @@ class Elements(object):
             else:
                 return self._memory[usage][memkey]
 
+        candidates = self.getElementsForUsage(usage)
+
+        element = RandomPicker.pickWeightedRandom(candidates)
+
+        # now we can store the picked element for later
+        if memkey:
+            self._memory[usage][memkey] = element
+
+        return self._mutator.mutate(element)
+
+    def getElementsForUsage(self, usage):
         # get all element identifiers for usage e.g. SPACE
         elements = self._getElementsWithUsage(usage)
         if not elements:
@@ -79,35 +122,14 @@ class Elements(object):
 
             candidates.append(element)
 
-        element = RandomPicker.pickWeightedRandom(candidates)
-
-        # now we can store the picked element for later
-        if memkey:
-            self._memory[usage][memkey] = element
-
-        return element
-
-    def _getElementsWithUsage(self, usage):
-        elements = []
-
-        for entry in self._rawElements:
-            if usage in self._rawElements[entry]:
-                elements.append(entry)
-
-        return elements
-
-    def _getRawElement(self, identifier):
-        # handle dharmas fixed generated one char elements e.g. '='
-        if not identifier.isdigit() and len(identifier) == 1:
-            identifier = ord(identifier)
-
-        if identifier in self._rawElements.keys():
-            return {'key': identifier, 'usage': self._rawElements[identifier]}
-
-        return {'key': identifier, 'usage': []}
+        return candidates
 
     def getRawElements(self):
         return self._rawElements
 
     def getLoadedElements(self):
         return self._loadedElements
+
+    def replaceElement(self, element):
+        # print(element.getKey() + " -> " + str(element) + " => " + str(element.getLife()) + " >> " + str(self._loadedElements[element.getKey()].getLife()))
+        self._loadedElements[element.getKey()] = element

@@ -1,19 +1,27 @@
 import binascii
+import html
+from random import choice, randint
 
+from imps.mutty.PayloadMutator import PayloadMutator
 from imps.smithy.smarty.grammar.Life import Life
 
 
 class Element(Life):
     _key = None
     _value = None
+    _mutated = None
     _usage = []
 
     def __init__(self, key):
         self._key = key
 
     def __str__(self):
+        if self._mutated:
+            return self._mutated
+
         if type(self._value) is int:
             return chr(self._value)
+
         if self._value.isdigit():
             return chr(int(self._value))
         else:
@@ -36,6 +44,32 @@ class Element(Life):
 
     def getHex(self):
         if self._value.isdigit():
-            return "0x"+format(int(self._value), "02x")
+            # value to insert
+            val = format(int(self._value), "02x")
+
+            # insert zero
+            zeroCount = randint(0,5)
+
+            for i in range(0, zeroCount):
+                val = "0" + val
+
+            values = []
+
+            values.append("&#x" + val + ";")
+            values.append("&#X" + val + ";")
+
+            return choice(values)
 
         return self._value
+
+    def getDec(self):
+        if self._value.isdigit():
+            return "&#" + str(self._value)
+
+        return self._value
+
+    def setMutated(self, value):
+        self._mutated = value
+
+    def getMutated(self):
+        return self._mutated

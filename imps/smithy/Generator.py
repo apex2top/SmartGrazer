@@ -9,3 +9,8 @@ class Generator(object):
 
     def getElements(self):
         return self._elements
+
+    def adjustElements(self, elements):
+        for key in elements.keys():
+            if key in self.getElements().getLoadedElements().keys():
+                self.getElements().replaceElement(elements[key])

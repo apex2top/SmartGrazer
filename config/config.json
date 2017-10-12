@@ -3,8 +3,8 @@
     "logging": {
       "level": 0
     },
-    "directories" : {
-        "runconfigs" : "/../../config/targets/"
+    "directories": {
+      "runconfigs": "/../../config/targets/"
     },
     "imps": {
       "smithy": {
@@ -14,8 +14,8 @@
         "generator": "smarty",
         "elements": "smarty/elements.json",
         "life": {
-          "default": 999,
-          "999": "set default to 999 to get random life values"
+          "default": 100,
+          "999": "set default >100 to get random life values"
         }
       },
       "simpy": {
@@ -26,10 +26,10 @@
           },
           "specialchars": [
             "EXCLAMATIONMARK",
-            "QUOTE:0",
-            "QUOTE:1",
-            "QUOTE:2",
-            "QUOTE:3",
+            "QUOTE:s",
+            "QUOTE:d",
+            "QUOTE:b",
+            "QUOTE:n",
             "PERCENT",
             "OPENROUNDBRACKET",
             "CLOSEROUNDBRACKET",
@@ -68,22 +68,12 @@
         "grammars": "smarty/grammars.json",
         "urlencode": false
       },
-      "mutty": {},
       "jsfuck": {
         "enabled": true,
         "script": "jsfuck3.py"
       },
-      "charly": {
-        "enabled": true
-      },
-      "whitey": {
-        "enabled": true
-      },
-      "uppy": {
-        "enabled": true
-      },
       "webber": {
-        "cleanup" : false
+        "cleanup": true
       },
       "sandy": {
         "response": {

@@ -1,8 +1,5 @@
-import json
 import os
 import subprocess
-
-from simplejson import JSONDecodeError
 
 from imps.smithy.Generator import Generator
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
