@@ -1,5 +1,4 @@
 from generators.smartgrazer.Settings import Settings
-from generators.smartgrazer.generator.grammar.Element import Element
 
 
 class SpecialChars(object):
@@ -11,7 +10,7 @@ class SpecialChars(object):
 
         tmp = []
 
-        #for elem in self.special_chars:
+        # for elem in self.special_chars:
         #    elem = Element(elem, elem)
         #    tmp.append(elem.getElement())
 

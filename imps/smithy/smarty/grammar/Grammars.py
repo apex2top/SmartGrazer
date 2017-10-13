@@ -1,7 +1,6 @@
-from random import choice, randint
+from random import choice
 
 from imps.confy.JSONConfigManager import JSONConfigManager
-from imps.smithy import Elements
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
 from imps.smithy.smarty.grammar.Attacks import Attacks
 from imps.smithy.smarty.grammar.grammars.Grammar import Grammar
@@ -87,7 +86,7 @@ class Grammars(object):
 
         for candidate in candidates:
             life = candidate.getLife()
-            potential = life/totalLife
+            potential = life / totalLife
 
             if lastPotential < potential:
                 current = candidate

@@ -1,4 +1,3 @@
-import binascii
 import re
 
 
@@ -26,11 +25,11 @@ class Converter(object):
         return result
 
     @classmethod
-    def asciirepl(cls,match):
+    def asciirepl(cls, match):
         # replace the hexadecimal characters with ascii characters
         s = match.group()
 
-        return chr(int(s[-2:],16))
+        return chr(int(s[-2:], 16))
 
     @classmethod
     def reformat_content(cls, data):

@@ -3,12 +3,12 @@ from __future__ import print_function
 import logging
 import sys
 
+from imps.annelysa.ResponseAnalyser import ResponseAnalyser
 from imps.clint.CLIManager import CLIManager as Clint
 from imps.confy.JSONConfigManager import JSONConfigManager as Confy
 from imps.smithy.PayloadGenerator import PayloadGenerator as Smithy
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 from imps.webber.PayloadTester import PayloadTester as Webber
-from imps.annelysa.ResponseAnalyser import ResponseAnalyser
 
 
 class SmartGrazer(object):

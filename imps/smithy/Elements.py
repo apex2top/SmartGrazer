@@ -1,11 +1,8 @@
 from random import randint
 
-import math
-
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.mutty.PayloadMutator import PayloadMutator
 from imps.smithy.elements.Element import Element
-from imps.smithy.smarty.grammar.Life import Life
 from imps.smithy.smarty.grammar.RandomPicker import RandomPicker
 
 
@@ -20,7 +17,7 @@ class Elements(object):
 
     def __init__(self, filePath):
         self._rawElements = (JSONConfigManager(filePath)).getConfig()
-        self._mutator = PayloadMutator(filePath.replace(".json",".mutator.json"))
+        self._mutator = PayloadMutator(filePath.replace(".json", ".mutator.json"))
 
     def _getElementsWithUsage(self, usage):
         elements = []

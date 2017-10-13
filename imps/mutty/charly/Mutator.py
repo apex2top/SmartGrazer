@@ -2,6 +2,7 @@ from random import choice
 
 from imps.mutty.Mutator import Mutator
 
+
 class Mutator(Mutator):
     def mutate(self, element):
         if not self._isEnabled():
@@ -15,4 +16,3 @@ class Mutator(Mutator):
 
         element.setMutated(choice(variants))
         return element
-

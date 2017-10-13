@@ -1,8 +1,5 @@
-import binascii
-import html
 from random import choice, randint
 
-from imps.mutty.PayloadMutator import PayloadMutator
 from imps.smithy.smarty.grammar.Life import Life
 
 
@@ -48,7 +45,7 @@ class Element(Life):
             val = format(int(self._value), "02x")
 
             # insert zero
-            zeroCount = randint(0,5)
+            zeroCount = randint(0, 5)
 
             zval = val
             for i in range(0, zeroCount):
