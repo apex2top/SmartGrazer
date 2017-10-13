@@ -71,12 +71,15 @@ class SmartGrazer(object):
         self.smithy = Smithy(self.confy.getConfig()["smartgrazer"]["imps"])
 
         successfull = None
+        tries = 0
 
-        while not successfull:
+        while (not successfull) and tries < self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["maxattempts"]:
             # Send generated payloads to webpage.
             self.webber.setPayloads(payloads)
 
             for response in self.webber.run(attackConfig):
+                print("#" + str(tries) + " : " + str(response.getPayload()))
+
                 # execute and analyze
                 modifiedElements = responseAnalyser.setResponseObject(response).analyze()
 
@@ -87,9 +90,14 @@ class SmartGrazer(object):
                 else:
                     self.smithy.adjustElements(modifiedElements)
                     payloads = self.smithy.generate()
+                    tries = tries + 1
+
+        if not successfull:
+            print("#\t SmartGrazer: Could not find a working payload!")
 
         if self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"]:
             self.webber.cleanUp()
+
 
 if __name__ == "__main__":
     sys.exit((SmartGrazer()).run())

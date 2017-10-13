@@ -7,7 +7,7 @@
           "post": {
             "login": "bee",
             "password": "bug",
-            "security_level": 2,
+            "security_level": 1,
             "form": "submit"
           }
         }

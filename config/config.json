@@ -73,7 +73,8 @@
         "script": "jsfuck3.py"
       },
       "webber": {
-        "cleanup": true
+        "cleanup": true,
+        "maxattempts" : 50
       },
       "sandy": {
         "response": {

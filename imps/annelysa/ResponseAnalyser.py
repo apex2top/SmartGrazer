@@ -33,8 +33,6 @@ class ResponseAnalyser(object):
         if self._startIndex < 0:
             raise ValueError("Valid entry was not found!")
 
-        print("Testing : " + str(self._response.getPayload()))
-
         sliceOfHTML = self._response.getDecHtml()[self._startIndex:]
         if str(self._response.getPayload()) in Converter.getString(sliceOfHTML):
             return {}
