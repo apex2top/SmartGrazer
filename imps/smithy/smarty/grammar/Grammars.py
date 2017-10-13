@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, randint
 
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.smithy import Elements
@@ -35,69 +35,62 @@ class Grammars(object):
         return attackGenerator
 
     def _loadPayload(self):
-        pattern = choice(self._grammarPatterns)
+        if self._elements is None:
+            raise ValueError(
+                "Elements are not initialized! Please provide an elements instance via setElements.")
 
-        # creating elements
-        components = []
-        for entry in pattern:
-            if self._elements is None:
-                raise ValueError(
-                    "Elements are not initialized! Please provide an elements instance via setElements.")
-            element = self._elements.getElementForUsage(entry)
-            components.append(element)
-
-        # choose an attack and populating it
         attackGenerator = self._getAttackGenerator()
-        attack = attackGenerator.getAttack()
 
         # setting up the random string generator
         text = (RandomStringGenerator(RandomStringGenerator.minlength, RandomStringGenerator.maxlength)).get(
             RandomStringGenerator.MIXEDCASE)
 
+        attack = attackGenerator.getAttack()
+
+        candidates = []
+        for i in range(0, 3):
+            candidates.append(self._createPayload(attack, text))
+
+        self._payload = self._getWithMostPotential(candidates)
+
+    def _createPayload(self, attack, text):
+        pattern = choice(self._grammarPatterns)
+
+        # creating elements
+        components = []
+        for entry in pattern:
+            element = self._elements.getElementForUsage(entry)
+            components.append(element)
+
+        # choose an attack pattern
         # populating the chosen grammar
         grammar = Grammar(components)
 
+        # here jsfuck could be integrated
         grammar.populateAttack(attack)
         grammar.populateRandomText(text)
 
-        self._payload = grammar
+        return grammar
 
     def setAttackConfig(self, attackConfig):
         self._attackConfig = attackConfig
 
-    '''def getWithMostPotential(self, grammarPatterns):
-        # Count partCount, patternLifes and currentMaxLife of all patterns
+    def _getWithMostPotential(self, candidates):
 
-        partCount = 0
-        maxLife = 0
-        patternLifes = {}
+        totalLife = 0
 
-        for key, pattern in enumerate(grammarPatterns):
-            patternLifes[key] = 0
-
-            for part in pattern:
-                elements = self.getElementsForUsage(part)
-
-                minHealth = len(elements)
-                maxHealth = self.getDefaultLife() * minHealth
-
-                elementsLife = Life.getLifeFromList(elements) / minHealth
-
-                health = math.floor((elementsLife - minHealth) / (maxHealth - minHealth))
-                partCount = partCount + 1
-                patternLifes[key] = patternLifes[key] + health
-
-            maxLife = maxLife + patternLifes[key]
+        for candidate in candidates:
+            totalLife = totalLife + candidate.getLife()
 
         current = None
         lastPotential = 0
 
-        for key, life in enumerate(patternLifes):
-            pCount = len(grammarPatterns[key])
-            potential = int(life * pCount / maxLife * partCount)
+        for candidate in candidates:
+            life = candidate.getLife()
+            potential = life/totalLife
 
             if lastPotential < potential:
+                current = candidate
                 lastPotential = potential
-                current = grammarPatterns[key]
 
-        return current'''
+        return current

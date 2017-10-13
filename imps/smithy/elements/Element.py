@@ -50,13 +50,15 @@ class Element(Life):
             # insert zero
             zeroCount = randint(0,5)
 
+            zval = val
             for i in range(0, zeroCount):
-                val = "0" + val
+                zval = "0" + zval
 
             values = []
 
-            values.append("&#x" + val + ";")
-            values.append("&#X" + val + ";")
+            values.append("%" + val + ";")
+            values.append("&#x" + zval + ";")
+            values.append("&#X" + zval + ";")
 
             return choice(values)
 

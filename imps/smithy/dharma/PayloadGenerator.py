@@ -17,8 +17,8 @@ class PayloadGenerator(Generator):
     _grammar = 'xss.dg'
 
     def applyConfig(self, configuration):
-        self._script = os.path.realpath(os.getcwd() + configuration["script"])
-        self._grammar = os.path.realpath(os.getcwd() + configuration["grammar"])
+        self._script = os.getcwd() + configuration["script"]
+        self._grammar = os.getcwd() + configuration["grammar"]
 
         if not os.path.isfile(self._script):
             raise ValueError("Dharma file was not found! Given path: " + self._script)
