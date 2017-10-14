@@ -3,10 +3,14 @@ from random import randint
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.mutty.PayloadMutator import PayloadMutator
 from imps.smithy.elements.Element import Element
-from imps.smithy.smarty.grammar.RandomPicker import RandomPicker
+from imps.smithy.smarty.grammar.Life import Life
 
 
 class Elements(object):
+    """ This class manages the loading, instantiation and maintaining of all element instances during generation.
+
+        :param filePath: str -- The JSON-File containing the elements.
+    """
     _rawElements = {}
     _loadedElements = {}
     _memory = {}
@@ -20,6 +24,12 @@ class Elements(object):
         self._mutator = PayloadMutator(filePath.replace(".json", ".mutator.json"))
 
     def _getElementsWithUsage(self, usage):
+        """ This method returns a list of elements with a given usage from the rawElements - memory.
+
+            :param usage: str - the usage like e.g. SPACE = ["/","+"," "]
+
+            :return: list<`imps.smithy.elements.Element.Element`>
+        """
         elements = []
 
         for entry in self._rawElements:
@@ -87,7 +97,7 @@ class Elements(object):
 
         candidates = self.getElementsForUsage(usage)
 
-        element = RandomPicker.pickWeightedRandom(candidates)
+        element = self._pickWeightedRandom(candidates)
 
         # now we can store the picked element for later
         if memkey:
@@ -130,3 +140,26 @@ class Elements(object):
     def replaceElement(self, element):
         # print(element.getKey() + " -> " + str(element) + " => " + str(element.getLife()) + " >> " + str(self._loadedElements[element.getKey()].getLife()))
         self._loadedElements[element.getKey()] = element
+
+    def _pickWeightedRandom(self, weightedList):
+        """
+        This method gets a weighted list of elements
+        and returns a random but weighted selected element.
+
+        :param: weightedList: list<`imps.smithy.elements.Element.Element`> -- A list with Elements
+
+        :return: choise: `imps.smithy.elements.Element.Element` -- The selected element
+        """
+        sortedList = Life.sortASC(weightedList)
+
+        maxValue = Life.getLifeFromList(sortedList)
+        currentLimit = randint(0, maxValue + 1)
+
+        currentSum = 0
+        for entry in sortedList:
+            currentSum = currentSum + entry.getLife()
+
+            if currentSum >= currentLimit:
+                return entry
+
+        return entry

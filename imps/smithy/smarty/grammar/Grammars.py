@@ -7,6 +7,12 @@ from imps.smithy.smarty.grammar.grammars.Grammar import Grammar
 
 
 class Grammars(object):
+    """
+    This class loads, initiates and populates pattern based payloads.
+
+    :param: filePath: str -- The path to the JSON configuration, containing the grammar patterns.
+    """
+
     _elements = None
 
     _grammarPatterns = []
@@ -18,22 +24,12 @@ class Grammars(object):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
 
     def getPayload(self):
-        self._loadPayload()
-        return self._payload
+        """
+            Creates three random payloads and chooses the payload with the most potential.
 
-    def setElements(self, elements):
-        self._elements = elements
-
-    def getElements(self):
-        return self._elements
-
-    def _getAttackGenerator(self):
-        attackGenerator = Attacks(self._attackConfig)
-        attackGenerator.setElements(self._elements)
-
-        return attackGenerator
-
-    def _loadPayload(self):
+            :raises: ValueError -- Thrown, when no Elements instance is provided.
+            :returns: `imps.smithy.smarty.grammars.Grammar.Grammar`
+        """
         if self._elements is None:
             raise ValueError(
                 "Elements are not initialized! Please provide an elements instance via setElements.")
@@ -50,7 +46,20 @@ class Grammars(object):
         for i in range(0, 3):
             candidates.append(self._createPayload(attack, text))
 
-        self._payload = self._getWithMostPotential(candidates)
+        return self._getWithMostPotential(candidates)
+
+
+    def setElements(self, elements):
+        self._elements = elements
+
+    def getElements(self):
+        return self._elements
+
+    def _getAttackGenerator(self):
+        attackGenerator = Attacks(self._attackConfig)
+        attackGenerator.setElements(self._elements)
+
+        return attackGenerator
 
     def _createPayload(self, attack, text):
         pattern = choice(self._grammarPatterns)
@@ -75,7 +84,12 @@ class Grammars(object):
         self._attackConfig = attackConfig
 
     def _getWithMostPotential(self, candidates):
+        """
+        This method calculates the grammar with most potential.
 
+        :param candidates: list<`imps.smithy.smarty.grammars.Grammar.Grammar`> -- The candidates to choose from.
+        :return: `imps.smithy.smarty.grammars.Grammar.Grammar`
+        """
         totalLife = 0
 
         for candidate in candidates:

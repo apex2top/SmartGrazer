@@ -5,6 +5,11 @@ from imps.smithy.smarty.grammar.attacks.Attack import Attack
 
 
 class Attacks(object):
+    """
+    This class loads, initiates and populates pattern based attacks.
+
+    :param: filePath: str -- The path to the JSON configuration, containing the attack patterns.
+    """
     _elements = None
 
     _attackPatterns = []
@@ -14,15 +19,12 @@ class Attacks(object):
         self._attackPatterns = (JSONConfigManager(filePath)).getConfig()
 
     def getAttack(self):
-        if not self._attack:
-            self._loadAttack()
+        """
+        This method loads and initiate the components of an attack.
 
-        return self._attack
-
-    def setElements(self, elements):
-        self._elements = elements
-
-    def _loadAttack(self):
+        :raises: ValueError -- Thrown, when no Elements instance is provided.
+        :returns: `imps.smithy.smarty.attacks.Attack.Attack`
+        """
         pattern = random.choice(self._attackPatterns)
 
         components = []
@@ -34,4 +36,7 @@ class Attacks(object):
             element = self._elements.getElementForUsage(entry)
             components.append(element)
 
-        self._attack = Attack(components)
+        return Attack(components)
+
+    def setElements(self, elements):
+        self._elements = elements

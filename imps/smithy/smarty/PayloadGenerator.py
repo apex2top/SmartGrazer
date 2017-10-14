@@ -1,8 +1,13 @@
-from imps.smithy.Generator import Generator
+from imps.smithy.GeneratorGeneral import GeneratorGeneral
 from imps.smithy.smarty.grammar.Grammars import Grammars
 
 
-class PayloadGenerator(Generator):
+class PayloadGenerator(GeneratorGeneral):
+    """
+    This class generates the the requestet payloads.
+
+    The payloads are represented through patterns, holding element identifier.
+    """
     _config = None
     _grammar = None
 

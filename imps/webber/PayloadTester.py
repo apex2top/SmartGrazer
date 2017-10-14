@@ -10,6 +10,13 @@ from imps.webber.sandy.Response import Response
 
 
 class PayloadTester(object):
+    """
+    This class creates Request instances from the given payload list and sends them to the SUT.
+
+    After receiving an Response the according Response instance is created.
+
+    :param: sandyconfig: dict -- The configuration for the sandy module (`imps.webber.sandy.RequestExecutor`).
+    """
     _sandy = None
     _payloads = []
     _logger = logging.getLogger("SmartGrazer")
@@ -42,6 +49,14 @@ class PayloadTester(object):
                 print(e)
 
     def run(self, params):
+        """
+        This method executes requests and saves the responded html to the file system.
+
+        :param params: dict -- The run configuration, containing the target url and other information.
+
+        :return: list<`imps.webber.sandy.Response.Response`>
+        :raises: ValueError: Thrown, when payload is not set.
+        """
         if not self._payloads:
             raise ValueError("Payload is not set!")
 

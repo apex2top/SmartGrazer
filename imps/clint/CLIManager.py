@@ -3,6 +3,9 @@ from argparse import RawTextHelpFormatter
 
 
 class CLIManager(object):
+    """This class handles all cli inputs.
+    """
+
     parser = None
     args = None
 
@@ -15,7 +18,11 @@ class CLIManager(object):
         pass
 
     def handle(self):
+        """ This method creates the cli interface.
 
+            :return: `CLIManager`
+            :raises: ValueError -- If nor g or x -mode is selected.
+        """
         mutual = self.parser.add_mutually_exclusive_group()
 
         mutual.add_argument('-g',
@@ -35,6 +42,14 @@ class CLIManager(object):
                                  default=[],
                                  help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite imps.smithy.payload.amount=10 imps.smithy.generator=smarty")
 
+        self.parser.add_argument('-c',
+                                 '--cleanup',
+                                 const=True,
+                                 nargs='?',
+                                 default=False,
+                                 action='store',
+                                 help="Clean the previous stored responses.")
+
         self.args = self.parser.parse_args()
 
         if self.args.execute == None and self.args.generate is False:
@@ -53,6 +68,11 @@ class CLIManager(object):
         return []
 
     def parseOverwrites(self):
+        """ This method takes the parameters from the --overwrite parameter and parses them,
+            so they can be merged with the `imps.confy.JSONConfigManager` instance.
+
+            :return: dict
+        """
         result = {}
 
         for pair in self.get("overwrite"):

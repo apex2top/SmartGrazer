@@ -2,6 +2,9 @@ from imps.smithy.smarty.grammar.Life import Life
 
 
 class Grammar(Life):
+    """
+    This class represents the full payload which will be sent to the SUT.
+    """
     _elements = []
     _populated = []
 
@@ -29,10 +32,21 @@ class Grammar(Life):
         print(result[1:])
 
     def getLife(self):
+        """
+        This method is overwritten and returns the sum of all its elements lifes.
+
+        :return: life: int -- The sum of all its elements lifes.
+        """
         life = Life.getLifeFromList(self._elements)
         return life
 
     def populateAttack(self, attack):
+        """
+        This Method replaces the grammars "ATTACK" element with the elements of the attack members.
+
+        :param attack: `imps.smithy.smarty.grammars.attacks.Attack.Attack` -- The used JavaScript payload.
+        :return: list<`imps.smithy.elements.Element.Element`> -- The updated component list of this Grammar.
+        """
         payload = []
         for element in self._elements:
             if element.getKey() == "ATTACK":

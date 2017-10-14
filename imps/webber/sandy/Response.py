@@ -2,15 +2,16 @@ from imps.annelysa.Converter import Converter
 
 
 class Response(object):
+    """
+    This class represents the response received from the SUT.
+    """
+
     _file = ''
     _html = ''
     _decHtml = None
 
     _payload = ''
     _decPayload = None
-
-    def __init__(self):
-        pass
 
     # html handling + conversion to decimal
     def _loadHtmlFromFile(self):

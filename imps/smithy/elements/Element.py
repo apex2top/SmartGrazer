@@ -4,6 +4,11 @@ from imps.smithy.smarty.grammar.Life import Life
 
 
 class Element(Life):
+    """ This class represents an element entity according either to an payload or an attack.
+
+        Its values can contain strings, chars or chars in decimal encoded manner.
+    """
+
     _key = None
     _value = None
     _mutated = None
@@ -13,6 +18,11 @@ class Element(Life):
         self._key = key
 
     def __str__(self):
+        """ The built-in `__str__` method is overwritten, so that an element can always be rendered to string by printing it or
+            casting it to string via the `str()` method.
+
+            :return: str -- the string value.
+        """
         if self._mutated:
             return self._mutated
 
@@ -40,6 +50,11 @@ class Element(Life):
         self._usage = usage
 
     def getHex(self):
+        """
+        Returns hex representations of this element if the value is a digit.
+
+        :return: str -- The hex representation.
+        """
         if self._value.isdigit():
             # value to insert
             val = format(int(self._value), "02x")
@@ -62,6 +77,10 @@ class Element(Life):
         return self._value
 
     def getDec(self):
+        """
+        Renders the digit value in html-friendly
+        :return: str -- the html friendly decimal representation
+        """
         if self._value.isdigit():
             return "&#" + str(self._value)
 

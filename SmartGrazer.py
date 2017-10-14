@@ -6,12 +6,14 @@ import sys
 from imps.annelysa.ResponseAnalyser import ResponseAnalyser
 from imps.clint.CLIManager import CLIManager as Clint
 from imps.confy.JSONConfigManager import JSONConfigManager as Confy
-from imps.smithy.PayloadGenerator import PayloadGenerator as Smithy
+from imps.smithy.PayloadGeneratorFactory import PayloadGenerator as Smithy
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 from imps.webber.PayloadTester import PayloadTester as Webber
 
 
 class SmartGrazer(object):
+    """Representation of the SmartGrazer application."""
+
     clint = None
     confy = None
     smithy = None
@@ -27,11 +29,20 @@ class SmartGrazer(object):
         self.webber = Webber(self.confy.getConfig()["smartgrazer"]["imps"]["sandy"])
 
     def run(self):
+        """Initialize, configure, generate, execute and analyze the payloads.
+
+            :returns:  int -- the return code.
+            :raises: ValueError -- Thrown in situations, when a valid response cannot be found.
+        """
+
         # Handle the cli args
         self.clint.handle()
 
         # Merge the config, the runconfig and the overrides into one big json-config
         self.confy.getConfig(self.clint.get('execute'), self.clint.parseOverwrites())
+
+        if self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"] or self.clint.get("cleanup"):
+            self.webber.cleanUp()
 
         self.smithy = Smithy(self.confy.getConfig()["smartgrazer"]["imps"])
         payloads = self.smithy.generate()
@@ -94,9 +105,9 @@ class SmartGrazer(object):
 
         if not successfull:
             print("#\t SmartGrazer: Could not find a working payload!")
+            return 1
 
-        if self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"]:
-            self.webber.cleanUp()
+        return 0
 
 
 if __name__ == "__main__":

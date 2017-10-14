@@ -1,10 +1,15 @@
-from imps.smithy.Generator import Generator
+from imps.smithy.GeneratorGeneral import GeneratorGeneral
 from imps.smithy.elements.Element import Element
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 
 
-class PayloadGenerator(Generator):
+class PayloadGenerator(GeneratorGeneral):
+    """
+    This class creates some simple payloads.
+
+    Including a set of special chars and random text.
+    """
     config = None
 
     def applyConfig(self, configuration):

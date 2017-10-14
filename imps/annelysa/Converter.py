@@ -1,11 +1,17 @@
-import re
-
-
 class Converter(object):
+    """This Class contains conversion methods for converting decimal arrays into string and vica versa."""
+
     @classmethod
-    def getDecimal(cls, string):
+    def getDecimal(cls, input):
+        """ This method converts a string into a corresponding array of decimals
+
+            :param input: The input string to convert.
+            :type input: str.
+
+            :returns:  list<int> -- the converted string.
+        """
         result = []
-        for c in string:
+        for c in input:
             if type(c) is int:
                 result.append(c)
             else:
@@ -15,6 +21,13 @@ class Converter(object):
 
     @classmethod
     def getString(cls, deciarray):
+        """ This method converts a string into a corresponding array of decimals
+
+            :param deciarray: The input array to convert.
+            :type deciarray: list<int>.
+
+            :returns:  list<int> -- the converted string.
+        """
         result = ''
 
         for n in deciarray:
@@ -23,15 +36,3 @@ class Converter(object):
             result = result + chr(n)
 
         return result
-
-    @classmethod
-    def asciirepl(cls, match):
-        # replace the hexadecimal characters with ascii characters
-        s = match.group()
-
-        return chr(int(s[-2:], 16))
-
-    @classmethod
-    def reformat_content(cls, data):
-        p = re.compile(r'\\x(\w{2})')
-        return p.sub(Converter.asciirepl, data)

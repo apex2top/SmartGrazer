@@ -6,10 +6,10 @@ from jsonmerge import merge
 
 class JSONConfigManager(object):
     """
-    .. todo::
+        This class stores parses, merges and stores the configuration for SmartGrazer.
 
-        DocMe!
-
+        :param name: the configuration to load
+        :param path: str -- An alternative path to a configuration path - e.g. config/targets/
     """
 
     configfile = "config.json"
@@ -26,6 +26,15 @@ class JSONConfigManager(object):
             self.config = json.load(datafile)
 
     def getConfig(self, name=None, overwrites=None):
+        """
+            This method loads the configuration if already initiated.
+            Otherwise the configuration is loaded and merged.
+
+            :param name: the configuration to load
+            :param overwrites: dict -- the parameters to overwrite.
+
+            :return: dict -- the loaded configuration
+        """
         if name is None and overwrites is None:
             return self.config
 

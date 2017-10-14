@@ -73,33 +73,19 @@
         "script": "jsfuck3.py"
       },
       "webber": {
-        "cleanup": true,
+        "cleanup": false,
         "maxattempts" : 50
       },
       "sandy": {
         "response": {
           "savedir": "results/sandy/"
         },
-        "get": {
-          "urlencode": true,
-          "replace": "PAYLOAD"
-        },
-        "post": {
-          "urlencode": false,
-          "replace": "PAYLOAD"
-        },
-        "cookies": {
-          "urlencode": false,
-          "replace": "PAYLOAD"
-        },
-        "header": {
-          "urlencode": false,
-          "replace": "PAYLOAD"
+        "proxies": {},
+        "proxies_example": {
+          "http": "http://127.0.0.1"
         }
       },
-      "annelysa": {},
-      "clint": {},
-      "confy": {}
+      "annelysa": {}
     }
   }
 }

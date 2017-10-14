@@ -1,4 +1,10 @@
 class Action(object):
+    """
+    This class represents a single website request.
+
+    An `imps.webber.sandy.Request.Request` can contain more than one Action,
+    due the fact of dependancies of website states, like e.g. login and sessions.
+    """
     _filesuffix = ""
     _target = ""
     _post = {}

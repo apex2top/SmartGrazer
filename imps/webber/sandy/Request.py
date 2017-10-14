@@ -7,6 +7,9 @@ from imps.webber.sandy.Action import Action
 
 
 class Request(object):
+    """
+    This class represents the request sent to the SUT.
+    """
     _payload = "I'm no payload! I swear!"
     _runConfig = {}
     _actions = []

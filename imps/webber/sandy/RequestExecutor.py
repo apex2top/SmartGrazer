@@ -8,6 +8,10 @@ import requests
 
 
 class RequestExecutor(object):
+    """
+        This class sends the payload to the configured SUT.
+    """
+
     config = {}
     session = None
 
@@ -16,8 +20,15 @@ class RequestExecutor(object):
     def __init__(self, config):
         self.config = config
         self.session = requests.Session()
+        self.session.proxies.update(self.config['proxies'])
 
     def request(self, request):
+        """
+            This method takes a request instance and sends the payload to the SUT.
+
+            :param request: `imps.webber.Request.Request`
+            :return: actionFile: str -- The path where this request was stored.
+        """
         actionFile = ''
 
         for action in request.getActions():

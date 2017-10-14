@@ -4,6 +4,8 @@ from imps.annelysa.Converter import Converter
 
 
 class ResponseAnalyser(object):
+    """ This class is responsible for analyzing website-responses.
+    """
     _config = {}
     _response = None
     _startIndex = None
@@ -24,6 +26,13 @@ class ResponseAnalyser(object):
         return self._modifiedElements
 
     def analyze(self):
+        """
+            This method takes the response, and searches the payloads in the according responses.
+
+            During one smartgrazer run there is only one response-object, holding all loaded elements and adjusting their life.
+
+            :return: list<`imps.smithy.elements.Element.Element`>
+        """
         self._modifiedElements = {}
 
         # Is the first run SmartGrazer does.
@@ -79,6 +88,14 @@ class ResponseAnalyser(object):
         return self.getModifiedElements()
 
     def findSubList(self, sub, bigger):
+        """ A method to search array in a nother array
+            Source: https://stackoverflow.com/a/2251638
+
+            :param sub: list<int> -- the needle to search
+            :param bigger: list<int> -- the haystack
+
+            :return: int -- the start index >= 0, else -1
+        """
         if not bigger:
             return -1
         if not sub:

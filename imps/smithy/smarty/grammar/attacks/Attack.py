@@ -2,6 +2,13 @@ from imps.smithy.smarty.grammar.Life import Life
 
 
 class Attack(Life):
+    """
+    This Class represents an payload in JavaScript.
+
+    :todo: This is the place to integrate the JSFuck mutator.
+
+    :param: elements: `imps.smithy.Elements.Elements`
+    """
     _elements = []
     _populated = []
 
@@ -23,5 +30,10 @@ class Attack(Life):
         return self._elements
 
     def getLife(self):
+        """
+        This method is overwritten and returns the sum of all its elements lifes.
+
+        :return: life: int -- The sum of all its elements lifes.
+        """
         life = Life.getLifeFromList(self._elements)
         return life

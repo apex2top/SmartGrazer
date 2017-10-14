@@ -4,6 +4,10 @@ from imps.smithy.Elements import Elements
 
 
 class PayloadGenerator(object):
+    """ This class acts like a factory for the actual PayloadGenerators.
+
+        By running generate() the configured PayloadGenerator-Instance will be imported, instantiated and executed.
+    """
     _impName = ''
     _config = {}
     _impConfig = {}
@@ -22,6 +26,14 @@ class PayloadGenerator(object):
         return "imps.smithy.{0}".format(name)
 
     def _getGenerator(self, name):
+        """
+            This method instantiates the generator instance on the first call.
+
+            Later calls will return the requested instance.
+
+            :param name: Name of the generator module.
+            :return:  `PayloadGenerator`
+        """
         if not name in self._instances.keys():
             module = importlib.import_module(self.getImpString(name) + ".PayloadGenerator")
             generator = module.PayloadGenerator()
