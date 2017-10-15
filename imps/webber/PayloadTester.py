@@ -1,4 +1,3 @@
-import logging
 import os
 import shutil
 
@@ -19,10 +18,9 @@ class PayloadTester(object):
     """
     _sandy = None
     _payloads = []
-    _logger = logging.getLogger("SmartGrazer")
 
-    def __init__(self, sandyconfig):
-        self._sandy = Sandy(sandyconfig)
+    def __init__(self, configuration):
+        self._sandy = Sandy(configuration)
 
     def setPayloads(self, payloads):
         self._payloads = payloads
@@ -61,7 +59,7 @@ class PayloadTester(object):
             raise ValueError("Payload is not set!")
 
         if "PAYLOAD" in params.keys():
-            self._logger.debug("Replacing with fixed payload! Should be a valid run!")
+            #self._logger.debug("Replacing with fixed payload! Should be a valid run!")
             element = Element("VALID")
             element.setValue(params["PAYLOAD"])
             attack = Attack([element])
@@ -73,7 +71,7 @@ class PayloadTester(object):
 
         # Create a Request for each payload
         for payload in self._payloads:
-            self._logger.info("\t\t\t\tStart Request with payload: %s " % payload)
+            #self._logger.info("\t\t\t\tStart Request with payload: %s " % payload)
             request = Request()
             request.setPayload(payload)
             request.setRunConfig(params)

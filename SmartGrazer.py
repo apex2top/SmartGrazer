@@ -6,27 +6,13 @@ import sys
 from imps.annelysa.ResponseAnalyser import ResponseAnalyser
 from imps.clint.CLIManager import CLIManager as Clint
 from imps.confy.JSONConfigManager import JSONConfigManager as Confy
-from imps.smithy.PayloadGeneratorFactory import PayloadGenerator as Smithy
+from imps.smithy.PayloadGeneratorFactory import PayloadGeneratorFactory as Smithy
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 from imps.webber.PayloadTester import PayloadTester as Webber
 
 
 class SmartGrazer(object):
     """Representation of the SmartGrazer application."""
-
-    clint = None
-    confy = None
-    smithy = None
-
-    def __init__(self):
-        self.clint = Clint()
-        self.confy = Confy()
-
-        loggerConfig = self.confy.getConfig()["smartgrazer"]["logging"]
-        logging.getLogger("SmartGrazer").setLevel(loggerConfig["level"])
-        logging.basicConfig(format='%(levelname)s:\t%(message)s')
-
-        self.webber = Webber(self.confy.getConfig()["smartgrazer"]["imps"]["sandy"])
 
     def run(self):
         """Initialize, configure, generate, execute and analyze the payloads.
@@ -35,37 +21,46 @@ class SmartGrazer(object):
             :raises: ValueError -- Thrown in situations, when a valid response cannot be found.
         """
 
+        clint = Clint()
+        confy = Confy()
+
+        loggerConfig = confy.getConfig()["smartgrazer"]["logging"]
+        logging.getLogger("SmartGrazer").setLevel(loggerConfig["level"])
+        logging.basicConfig(format='%(levelname)s:\t%(message)s')
+
+        webber = Webber(confy.getConfig()["smartgrazer"]["imps"]["sandy"])
+
         # Handle the cli args
-        self.clint.handle()
+        clint.handle()
 
         # Merge the config, the runconfig and the overrides into one big json-config
-        self.confy.getConfig(self.clint.get('execute'), self.clint.parseOverwrites())
+        confy.getConfig(clint.get('execute'), clint.parseOverwrites())
 
-        if self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"] or self.clint.get("cleanup"):
-            self.webber.cleanUp()
+        if confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"] or clint.get("cleanup"):
+            webber.cleanUp()
 
-        self.smithy = Smithy(self.confy.getConfig()["smartgrazer"]["imps"])
-        payloads = self.smithy.generate()
+        smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
+        payloads = smithy.generate()
 
         # Generate the payloads and exit
-        if self.clint.get('generate'):
+        if clint.get('generate'):
             for p in payloads:
                 print(p)
             exit(0)
 
-        responseAnalyser = ResponseAnalyser(self.confy.getConfig()["smartgrazer"]["imps"]["annelysa"])
+        responseAnalyser = ResponseAnalyser(confy.getConfig()["smartgrazer"]["imps"]["annelysa"])
 
-        validConfig = self.confy.getConfig()["runconfig"]["valid"]
-        attackConfig = self.confy.getConfig()["runconfig"]["attack"]
+        validConfig = confy.getConfig()["runconfig"]["valid"]
+        attackConfig = confy.getConfig()["runconfig"]["attack"]
 
         # Load the instance of simpy to perform valid request and simple payloads
-        simpy = self.smithy.getSimpy()
+        simpy = smithy.getSimpy()
 
         # Execute valid request to know the pages' default response
         # ! only one result
         attack = Attack([])
-        self.webber.setPayloads([attack])
-        response = (self.webber.run(validConfig)).pop()
+        webber.setPayloads([attack])
+        response = (webber.run(validConfig)).pop()
 
         responseAnalyser.setResponseObject(response).analyze()
 
@@ -73,22 +68,22 @@ class SmartGrazer(object):
         simplePayloads = simpy.generate()
 
         # Send simple payloads to webpage.
-        self.webber.setPayloads(simplePayloads)
+        webber.setPayloads(simplePayloads)
         # execute and analyze
-        for response in self.webber.run(attackConfig):
+        for response in webber.run(attackConfig):
             modifiedElements = responseAnalyser.setResponseObject(response).analyze()
-            self.smithy.adjustElements(modifiedElements)
+            smithy.adjustElements(modifiedElements)
 
-        self.smithy = Smithy(self.confy.getConfig()["smartgrazer"]["imps"])
+        smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
 
         successfull = None
         tries = 0
 
-        while (not successfull) and tries < self.confy.getConfig()["smartgrazer"]["imps"]["webber"]["maxattempts"]:
+        while (not successfull) and tries < confy.getConfig()["smartgrazer"]["imps"]["webber"]["maxattempts"]:
             # Send generated payloads to webpage.
-            self.webber.setPayloads(payloads)
+            webber.setPayloads(payloads)
 
-            for response in self.webber.run(attackConfig):
+            for response in webber.run(attackConfig):
                 print("#" + str(tries) + " : " + str(response.getPayload()))
 
                 # execute and analyze
@@ -99,8 +94,8 @@ class SmartGrazer(object):
                     print("#\t\t\tFound a good one: " + str(successfull))
                     break
                 else:
-                    self.smithy.adjustElements(modifiedElements)
-                    payloads = self.smithy.generate()
+                    smithy.adjustElements(modifiedElements)
+                    payloads = smithy.generate()
                     tries = tries + 1
 
         if not successfull:

@@ -8,10 +8,7 @@ class Response(object):
 
     _file = ''
     _html = ''
-    _decHtml = None
-
     _payload = ''
-    _decPayload = None
 
     # html handling + conversion to decimal
     def _loadHtmlFromFile(self):

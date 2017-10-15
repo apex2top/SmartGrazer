@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import urllib
 from urllib.parse import urlparse
@@ -15,10 +14,8 @@ class RequestExecutor(object):
     config = {}
     session = None
 
-    _logger = logging.getLogger("SmartGrazer")
-
-    def __init__(self, config):
-        self.config = config
+    def __init__(self, configuration):
+        self.config = configuration
         self.session = requests.Session()
         self.session.proxies.update(self.config['proxies'])
 
@@ -40,11 +37,11 @@ class RequestExecutor(object):
 
             if action.getPost():
                 r = self.session.post(requeststring, action.getPost())
-                self._logger.info("POST-Request:\t" + requeststring)
-                self._logger.debug("POST-Params:\t" + str(action.getParams()))
+                #self._logger.info("POST-Request:\t" + requeststring)
+                #self._logger.debug("POST-Params:\t" + str(action.getParams()))
             else:
                 r = self.session.get(requeststring)
-                self._logger.info("GET-Request:\t" + requeststring)
+                #self._logger.info("GET-Request:\t" + requeststring)
 
             filePath = request.getFilePath(action)
             fileName = request.getFileName(action)

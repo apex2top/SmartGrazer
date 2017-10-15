@@ -14,10 +14,7 @@ class Grammars(object):
     """
 
     _elements = None
-
     _grammarPatterns = []
-    _payload = None
-
     _attackConfig = ''
 
     def __init__(self, filePath):

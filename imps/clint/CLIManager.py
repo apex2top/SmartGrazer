@@ -6,16 +6,15 @@ class CLIManager(object):
     """This class handles all cli inputs.
     """
 
-    parser = None
-    args = None
+    _parser = None
+    _args = None
 
     def __init__(self):
-        self.parser = argparse.ArgumentParser(
+        self._parser = argparse.ArgumentParser(
             prog='SmartGrazer',
             usage='%(prog)s [-h | [-g | -x path/to/runconfig.json] | --overwrite [key1=value1 ... keyn=valuen]]',
             description='A smart tools based fuzzer.',
             formatter_class=RawTextHelpFormatter)
-        pass
 
     def handle(self):
         """ This method creates the cli interface.
@@ -23,7 +22,7 @@ class CLIManager(object):
             :return: `CLIManager`
             :raises: ValueError -- If nor g or x -mode is selected.
         """
-        mutual = self.parser.add_mutually_exclusive_group()
+        mutual = self._parser.add_mutually_exclusive_group()
 
         mutual.add_argument('-g',
                             '--generate',
@@ -37,33 +36,33 @@ class CLIManager(object):
                             '--execute',
                             help='Name of the configuration file containing the config.')
 
-        self.parser.add_argument('--overwrite',
-                                 nargs='*',
-                                 default=[],
-                                 help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite imps.smithy.payload.amount=10 imps.smithy.generator=smarty")
+        self._parser.add_argument('--overwrite',
+                                  nargs='*',
+                                  default=[],
+                                  help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite imps.smithy.payload.amount=10 imps.smithy.generator=smarty")
 
-        self.parser.add_argument('-c',
+        self._parser.add_argument('-c',
                                  '--cleanup',
-                                 const=True,
-                                 nargs='?',
-                                 default=False,
-                                 action='store',
-                                 help="Clean the previous stored responses.")
+                                  const=True,
+                                  nargs='?',
+                                  default=False,
+                                  action='store',
+                                  help="Clean the previous stored responses.")
 
-        self.args = self.parser.parse_args()
+        self._args = self._parser.parse_args()
 
-        if self.args.execute == None and self.args.generate is False:
+        if self._args.execute == None and self._args.generate is False:
             raise ValueError("You either have to set the -g or the -x mode. Please see help with the -h option!")
             exit(1)
 
         return self
 
     def getArgs(self):
-        return self.args
+        return self._args
 
     def get(self, key):
-        if hasattr(self.args, key):
-            return self.args.__dict__[key]
+        if hasattr(self._args, key):
+            return self._args.__dict__[key]
 
         return []
 

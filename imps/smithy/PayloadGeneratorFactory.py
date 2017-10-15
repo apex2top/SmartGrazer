@@ -3,7 +3,7 @@ import importlib
 from imps.smithy.Elements import Elements
 
 
-class PayloadGenerator(object):
+class PayloadGeneratorFactory(object):
     """ This class acts like a factory for the actual PayloadGenerators.
 
         By running generate() the configured PayloadGenerator-Instance will be imported, instantiated and executed.

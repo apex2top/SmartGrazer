@@ -6,7 +6,6 @@ class Grammar(Life):
     This class represents the full payload which will be sent to the SUT.
     """
     _elements = []
-    _populated = []
 
     def __init__(self, elements):
         self._elements = elements
