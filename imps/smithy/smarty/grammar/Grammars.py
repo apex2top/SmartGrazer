@@ -20,38 +20,6 @@ class Grammars(object):
     def __init__(self, filePath):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
 
-    def getPayload(self):
-        """
-            Creates three random payloads and chooses the payload with the most potential.
-
-            :raises: ValueError -- Thrown, when no Elements instance is provided.
-            :returns: `imps.smithy.smarty.grammars.Grammar.Grammar`
-        """
-        if self._elements is None:
-            raise ValueError(
-                "Elements are not initialized! Please provide an elements instance via setElements.")
-
-        attackGenerator = self._getAttackGenerator()
-
-        # setting up the random string generator
-        text = (RandomStringGenerator(RandomStringGenerator.minlength, RandomStringGenerator.maxlength)).get(
-            RandomStringGenerator.MIXEDCASE)
-
-        attack = attackGenerator.getAttack()
-
-        candidates = []
-        for i in range(0, 3):
-            candidates.append(self._createPayload(attack, text))
-
-        return self._getWithMostPotential(candidates)
-
-
-    def setElements(self, elements):
-        self._elements = elements
-
-    def getElements(self):
-        return self._elements
-
     def _getAttackGenerator(self):
         attackGenerator = Attacks(self._attackConfig)
         attackGenerator.setElements(self._elements)
@@ -77,9 +45,6 @@ class Grammars(object):
 
         return grammar
 
-    def setAttackConfig(self, attackConfig):
-        self._attackConfig = attackConfig
-
     def _getWithMostPotential(self, candidates):
         """
         This method calculates the grammar with most potential.
@@ -104,3 +69,37 @@ class Grammars(object):
                 lastPotential = potential
 
         return current
+
+    def setAttackConfig(self, attackConfig):
+        self._attackConfig = attackConfig
+
+    def setElements(self, elements):
+        self._elements = elements
+
+    def getElements(self):
+        return self._elements
+
+    def getPayload(self):
+        """
+            Creates three random payloads and chooses the payload with the most potential.
+
+            :raises: ValueError -- Thrown, when no Elements instance is provided.
+            :returns: `imps.smithy.smarty.grammars.Grammar.Grammar`
+        """
+        if self._elements is None:
+            raise ValueError(
+                "Elements are not initialized! Please provide an elements instance via setElements.")
+
+        attackGenerator = self._getAttackGenerator()
+
+        # setting up the random string generator
+        text = (RandomStringGenerator(RandomStringGenerator.minlength, RandomStringGenerator.maxlength)).get(
+            RandomStringGenerator.MIXEDCASE)
+
+        attack = attackGenerator.getAttack()
+
+        candidates = []
+        for i in range(0, 3):
+            candidates.append(self._createPayload(attack, text))
+
+        return self._getWithMostPotential(candidates)
