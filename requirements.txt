@@ -14,6 +14,7 @@ MarkupSafe==1.0
 Pygments==2.2.0
 pytz==2017.2
 requests==2.18.4
+selenium==3.6.0
 six==1.11.0
 snowballstemmer==1.2.1
 Sphinx==1.6.4
