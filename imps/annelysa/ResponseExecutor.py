@@ -7,6 +7,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 class ResponseExecutor(object):
+    """ This class is responsible for opening the website-responses in the browser to check wether there is an alert or not.
+
+
+        :param driver: The Name of the webdriver
+        :type input: str.
+    """
     _driver = None
 
     def __init__(self, driver):
@@ -22,6 +28,14 @@ class ResponseExecutor(object):
             return "windows"
 
     def execute(self, file):
+        """ This method opens the given file with the configured webdriver.
+
+
+            :param file: The file to open
+            :type input: str.
+
+            :returns: boolean: Wether an alert box was found or not.
+        """
         htmlfile = "file://" + os.getcwd() + "/" + file
 
         self._driver.get(htmlfile)
