@@ -1,3 +1,5 @@
+import os
+
 from imps.annelysa.Converter import Converter
 
 
@@ -22,6 +24,9 @@ class Response(object):
         self._file = file
         self._loadHtmlFromFile()
 
+    def getResponseFile(self):
+        return self._file
+
     def setHtml(self, html):
         self._html = html
 
@@ -37,6 +42,22 @@ class Response(object):
 
     def getPayload(self):
         return self._payload
+
+    def clean(self):
+        files = [
+            self.getResponseFile(),
+            self.getResponseFile().replace('.html','')
+        ]
+        for file in files:
+            if os.path.isfile(file):
+                os.unlink(file)
+
+    def getElements(self):
+        result = {}
+        for element in self.getPayload().getElements():
+            result[element.getKey()] = element
+
+        return result
 
     def getStrPayload(self):
         payload = []

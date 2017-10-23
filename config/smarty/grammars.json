@@ -81,6 +81,7 @@
     "OPENPOINTEDBRACKET",
     "IMG",
     "SPACE",
+    "style",
     "QUOTE:6",
     "EQUAL",
     "TAG_JS",

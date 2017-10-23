@@ -1,7 +1,7 @@
 {
   "smartgrazer": {
     "logging": {
-      "level": 0
+      "level": 10
     },
     "directories": {
       "runconfigs": "/../../config/targets/"
@@ -9,7 +9,7 @@
     "imps": {
       "smithy": {
         "generate": {
-          "amount": 3
+          "amount": 1000
         },
         "generator": "smarty",
         "elements": "smarty/elements.json",
@@ -74,7 +74,8 @@
       },
       "webber": {
         "cleanup": false,
-        "maxattempts" : 50
+        "# timelimit in minutes" : "amount will be multiplied with 60 to get minutes",
+        "timelimit" : 5
       },
       "sandy": {
         "response": {

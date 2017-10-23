@@ -3,7 +3,10 @@ from __future__ import print_function
 import logging
 import sys
 
+import time
+
 from imps.annelysa.ResponseAnalyser import ResponseAnalyser
+from imps.annelysa.ResponseExecutor import ResponseExecutor
 from imps.clint.CLIManager import CLIManager as Clint
 from imps.confy.JSONConfigManager import JSONConfigManager as Confy
 from imps.smithy.PayloadGeneratorFactory import PayloadGeneratorFactory as Smithy
@@ -64,6 +67,8 @@ class SmartGrazer(object):
 
         responseAnalyser.setResponseObject(response).analyze()
 
+
+
         # Simple tests to teach smarty how to generate
         simplePayloads = simpy.generate()
 
@@ -74,33 +79,55 @@ class SmartGrazer(object):
             modifiedElements = responseAnalyser.setResponseObject(response).analyze()
             smithy.adjustElements(modifiedElements)
 
-        smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
+        # Generation phase for x amount of time
+        max_time = confy.getConfig()["smartgrazer"]["imps"]["webber"]["timelimit"] * 60
+        start_time = time.time()
 
-        successfull = None
+        requestExecutor = ResponseExecutor('Chrome')
+        smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
+        resultpayloads = []
         tries = 0
 
-        while (not successfull) and tries < confy.getConfig()["smartgrazer"]["imps"]["webber"]["maxattempts"]:
+        while len(resultpayloads) < confy.getConfig()["smartgrazer"]["imps"]["smithy"]["generate"]["amount"] and ((time.time() - start_time) < max_time):
             # Send generated payloads to webpage.
             webber.setPayloads(payloads)
 
             for response in webber.run(attackConfig):
-                print("#" + str(tries) + " : " + str(response.getPayload()))
+                prefix = 'O '
 
                 # execute and analyze
                 modifiedElements = responseAnalyser.setResponseObject(response).analyze()
 
                 if not modifiedElements:
+                    prefix = '== '
                     successfull = responseAnalyser.getResponse().getPayload()
-                    print("#\t\t\tFound a good one: " + str(successfull))
-                    break
-                else:
-                    smithy.adjustElements(modifiedElements)
-                    payloads = smithy.generate()
-                    tries = tries + 1
 
-        if not successfull:
+                    if requestExecutor.execute(responseAnalyser.getResponse().getResponseFile()):
+                        resultpayloads.append(successfull)
+                        prefix = '✔ ' + prefix
+                    else:
+                        prefix = 'X ' + prefix
+                        # Remove reflected but invalid attempt
+                        response.clean()
+                else:
+                    prefix = prefix + '!= '
+                    smithy.adjustElements(modifiedElements)
+                    # Remove not working attempt
+                    response.clean()
+
+
+                logging.getLogger("SmartGrazer").info(prefix + str(tries) + " : " + str(response.getPayload()))
+                tries = tries + 1
+
+            payloads = smithy.generate()
+
+        if len(resultpayloads) == 0:
             print("#\t SmartGrazer: Could not find a working payload!")
             return 1
+
+        print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected working attacks!")
+        for index, payload in enumerate(resultpayloads):
+            print("# " + str(index + 1) + ":\t" + str(payload))
 
         return 0
 
