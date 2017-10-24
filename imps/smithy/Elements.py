@@ -1,3 +1,4 @@
+import logging
 from random import randint
 
 from imps.confy.JSONConfigManager import JSONConfigManager
@@ -14,7 +15,8 @@ class Elements(object):
     _rawElements = {}
     _loadedElements = {}
     _memory = {}
-    _defaultLife = 1
+    _defaultLife = 100
+    _defaultLifes = {}
     _mutator = None
 
     # private
@@ -48,12 +50,15 @@ class Elements(object):
 
         return {'key': identifier, 'usage': []}
 
-    def setDefaultLife(self, amount):
-        self._defaultLife = amount
+    def setDefaultLifes(self, defaultLifes):
+        self._defaultLifes = defaultLifes
 
-    def getDefaultLife(self):
-        if self._defaultLife > 100:
-            return randint(1, 101)
+    def getDefaultLife(self, key):
+        if key in self._defaultLifes.keys():
+            life = self._defaultLifes[key]
+            logging.getLogger('SmartGrazer').debug("Initialize element: " + str(key) + " with " + str(life) + " life!")
+            return life
+
         return self._defaultLife
 
     def getElement(self, identifier):
@@ -68,7 +73,7 @@ class Elements(object):
             element = Element(raw['key'])
             element.setValue(raw['key'])
             element.setUsage(raw['usage'])
-            element.setLife(self.getDefaultLife())
+            element.setLife(self.getDefaultLife(raw['key']))
 
         return self._mutator.mutate(element)
 
@@ -123,7 +128,7 @@ class Elements(object):
                 element = Element(elementid)
                 element.setValue(elementid)
                 element.setUsage(usage)
-                element.setLife(self.getDefaultLife())
+                element.setLife(self.getDefaultLife(elementid))
 
                 self._loadedElements[elementid] = element
 

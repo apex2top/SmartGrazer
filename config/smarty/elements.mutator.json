@@ -15,5 +15,11 @@
       "EVENT",
       "TEXT"
     ]
+  },
+  "spacey": {
+    "enabled": true,
+    "elements": [
+      "TAG_JS"
+    ]
   }
 }

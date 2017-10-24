@@ -19,14 +19,14 @@ class PayloadGenerator(GeneratorGeneral):
             self._grammar = Grammars(self._config['grammars'])
         return self._grammar
 
-    def generate(self, amount):
+    def generate(self):
         grammarGenerator = self.getGrammar()
         grammarGenerator.setElements(self.getElements().clearMutations())
 
         grammarGenerator.setAttackConfig(self._config['attacks'])
 
         grammars = []
-        for _ in range(0, amount):
+        for _ in range(0, 3):
             grammars.append(grammarGenerator.getPayload())
 
         return grammars

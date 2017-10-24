@@ -6,7 +6,7 @@ class GeneratorGeneral(object):
     """
     _elements = None
 
-    def generate(self, amount):
+    def generate(self):
         return []
 
     def setElements(self, elements):

@@ -29,7 +29,7 @@ class PayloadGenerator(GeneratorGeneral):
         if not os.path.isfile(self._grammar):
             raise ValueError("Dharma file was not found! Given path: " + self._grammar)
 
-    def generate(self, amount):
+    def generate(self):
         """ This function executes the dharma script with the predefined configuration.
 
             :param: amount: int - The amount of requested payloads.
@@ -38,7 +38,7 @@ class PayloadGenerator(GeneratorGeneral):
 
         # By setting the -logging option to 30, all dharma outputs where suppresed except the return values.
         command = 'python ' + self._script + " -grammars " + self._grammar + " -count " + str(
-            amount) + " -logging 30"
+            1) + " -logging 30"
 
         proc = subprocess.Popen(command, stdout=subprocess.PIPE)
 

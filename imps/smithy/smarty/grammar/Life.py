@@ -6,7 +6,7 @@ class Life(object):
     handling all life related management.
     """
 
-    _life = 1
+    _life = None
 
     def setLife(self, amount):
         self._life = amount

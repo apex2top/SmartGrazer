@@ -80,6 +80,7 @@ class PayloadTester(object):
 
             response = Response()
             response.setResponseFile(resultHTMLFile)
+
             response.setPayload(payload)
 
             responses.append(response)

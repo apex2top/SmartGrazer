@@ -1,5 +1,6 @@
 import importlib
 
+from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.smithy.Elements import Elements
 
 
@@ -11,7 +12,6 @@ class PayloadGeneratorFactory(object):
     _impName = ''
     _config = {}
     _impConfig = {}
-    _amount = 1
 
     _instances = {}
 
@@ -20,7 +20,6 @@ class PayloadGeneratorFactory(object):
         self._impName = self._config["smithy"]["generator"]
 
     def getImpString(self, name):
-        self._amount = self._config["smithy"]["generate"]["amount"]
         self._impConfig = self._config[name]
 
         return "imps.smithy.{0}".format(name)
@@ -39,9 +38,8 @@ class PayloadGeneratorFactory(object):
             generator = module.PayloadGenerator()
             generator.applyConfig(self._impConfig)
 
-            elements = Elements(self._config["smithy"]["elements"])
-            default = int(self._config["smithy"]["life"]["default"])
-            elements.setDefaultLife(default)
+            elements = Elements(self._config["smithy"]["elements"]["usages"])
+            elements.setDefaultLifes((JSONConfigManager(self._config["smithy"]["elements"]["lifes"])).getConfig())
 
             generator.setElements(elements)
             self._instances[name] = generator
@@ -55,4 +53,4 @@ class PayloadGeneratorFactory(object):
         return self._getGenerator("simpy")
 
     def generate(self):
-        return self._getGenerator(self._impName).generate(self._amount)
+        return self._getGenerator(self._impName).generate()

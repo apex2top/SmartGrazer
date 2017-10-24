@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import logging
 import sys
-
 import time
 
 from imps.annelysa.ResponseAnalyser import ResponseAnalyser
@@ -67,8 +66,6 @@ class SmartGrazer(object):
 
         responseAnalyser.setResponseObject(response).analyze()
 
-
-
         # Simple tests to teach smarty how to generate
         simplePayloads = simpy.generate()
 
@@ -83,12 +80,13 @@ class SmartGrazer(object):
         max_time = confy.getConfig()["smartgrazer"]["imps"]["webber"]["timelimit"] * 60
         start_time = time.time()
 
-        requestExecutor = ResponseExecutor('Chrome')
+        requestExecutor = ResponseExecutor('Firefox')
         smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
         resultpayloads = []
         tries = 0
 
-        while len(resultpayloads) < confy.getConfig()["smartgrazer"]["imps"]["smithy"]["generate"]["amount"] and ((time.time() - start_time) < max_time):
+        while len(resultpayloads) < confy.getConfig()["smartgrazer"]["imps"]["smithy"]["generate"]["amount"] and (
+            (time.time() - start_time) < max_time):
             # Send generated payloads to webpage.
             webber.setPayloads(payloads)
 
@@ -105,21 +103,24 @@ class SmartGrazer(object):
                     if requestExecutor.execute(responseAnalyser.getResponse().getResponseFile()):
                         resultpayloads.append(successfull)
                         prefix = '✔ ' + prefix
+                        break
                     else:
                         prefix = 'X ' + prefix
                         # Remove reflected but invalid attempt
                         response.clean()
+
                 else:
                     prefix = prefix + '!= '
                     smithy.adjustElements(modifiedElements)
                     # Remove not working attempt
                     response.clean()
 
-
                 logging.getLogger("SmartGrazer").info(prefix + str(tries) + " : " + str(response.getPayload()))
                 tries = tries + 1
 
             payloads = smithy.generate()
+
+        requestExecutor.close()
 
         if len(resultpayloads) == 0:
             print("#\t SmartGrazer: Could not find a working payload!")

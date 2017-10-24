@@ -17,6 +17,9 @@ class PayloadMutator(object):
             self._mutator[mutator] = mutateGenerator
 
     def mutate(self, element):
+        if element.getMutated() is not None:
+            return element
+
         for mutator in self._mutator:
             if element.getUsage() in self._mutator[mutator].getElements():
                 element = self._mutator[mutator].mutate(element)

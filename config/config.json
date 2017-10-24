@@ -9,13 +9,12 @@
     "imps": {
       "smithy": {
         "generate": {
-          "amount": 1000
+          "amount": 1
         },
         "generator": "smarty",
-        "elements": "smarty/elements.json",
-        "life": {
-          "default": 100,
-          "999": "set default >100 to get random life values"
+        "elements": {
+          "usages" : "smarty/elements.json",
+          "lifes" : "smarty/elements.life.json"
         }
       },
       "simpy": {
