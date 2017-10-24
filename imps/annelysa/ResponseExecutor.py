@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.remote_connection import LOGGER
 
 class ResponseExecutor(object):
     """ This class is responsible for opening the website-responses in the browser to check wether there is an alert or not.
@@ -17,7 +16,6 @@ class ResponseExecutor(object):
     _driver = None
 
     def __init__(self, driver):
-        LOGGER.setLevel(logging.WARNING)
         if driver == 'Firefox':
             self._driver = webdriver.Firefox(executable_path=r'webdriver/'+self._getOS()+'/geckodriver')
         else:
