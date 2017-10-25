@@ -21,6 +21,7 @@ class PayloadGenerator(GeneratorGeneral):
 
     def generate(self):
         grammarGenerator = self.getGrammar()
+        grammarGenerator.setContext(self._config['context'])
         grammarGenerator.setElements(self.getElements().clearMutations())
         grammarGenerator.getElements().clearElementMemory()
 

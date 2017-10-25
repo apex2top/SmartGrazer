@@ -1,5 +1,7 @@
 from random import choice
 
+from jsonmerge import merge
+
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
 from imps.smithy.smarty.grammar.Outbreaks import Outbreaks
@@ -17,10 +19,17 @@ class Grammars(object):
     _elements = None
     _grammarPatterns = []
     _attackConfig = ''
+    _context = ''
     _outbreakConfig = ''
 
     def __init__(self, filePath):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
+
+    def setContext(self,context):
+        self._context = context
+
+    def getContext(self):
+        return self._context
 
     def _getAttackGenerator(self):
         attackGenerator = Attacks(self._attackConfig)
@@ -34,8 +43,20 @@ class Grammars(object):
 
         return outbreakGenerator
 
+    def _getRandomByContext(self):
+        patterns = []
+
+        if self.getContext() == 'html':
+            patterns = self._grammarPatterns['html']
+        elif self.getContext() == 'javascript':
+            patterns = self._grammarPatterns['javascript']
+        else:
+            patterns = merge(self._grammarPatterns['html'], self._grammarPatterns['javascript'])
+
+        return choice(patterns)
+
     def _createPayload(self, outbreak, attack, text):
-        pattern = choice(self._grammarPatterns)
+        pattern = self._getRandomByContext()
 
         # creating elements
         components = []

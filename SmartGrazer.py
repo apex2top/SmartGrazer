@@ -44,11 +44,18 @@ class SmartGrazer(object):
             webber.cleanUp()
 
         smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
-        payloads = smithy.generate()
+
+
 
         # Generate the payloads and exit
         if clint.get('generate'):
-            for p in payloads:
+            result = []
+
+            while len(result) < confy.getConfig()["smartgrazer"]["imps"]["smithy"]["generate"]["amount"]:
+                for pl in smithy.generate():
+                    result.append(pl)
+
+            for p in result:
                 print(p)
             exit(0)
 
@@ -86,6 +93,8 @@ class SmartGrazer(object):
         smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
         resultpayloads = []
         tries = 0
+
+        payloads = smithy.generate()
 
         while len(resultpayloads) < confy.getConfig()["smartgrazer"]["imps"]["smithy"]["generate"]["amount"] and (
             (time.time() - start_time) < max_time):

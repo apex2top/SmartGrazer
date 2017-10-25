@@ -13,8 +13,8 @@
         },
         "generator": "smarty",
         "elements": {
-          "usages" : "smarty/elements.json",
-          "lifes" : "smarty/elements.life.json"
+          "usages": "smarty/elements.json",
+          "lifes": "smarty/elements.life.json"
         }
       },
       "simpy": {
@@ -59,23 +59,28 @@
       },
       "dharma": {
         "script": "../../../dharma-github/trunk/dharma/dharma.py",
-        "grammar": "/config/smartgrazer.dg",
-        "urlencode": false
+        "grammar": "/config/smartgrazer.dg"
       },
       "smarty": {
         "attacks": "smarty/attacks.json",
         "outbreaks": "smarty/outbreaks.json",
         "grammars": "smarty/grammars.json",
-        "urlencode": false
+        "context": "both",
+        "# context_options": [
+          "both",
+          "html",
+          "javascript"
+        ]
       },
       "jsfuck": {
+        "# Not used at all": "at the moment",
         "enabled": true,
         "script": "jsfuck3.py"
       },
       "webber": {
         "cleanup": false,
-        "# timelimit in minutes" : "amount will be multiplied with 60 to get minutes",
-        "timelimit" : 5
+        "# timelimit in minutes": "amount will be multiplied with 60 to get minutes",
+        "timelimit": 5
       },
       "sandy": {
         "response": {
@@ -87,8 +92,11 @@
         }
       },
       "annelysa": {
-        "webdriver" : "Chrome",
-        "#webdriver_options" : ["Firefox","Chrome"]
+        "webdriver": "Chrome",
+        "#webdriver_options": [
+          "Firefox",
+          "Chrome"
+        ]
       }
     }
   }

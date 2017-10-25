@@ -24,7 +24,8 @@
     "QUOTE"
   ],
   "35": [
-    "HASHTAG"
+    "HASHTAG",
+    "SRC_VALUE"
   ],
   "37": [
     "PERCENT"
@@ -53,7 +54,8 @@
   ],
   "47": [
     "SPACE",
-    "SLASH"
+    "SLASH",
+    "SRC_VALUE"
   ],
   "58": [
     "COLON"
@@ -697,9 +699,19 @@
   "": [
     "QUOTE",
     "SEMICOLON",
-    "SPACE"
+    "SPACE",
+    "SRC_VALUE"
   ],
   "&nbsp;": [
     "SPACE"
+  ],
+  "src": [
+    "ATTR_SRC"
+  ],
+  "dynsrc": [
+    "ATTR_SRC"
+  ],
+  "lowsrc": [
+    "ATTR_SRC"
   ]
 }
