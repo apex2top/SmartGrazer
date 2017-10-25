@@ -230,6 +230,6 @@
   "ontouchend": 25,
   "ontouchmove": 25,
   "ontouchstart": 25,
-  "": 25,
+  "": 10,
   "&nbsp;": 25
 }

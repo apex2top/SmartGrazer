@@ -86,7 +86,10 @@
           "http": "http://127.0.0.1"
         }
       },
-      "annelysa": {}
+      "annelysa": {
+        "webdriver" : "Chrome",
+        "#webdriver_options" : ["Firefox","Chrome"]
+      }
     }
   }
 }

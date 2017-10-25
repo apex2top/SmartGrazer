@@ -18,7 +18,7 @@ class ResponseExecutor(object):
     def __init__(self, driver):
         if driver == 'Firefox':
             self._driver = webdriver.Firefox(executable_path=r'webdriver/'+self._getOS()+'/geckodriver')
-        else:
+        elif driver == 'Chrome':
             self._driver = webdriver.Chrome(executable_path=r'webdriver/'+self._getOS()+'/chromedriver')
 
     def _getOS(self):

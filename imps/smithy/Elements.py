@@ -77,6 +77,9 @@ class Elements(object):
 
         return self._mutator.mutate(element)
 
+    def clearElementMemory(self):
+        self._memory = {}
+
     def clearMutations(self):
         for key in self._loadedElements.keys():
             self._loadedElements[key].setMutated(None)

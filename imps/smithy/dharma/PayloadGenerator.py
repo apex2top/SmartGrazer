@@ -50,7 +50,7 @@ class PayloadGenerator(GeneratorGeneral):
             if line == b'\r\n':
                 continue
 
-            #line = line.decode('utf-8').encode('cp850','replace').decode('cp850')
+            line = line.decode('utf-8')
             line = str(line)
 
             elements = self._parse(line[1:-3])

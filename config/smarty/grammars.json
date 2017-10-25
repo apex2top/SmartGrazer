@@ -14,7 +14,7 @@
   ],
   [
     "OPENPOINTEDBRACKET",
-    "TAG_HTML:1",
+    "TAG_HTML",
     "SPACE",
     "EQUAL",
     "QUOTE:2",
@@ -91,7 +91,7 @@
   ],
   [
     "OPENPOINTEDBRACKET",
-    "TAG_HTML:7",
+    "TAG_HTML",
     "SPACE",
     "EVENT",
     "EQUAL",
@@ -101,12 +101,16 @@
   ],
   [
     "OPENPOINTEDBRACKET",
-    "TAG_HTML:7",
+    "SLASH",
+    "TAG_HTML",
     "SPACE",
     "EVENT",
     "EQUAL",
     "SPACE",
+    "QUOTE",
     "ATTACK",
+    "QUOTE",
+    "SPACE",
     "CLOSEPOINTEDBRACKET"
   ]
 ]

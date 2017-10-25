@@ -38,6 +38,8 @@ class SmartGrazer(object):
         # Merge the config, the runconfig and the overrides into one big json-config
         confy.getConfig(clint.get('execute'), clint.parseOverwrites())
 
+        logging.getLogger("SmartGrazer").info(str(clint.getArgs()))
+
         if confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"] or clint.get("cleanup"):
             webber.cleanUp()
 
@@ -80,7 +82,7 @@ class SmartGrazer(object):
         max_time = confy.getConfig()["smartgrazer"]["imps"]["webber"]["timelimit"] * 60
         start_time = time.time()
 
-        requestExecutor = ResponseExecutor('Firefox')
+        requestExecutor = ResponseExecutor(confy.getConfig()["smartgrazer"]["imps"]["annelysa"]["webdriver"])
         smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
         resultpayloads = []
         tries = 0
@@ -127,8 +129,8 @@ class SmartGrazer(object):
             return 1
 
         print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected working attacks!")
-        for index, payload in enumerate(resultpayloads):
-            print("# " + str(index + 1) + ":\t" + str(payload))
+        for payload in resultpayloads:
+            print("# " + str(tries) + ":\t" + str(payload))
 
         return 0
 

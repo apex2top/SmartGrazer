@@ -1,3 +1,4 @@
+import codecs
 import json
 import os
 import urllib
@@ -67,7 +68,7 @@ class RequestExecutor(object):
     def _save(self, filePath, fileName, data):
         save = self.getFilePath(filePath, fileName)
 
-        file = open(save, "w")
+        file = codecs.open(save, "w", "utf-8")
         file.write(data)
         file.close()
 

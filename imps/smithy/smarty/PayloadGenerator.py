@@ -22,6 +22,7 @@ class PayloadGenerator(GeneratorGeneral):
     def generate(self):
         grammarGenerator = self.getGrammar()
         grammarGenerator.setElements(self.getElements().clearMutations())
+        grammarGenerator.getElements().clearElementMemory()
 
         grammarGenerator.setAttackConfig(self._config['attacks'])
         grammarGenerator.setOutbreakConfig(self._config['outbreaks'])
