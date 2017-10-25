@@ -88,7 +88,8 @@ class Elements(object):
         # Important! some elements must be the same char e.g. QUOTES
         # Therefore the user can attach ':[0-9]' to some tags
         # these randomly chosen chars will be saved to _memory[key][memkey]
-        if usage[-2] == ':':
+
+        if len(usage) > 1 and usage[-2] == ':':
             memkey = usage[-1]
             usage = usage[0:-2]
 

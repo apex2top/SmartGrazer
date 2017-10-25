@@ -1,0 +1,51 @@
+{
+  "runconfig": {
+    "valid": {
+      "precondition": {
+        "target": "https://aborgardt.com/master/bWAPP/login.php",
+        "params": {
+          "post": {
+            "login": "bee",
+            "password": "bug",
+            "security_level": 2,
+            "form": "submit"
+          }
+        }
+      },
+      "action": {
+        "filesuffix": "valid",
+        "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
+        "params": {
+          "get": {
+            "firstname": "PAYLOAD",
+            "lastname": "smartgrazer"
+          }
+        }
+      },
+      "PAYLOAD": "#smartgrazer"
+    },
+    "attack": {
+      "precondition": {
+        "target": "https://aborgardt.com/master/bWAPP/login.php",
+        "params": {
+          "post": {
+            "login": "bee",
+            "password": "bug",
+            "security_level": 2,
+            "form": "submit"
+          }
+        }
+      },
+      "action": {
+        "filesuffix": "payload",
+        "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
+        "params": {
+          "get": {
+            "firstname": "PAYLOAD",
+            "lastname": "smartgrazer"
+          }
+        }
+      }
+    }
+  }
+}

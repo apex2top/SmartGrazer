@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+import sys
+
 from imps.smithy.GeneratorGeneral import GeneratorGeneral
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 
@@ -48,7 +50,7 @@ class PayloadGenerator(GeneratorGeneral):
             if line == b'\r\n':
                 continue
 
-            line = line.decode("utf-8")
+            #line = line.decode('utf-8').encode('cp850','replace').decode('cp850')
             line = str(line)
 
             elements = self._parse(line[1:-3])

@@ -2,6 +2,7 @@ from random import choice
 
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
+from imps.smithy.smarty.grammar.Outbreaks import Outbreaks
 from imps.smithy.smarty.grammar.Attacks import Attacks
 from imps.smithy.smarty.grammar.grammars.Grammar import Grammar
 
@@ -16,6 +17,7 @@ class Grammars(object):
     _elements = None
     _grammarPatterns = []
     _attackConfig = ''
+    _outbreakConfig = ''
 
     def __init__(self, filePath):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
@@ -26,7 +28,13 @@ class Grammars(object):
 
         return attackGenerator
 
-    def _createPayload(self, attack, text):
+    def _getOutbreakGenerator(self):
+        outbreakGenerator = Outbreaks(self._outbreakConfig)
+        outbreakGenerator.setElements(self._elements)
+
+        return outbreakGenerator
+
+    def _createPayload(self, outbreak, attack, text):
         pattern = choice(self._grammarPatterns)
 
         # creating elements
@@ -40,6 +48,7 @@ class Grammars(object):
         grammar = Grammar(components)
 
         # here jsfuck could be integrated
+        grammar.populateOutbreak(outbreak)
         grammar.populateAttack(attack)
         grammar.populateRandomText(text)
 
@@ -73,6 +82,9 @@ class Grammars(object):
     def setAttackConfig(self, attackConfig):
         self._attackConfig = attackConfig
 
+    def setOutbreakConfig(self, outbreakConfig):
+        self._outbreakConfig = outbreakConfig
+
     def setElements(self, elements):
         self._elements = elements
 
@@ -91,15 +103,17 @@ class Grammars(object):
                 "Elements are not initialized! Please provide an elements instance via setElements.")
 
         attackGenerator = self._getAttackGenerator()
+        outbreakGenerator = self._getOutbreakGenerator()
 
         # setting up the random string generator
         text = (RandomStringGenerator(RandomStringGenerator.minlength, RandomStringGenerator.maxlength)).get(
             RandomStringGenerator.MIXEDCASE)
 
         attack = attackGenerator.getAttack()
+        outbreak = outbreakGenerator.getOutbreak()
 
         candidates = []
         for i in range(0, 3):
-            candidates.append(self._createPayload(attack, text))
+            candidates.append(self._createPayload(outbreak, attack, text))
 
         return self._getWithMostPotential(candidates)

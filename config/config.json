@@ -64,6 +64,7 @@
       },
       "smarty": {
         "attacks": "smarty/attacks.json",
+        "outbreaks": "smarty/outbreaks.json",
         "grammars": "smarty/grammars.json",
         "urlencode": false
       },

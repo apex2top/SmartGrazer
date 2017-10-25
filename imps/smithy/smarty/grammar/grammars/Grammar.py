@@ -56,6 +56,24 @@ class Grammar(Life):
 
         self._elements = payload
 
+    def populateOutbreak(self, outbreak):
+        """
+        This Method replaces the grammars "OUTBREAK" element with the elements of the oubreak members.
+
+        :param attack: `imps.smithy.smarty.grammars.outbreaks.Outbreak.Outbreak` -- The used JavaScript payload.
+        :return: list<`imps.smithy.elements.Element.Element`> -- The updated component list of this Grammar.
+        """
+        payload = []
+        for element in self._elements:
+            if element.getKey() == "OUTBREAK":
+                for attackElements in outbreak.getElements():
+                    payload.append(attackElements)
+            else:
+                payload.append(element)
+
+        self._elements = payload
+
+
     def populateRandomText(self, text):
         for element in self._elements:
             if element.getKey() == "TEXT":

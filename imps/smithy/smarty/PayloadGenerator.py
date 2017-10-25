@@ -24,6 +24,7 @@ class PayloadGenerator(GeneratorGeneral):
         grammarGenerator.setElements(self.getElements().clearMutations())
 
         grammarGenerator.setAttackConfig(self._config['attacks'])
+        grammarGenerator.setOutbreakConfig(self._config['outbreaks'])
 
         grammars = []
         for _ in range(0, 3):
