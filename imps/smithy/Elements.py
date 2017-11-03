@@ -159,7 +159,7 @@ class Elements(object):
 
         :return: choise: `imps.smithy.elements.Element.Element` -- The selected element
         """
-        sortedList = Life.sortASC(weightedList)
+        sortedList = Life.sortDesc(weightedList)
 
         maxValue = Life.getLifeFromList(sortedList)
         currentLimit = randint(0, maxValue + 1)

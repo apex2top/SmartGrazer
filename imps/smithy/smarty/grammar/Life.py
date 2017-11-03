@@ -37,5 +37,5 @@ class Life(object):
     def getKey(entry):
         return entry.getLife()
 
-    def sortASC(listOfValues):
-        return sorted(listOfValues, key=Life.getKey, reverse=True)
+    def sortDesc(listOfValues):
+        return sorted(listOfValues, key=Life.getKey, reverse=true)
