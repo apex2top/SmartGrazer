@@ -13,7 +13,7 @@ class CLIManager(object):
         self._parser = argparse.ArgumentParser(
             prog='SmartGrazer',
             usage='%(prog)s [-h | [-g | -x path/to/runconfig.json] | --overwrite [key1=value1 ... keyn=valuen]]',
-            description='A smart tools based fuzzer.',
+            description='A smart grammar based fuzzer.',
             formatter_class=RawTextHelpFormatter)
 
     def handle(self):
@@ -30,7 +30,7 @@ class CLIManager(object):
                             nargs='?',
                             action='store',
                             default=False,
-                            help='Name of the configuration file containing the config.')
+                            help='Just generate and output the payloads.')
 
         mutual.add_argument('-x',
                             '--execute',
@@ -39,7 +39,7 @@ class CLIManager(object):
         self._parser.add_argument('--overwrite',
                                   nargs='*',
                                   default=[],
-                                  help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite imps.smithy.payload.amount=10 imps.smithy.generator=smarty")
+                                  help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite smartgrazer.imps.smithy.generator=smarty smartgrazer.imps.smithy.generate.amount=5")
 
         self._parser.add_argument('-c',
                                  '--cleanup',

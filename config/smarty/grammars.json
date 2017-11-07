@@ -1,15 +1,17 @@
 {
   "javascript": [
     [
-      "OUTBREAK",
-      "OPENPOINTEDBRACKET",
-      "TAG_SCRIPT",
-      "CLOSEPOINTEDBRACKET",
-      "SPACE",
       "ATTACK",
-      "OPENPOINTEDBRACKET",
-      "SLASH",
-      "TAG_SCRIPT",
+      "OUTBREAK"
+    ],
+    [
+      "QUOTE",
+      "SPACE",
+      "EVENT",
+      "EQUAL",
+      "QUOTE",
+      "ATTACK",
+      "QUOTE",
       "CLOSEPOINTEDBRACKET"
     ],
     [
@@ -20,6 +22,30 @@
       "QUOTE",
       "ATTACK",
       "QUOTE",
+      "SLASH",
+      "CLOSEPOINTEDBRACKET"
+    ],
+    [
+      "OUTBREAK",
+      "BACKSLASH",
+      "QUOTE",
+      "ATTACK",
+      "SEMICOLON",
+      "SLASH",
+      "SLASH"
+    ]
+  ],
+  "html": [
+    [
+      "OUTBREAK",
+      "OPENPOINTEDBRACKET",
+      "TAG_SCRIPT",
+      "CLOSEPOINTEDBRACKET",
+      "SPACE",
+      "ATTACK",
+      "OPENPOINTEDBRACKET",
+      "SLASH",
+      "TAG_SCRIPT",
       "CLOSEPOINTEDBRACKET"
     ],
     [
@@ -80,17 +106,6 @@
       "TAG_HTML",
       "CLOSEPOINTEDBRACKET"
     ],
-    [
-      "OUTBREAK",
-      "BACKSLASH",
-      "QUOTE",
-      "ATTACK",
-      "SEMICOLON",
-      "SLASH",
-      "SLASH"
-    ]
-  ],
-  "html": [
     [
       "OUTBREAK",
       "OPENPOINTEDBRACKET",

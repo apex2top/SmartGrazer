@@ -3,7 +3,7 @@ import importlib
 from imps.confy.JSONConfigManager import JSONConfigManager
 
 
-class PayloadMutator(object):
+class PayloadMutatorFactory(object):
     _mutator = {}
 
     def __init__(self, filePath):

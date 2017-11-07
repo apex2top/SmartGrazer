@@ -4,8 +4,7 @@
     "SPACE",
     "OPENROUNDBRACKET",
     "QUOTE:x",
-    "HASHTAG",
-    "smartgrazer",
+    "3",
     "QUOTE:x",
     "CLOSEROUNDBRACKET"
   ],
@@ -14,8 +13,7 @@
     "SPACE",
     "OPENROUNDBRACKET",
     "QUOTE:y",
-    "HASHTAG",
-    "smartgrazer",
+    "2",
     "QUOTE:y",
     "CLOSEROUNDBRACKET"
   ],
@@ -24,8 +22,7 @@
     "SPACE",
     "OPENROUNDBRACKET",
     "QUOTE:z",
-    "HASHTAG",
-    "smartgrazer",
+    "1",
     "QUOTE:z",
     "CLOSEROUNDBRACKET"
   ]

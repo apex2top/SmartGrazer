@@ -2,7 +2,7 @@ import logging
 from random import randint
 
 from imps.confy.JSONConfigManager import JSONConfigManager
-from imps.mutty.PayloadMutator import PayloadMutator
+from imps.mutty.PayloadMutatorFactory import PayloadMutatorFactory
 from imps.smithy.elements.Element import Element
 from imps.smithy.smarty.grammar.Life import Life
 
@@ -23,7 +23,7 @@ class Elements(object):
 
     def __init__(self, filePath):
         self._rawElements = (JSONConfigManager(filePath)).getConfig()
-        self._mutator = PayloadMutator(filePath.replace(".json", ".mutator.json"))
+        self._mutator = PayloadMutatorFactory(filePath.replace(".json", ".mutator.json"))
 
     def _getElementsWithUsage(self, usage):
         """ This method returns a list of elements with a given usage from the rawElements - memory.
