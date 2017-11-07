@@ -49,6 +49,13 @@ class CLIManager(object):
                                   action='store',
                                   help="Clean the previous stored responses.")
 
+        self._parser.add_argument('--enableWebdriver',
+                                  const=True,
+                                  nargs='?',
+                                  default=False,
+                                  action='store',
+                                  help="Enables live test for payload.\nThis Option requires either a gecko or a chrome webdriver binary in the subfolder:\nwebdriver/[YourOS]/")
+
         self._args = self._parser.parse_args()
 
         if self._args.execute == None and self._args.generate is False:

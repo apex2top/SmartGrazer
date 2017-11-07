@@ -21,6 +21,7 @@ class Grammars(object):
     _attackConfig = ''
     _context = ''
     _outbreakConfig = ''
+    _patterns = []
 
     def __init__(self, filePath):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
@@ -44,16 +45,21 @@ class Grammars(object):
         return outbreakGenerator
 
     def _getRandomByContext(self):
-        patterns = []
+        if not self._patterns:
+            patterns = []
 
-        if self.getContext() == 'html':
-            patterns = self._grammarPatterns['html']
-        elif self.getContext() == 'javascript':
-            patterns = self._grammarPatterns['javascript']
-        else:
-            patterns = merge(self._grammarPatterns['html'], self._grammarPatterns['javascript'])
+            if self.getContext() == 'html':
+                patterns = self._grammarPatterns['html']
+            elif self.getContext() == 'javascript':
+                patterns = self._grammarPatterns['javascript']
+            else:
+                patterns = self._grammarPatterns['html']
 
-        return choice(patterns)
+                for pattern in self._grammarPatterns['javascript']:
+                    patterns.append(pattern)
+                self._patterns = patterns
+
+        return choice(self._patterns)
 
     def _createPayload(self, outbreak, attack, text):
         pattern = self._getRandomByContext()

@@ -38,4 +38,4 @@ class Life(object):
         return entry.getLife()
 
     def sortDesc(listOfValues):
-        return sorted(listOfValues, key=Life.getKey, reverse=true)
+        return sorted(listOfValues, key=Life.getKey, reverse=True)

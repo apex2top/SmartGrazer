@@ -14,18 +14,23 @@ class ResponseExecutor(object):
         :type input: str.
     """
     _driver = None
+    _driverName = ''
 
     def __init__(self, driver):
-        if driver == 'Firefox':
-            self._driver = webdriver.Firefox(executable_path=r'webdriver/'+self._getOS()+'/geckodriver')
-        elif driver == 'Chrome':
-            self._driver = webdriver.Chrome(executable_path=r'webdriver/'+self._getOS()+'/chromedriver')
+        self._driverName = driver
 
     def _getOS(self):
         if platform == "linux" or platform == "linux2":
             return "linux"
         elif platform == "win32":
             return "windows"
+
+    def _getDriver(self):
+        if self._driverName == 'Firefox':
+            self._driver = webdriver.Firefox(executable_path=r'webdriver/'+self._getOS()+'/geckodriver')
+        elif self._driverName == 'Chrome':
+            self._driver = webdriver.Chrome(executable_path=r'webdriver/'+self._getOS()+'/chromedriver')
+
 
     def execute(self, file):
         """ This method opens the given file with the configured webdriver.
@@ -36,6 +41,9 @@ class ResponseExecutor(object):
 
             :returns: boolean: Wether an alert box was found or not.
         """
+        if not self._driver:
+            self._getDriver()
+
         htmlfile = "file://" + os.getcwd() + "/" + file
 
         if os.path.isfile(os.getcwd() + "/" + file):

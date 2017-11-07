@@ -89,6 +89,7 @@ class SmartGrazer(object):
         max_time = confy.getConfig()["smartgrazer"]["imps"]["webber"]["timelimit"] * 60
         start_time = time.time()
 
+        enabledWebdriver = clint.get("enableWebdriver")
         requestExecutor = ResponseExecutor(confy.getConfig()["smartgrazer"]["imps"]["annelysa"]["webdriver"])
         smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
         resultpayloads = []
@@ -107,9 +108,13 @@ class SmartGrazer(object):
                 # execute and analyze
                 modifiedElements = responseAnalyser.setResponseObject(response).analyze()
 
-                if not modifiedElements:
+                if len(modifiedElements) < 1:
                     prefix = '== '
                     successfull = responseAnalyser.getResponse().getPayload()
+
+                    if not enabledWebdriver:
+                        prefix = '?' + prefix
+                        break
 
                     if requestExecutor.execute(responseAnalyser.getResponse().getResponseFile()):
                         resultpayloads.append(successfull)
