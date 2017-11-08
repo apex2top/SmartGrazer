@@ -63,4 +63,5 @@ class ResponseExecutor(object):
             return False
 
     def close(self):
-        self._driver.close()
+        if self._driver:
+            self._driver.close()

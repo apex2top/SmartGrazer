@@ -113,6 +113,7 @@ class SmartGrazer(object):
                     successfull = responseAnalyser.getResponse().getPayload()
 
                     if not enabledWebdriver:
+                        resultpayloads.append(successfull)
                         prefix = '?' + prefix
                         break
 
@@ -142,7 +143,11 @@ class SmartGrazer(object):
             print("#\t SmartGrazer: Could not find a working payload!")
             return 1
 
-        print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected working attacks!")
+        working = ""
+        if enabledWebdriver:
+            working = "working "
+
+        print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected "+ working +"attack(s)!")
         for payload in resultpayloads:
             print("# " + str(tries) + ":\t" + str(payload))
 
