@@ -42,13 +42,14 @@ class SmartGrazer(object):
         confy.getConfig(clint.get('execute'), clint.parseOverwrites())
 
         logfile = confy.getConfig()["smartgrazer"]["logging"]["logfile"]
-        logdir = os.path.dirname(logfile)
-        if not os.path.exists(logdir):
-            os.makedirs(logdir)
+        if os.path.isfile(logfile):
+            logdir = os.path.dirname(logfile)
+            if not os.path.exists(logdir):
+                os.makedirs(logdir)
 
-        fh = logging.FileHandler(logfile)
-        fh.setLevel(logging.NOTSET)
-        smartgrazer.addHandler(fh)
+            fh = logging.FileHandler(logfile)
+            fh.setLevel(logging.NOTSET)
+            smartgrazer.addHandler(fh)
 
         smartgrazer.info(str(clint.getArgs()))
 
