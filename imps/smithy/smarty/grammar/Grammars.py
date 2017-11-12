@@ -1,11 +1,9 @@
 from random import choice
 
-from jsonmerge import merge
-
 from imps.confy.JSONConfigManager import JSONConfigManager
 from imps.smithy.simpy.RandomStringGenerator import RandomStringGenerator
-from imps.smithy.smarty.grammar.Outbreaks import Outbreaks
 from imps.smithy.smarty.grammar.Attacks import Attacks
+from imps.smithy.smarty.grammar.Outbreaks import Outbreaks
 from imps.smithy.smarty.grammar.grammars.Grammar import Grammar
 
 
@@ -26,7 +24,7 @@ class Grammars(object):
     def __init__(self, filePath):
         self._grammarPatterns = (JSONConfigManager(filePath)).getConfig()
 
-    def setContext(self,context):
+    def setContext(self, context):
         self._context = context
 
     def getContext(self):

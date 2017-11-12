@@ -7,7 +7,7 @@
         "params": {
           "get": {
             "input": "PAYLOAD",
-            "context" : "js"
+            "context": "js"
           }
         }
       },
@@ -20,7 +20,7 @@
         "params": {
           "get": {
             "input": "PAYLOAD",
-            "context" : "js"
+            "context": "js"
           }
         }
       }

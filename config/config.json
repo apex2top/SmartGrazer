@@ -2,7 +2,7 @@
   "smartgrazer": {
     "logging": {
       "level": 20,
-      "logfile" : "run.log"
+      "logfile": "run.log"
     },
     "directories": {
       "runconfigs": "/../../config/targets/"

@@ -42,7 +42,7 @@ class CLIManager(object):
                                   help="A list of configuration params which should be overwritten temporarily.\nFor example:\n\t--overwrite smartgrazer.imps.smithy.generator=smarty smartgrazer.imps.smithy.generate.amount=5")
 
         self._parser.add_argument('-c',
-                                 '--cleanup',
+                                  '--cleanup',
                                   const=True,
                                   nargs='?',
                                   default=False,
@@ -60,7 +60,6 @@ class CLIManager(object):
 
         if self._args.execute == None and self._args.generate is False:
             raise ValueError("You either have to set the -g or the -x mode. Please see help with the -h option!")
-            exit(1)
 
         return self
 

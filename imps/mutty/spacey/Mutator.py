@@ -20,7 +20,7 @@ class Mutator(MutatorGeneral):
         if not self._isEnabled():
             return element
 
-        if randint(0,1) > 0:
+        if randint(0, 1) > 0:
             return element
 
         spaces = [7, 9, 10, 11, 12, 32]
@@ -37,7 +37,7 @@ class Mutator(MutatorGeneral):
                 newVal = newVal + chr(choice(spaces))
 
             newVal = newVal + c
-            i = i+1
+            i = i + 1
 
         element.setMutated(newVal)
         return element

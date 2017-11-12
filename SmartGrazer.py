@@ -1,10 +1,9 @@
 from __future__ import print_function
 
 import logging
+import os
 import sys
 import time
-
-import os
 
 from imps.annelysa.ResponseAnalyser import ResponseAnalyser
 from imps.annelysa.ResponseExecutor import ResponseExecutor
@@ -50,15 +49,12 @@ class SmartGrazer(object):
         fh.setLevel(logging.NOTSET)
         smartgrazer.addHandler(fh)
 
-
         smartgrazer.info(str(clint.getArgs()))
 
         if confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"] or clint.get("cleanup"):
             webber.cleanUp()
 
         smithy = Smithy(confy.getConfig()["smartgrazer"]["imps"])
-
-
 
         # Generate the payloads and exit
         if clint.get('generate'):
@@ -111,7 +107,7 @@ class SmartGrazer(object):
         payloads = smithy.generate()
 
         while len(resultpayloads) < confy.getConfig()["smartgrazer"]["imps"]["smithy"]["generate"]["amount"] and (
-            (time.time() - start_time) < max_time):
+                    (time.time() - start_time) < max_time):
             # Send generated payloads to webpage.
             webber.setPayloads(payloads)
 
@@ -160,8 +156,9 @@ class SmartGrazer(object):
         if enabledWebdriver:
             working = "working "
 
-        print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected "+ working +"attack(s)!")
-        logging.getLogger("SmartGrazer").info("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected "+ working +"attack(s)!")
+        print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected " + working + "attack(s)!")
+        logging.getLogger("SmartGrazer").info(
+            "#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected " + working + "attack(s)!")
         for payload in resultpayloads:
             print("# " + str(tries) + ":\t" + str(payload))
             logging.getLogger("SmartGrazer").info("# " + str(tries) + ":\t" + str(payload))

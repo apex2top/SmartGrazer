@@ -5,7 +5,6 @@ import urllib
 from urllib.parse import urlparse
 
 import requests
-import sys
 
 
 class RequestExecutor(object):
@@ -39,11 +38,11 @@ class RequestExecutor(object):
 
             if action.getPost():
                 r = self.session.post(requeststring, action.getPost())
-                #self._logger.info("POST-Request:\t" + requeststring)
-                #self._logger.debug("POST-Params:\t" + str(action.getParams()))
+                # self._logger.info("POST-Request:\t" + requeststring)
+                # self._logger.debug("POST-Params:\t" + str(action.getParams()))
             else:
                 r = self.session.get(requeststring)
-                #self._logger.info("GET-Request:\t" + requeststring)
+                # self._logger.info("GET-Request:\t" + requeststring)
 
             filePath = request.getFilePath(action)
             fileName = request.getFileName(action)

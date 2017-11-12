@@ -124,7 +124,6 @@ class Elements(object):
         # get element instances
         candidates = []
         for elementid in elements:
-            element = None
 
             if elementid in self._loadedElements.keys():
                 element = self._loadedElements[elementid]
@@ -171,4 +170,4 @@ class Elements(object):
             if currentSum >= currentLimit:
                 return entry
 
-        return entry
+        return None

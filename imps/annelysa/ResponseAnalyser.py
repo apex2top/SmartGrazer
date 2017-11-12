@@ -1,4 +1,4 @@
-import html
+from w3lib.html import replace_entities
 
 from imps.annelysa.Converter import Converter
 
@@ -73,7 +73,7 @@ class ResponseAnalyser(object):
                         cs = step + i
                         invest = sliceOfHTML[cs:cs + 1]
 
-                    escapedElement = html.unescape(Converter.getString(sliceOfHTML[step:i]))
+                    escapedElement = replace_entities(Converter.getString(sliceOfHTML[step:i]))
 
                     if str(element) == escapedElement:
                         element.decreaseLife()

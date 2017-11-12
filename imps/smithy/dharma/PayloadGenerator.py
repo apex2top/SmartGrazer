@@ -1,8 +1,6 @@
 import os
 import subprocess
 
-import sys
-
 from imps.smithy.GeneratorGeneral import GeneratorGeneral
 from imps.smithy.smarty.grammar.attacks.Attack import Attack
 

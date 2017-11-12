@@ -46,7 +46,7 @@ class Response(object):
     def clean(self):
         files = [
             self.getResponseFile(),
-            self.getResponseFile().replace('.html','')
+            self.getResponseFile().replace('.html', '')
         ]
         for file in files:
             if os.path.isfile(file):

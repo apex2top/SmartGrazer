@@ -19,7 +19,7 @@
         "params": {
           "get": {
             "input": "PAYLOAD",
-            "context" : "js"
+            "context": "js"
           }
         }
       }

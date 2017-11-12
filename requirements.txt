@@ -21,3 +21,4 @@ Sphinx==1.6.4
 sphinxcontrib-websupport==1.0.1
 sphinxjp.themes.bizstyle==0.1.6
 urllib3==1.22
+w3lib==1.18.0

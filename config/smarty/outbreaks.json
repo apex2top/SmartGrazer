@@ -11,13 +11,13 @@
     "SLASH"
   ],
   [
-	"SEMICOLON",
+    "SEMICOLON",
     "SLASH",
     "SLASH"
   ],
   [
-	"QUOTE",
-	"SEMICOLON"
+    "QUOTE",
+    "SEMICOLON"
   ],
   [
     "MINUS",
@@ -30,7 +30,7 @@
   ],
   [
     "QUOTE",
-	"SLASH",
+    "SLASH",
     "CLOSEPOINTEDBRACKET"
   ],
   [

@@ -60,7 +60,7 @@ class Grammar(Life):
         """
         This Method replaces the grammars "OUTBREAK" element with the elements of the oubreak members.
 
-        :param attack: `imps.smithy.smarty.grammars.outbreaks.Outbreak.Outbreak` -- The used JavaScript payload.
+        :param outbreak: `imps.smithy.smarty.grammars.outbreaks.Outbreak.Outbreak` -- The used JavaScript payload.
         :return: list<`imps.smithy.elements.Element.Element`> -- The updated component list of this Grammar.
         """
         payload = []
@@ -72,7 +72,6 @@ class Grammar(Life):
                 payload.append(element)
 
         self._elements = payload
-
 
     def populateRandomText(self, text):
         for element in self._elements:
