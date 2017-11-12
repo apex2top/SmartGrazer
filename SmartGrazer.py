@@ -4,6 +4,8 @@ import logging
 import sys
 import time
 
+import os
+
 from imps.annelysa.ResponseAnalyser import ResponseAnalyser
 from imps.annelysa.ResponseExecutor import ResponseExecutor
 from imps.clint.CLIManager import CLIManager as Clint
@@ -27,7 +29,8 @@ class SmartGrazer(object):
         confy = Confy()
 
         loggerConfig = confy.getConfig()["smartgrazer"]["logging"]
-        logging.getLogger("SmartGrazer").setLevel(loggerConfig["level"])
+        smartgrazer = logging.getLogger("SmartGrazer")
+        smartgrazer.setLevel(loggerConfig["level"])
         logging.basicConfig(format='%(levelname)s:\t%(message)s')
 
         webber = Webber(confy.getConfig()["smartgrazer"]["imps"]["sandy"])
@@ -38,7 +41,17 @@ class SmartGrazer(object):
         # Merge the config, the runconfig and the overrides into one big json-config
         confy.getConfig(clint.get('execute'), clint.parseOverwrites())
 
-        logging.getLogger("SmartGrazer").info(str(clint.getArgs()))
+        logfile = confy.getConfig()["smartgrazer"]["logging"]["logfile"]
+        logdir = os.path.dirname(logfile)
+        if not os.path.exists(logdir):
+            os.makedirs(logdir)
+
+        fh = logging.FileHandler(logfile)
+        fh.setLevel(logging.NOTSET)
+        smartgrazer.addHandler(fh)
+
+
+        smartgrazer.info(str(clint.getArgs()))
 
         if confy.getConfig()["smartgrazer"]["imps"]["webber"]["cleanup"] or clint.get("cleanup"):
             webber.cleanUp()
@@ -148,8 +161,10 @@ class SmartGrazer(object):
             working = "working "
 
         print("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected "+ working +"attack(s)!")
+        logging.getLogger("SmartGrazer").info("#\t SmartGrazer: Found " + str(len(resultpayloads)) + " reflected "+ working +"attack(s)!")
         for payload in resultpayloads:
             print("# " + str(tries) + ":\t" + str(payload))
+            logging.getLogger("SmartGrazer").info("# " + str(tries) + ":\t" + str(payload))
 
         return 0
 

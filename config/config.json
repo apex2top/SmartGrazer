@@ -1,7 +1,8 @@
 {
   "smartgrazer": {
     "logging": {
-      "level": 20
+      "level": 20,
+      "logfile" : "run.log"
     },
     "directories": {
       "runconfigs": "/../../config/targets/"
@@ -58,7 +59,7 @@
         }
       },
       "dharma": {
-        "script": "../../../dharma-github/trunk/dharma/dharma.py",
+        "script": "/../dharma/dharma/dharma.py",
         "grammar": "/config/smartgrazer.dg"
       },
       "smarty": {

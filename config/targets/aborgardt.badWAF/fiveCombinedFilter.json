@@ -1,0 +1,27 @@
+{
+  "runconfig": {
+    "valid": {
+      "action": {
+        "filesuffix": "valid",
+        "target": "https://aborgardt.com/master/badWAF/waf/fiveCombined.phtml",
+        "params": {
+          "get": {
+            "input": "PAYLOAD"
+          }
+        }
+      },
+      "PAYLOAD": "#smartgrazer"
+    },
+    "attack": {
+      "action": {
+        "filesuffix": "payload",
+        "target": "https://aborgardt.com/master/badWAF/waf/fiveCombined.phtml",
+        "params": {
+          "get": {
+            "input": "PAYLOAD"
+          }
+        }
+      }
+    }
+  }
+}

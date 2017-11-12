@@ -1,0 +1,28 @@
+{
+  "runconfig": {
+    "valid": {
+      "action": {
+        "filesuffix": "valid",
+        "target": "https://aborgardt.com/master/badWAF/waf/fdq.phtml",
+        "params": {
+          "get": {
+            "input": "PAYLOAD"
+          }
+        }
+      },
+      "PAYLOAD": "#smartgrazer"
+    },
+    "attack": {
+      "action": {
+        "filesuffix": "payload",
+        "target": "https://aborgardt.com/master/badWAF/waf/fdq.phtml",
+        "params": {
+          "get": {
+            "input": "PAYLOAD",
+            "context" : "js"
+          }
+        }
+      }
+    }
+  }
+}

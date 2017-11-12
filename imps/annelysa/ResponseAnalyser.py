@@ -68,7 +68,7 @@ class ResponseAnalyser(object):
                     i = 2
                     cs = step + i
                     invest = sliceOfHTML[cs:cs + 1]
-                    while Converter.getString(invest) != ";":
+                    while i < 5 and Converter.getString(invest) != ";":
                         i = i + 1
                         cs = step + i
                         invest = sliceOfHTML[cs:cs + 1]
