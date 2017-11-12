@@ -170,4 +170,4 @@ class Elements(object):
             if currentSum >= currentLimit:
                 return entry
 
-        return None
+        return entry
