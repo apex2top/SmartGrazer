@@ -65,6 +65,11 @@ class ResponseAnalyser(object):
             if str(element) == nextResponseElementString:
                 step = step + len(nextResponseElementDecList)
             else:
+                if nextResponseElementString == '':
+                    self._logger.debug("Missing element: " + str(element) + " - Life: " + str(element.getLife()))
+                    element.decreaseLife()
+                    self._addToModified(element)
+
                 next = int(nextResponseElementDecList[0])
                 if next == self.AND:
                     escapedElement = replace_entities(nextResponseElementString)
@@ -94,15 +99,19 @@ class ResponseAnalyser(object):
         firstchar = int(declist[index])
         if firstchar != self.AND:
             return [declist[index]]
-        else:
+
+
+        if firstchar == self.AND:
             index = index + 1
             nextchar = int(declist[index])
 
-            while nextchar != self.SEMICOLON:
+            while nextchar != self.SEMICOLON and len(declist)-1 <= index:
                 index = index + 1
                 nextchar = int(declist[index])
 
             return declist[0:index+1]
+
+        return []
 
     def findSubList(self, sub, bigger):
         """ A method to search array in a nother array
