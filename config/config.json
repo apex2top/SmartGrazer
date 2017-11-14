@@ -51,11 +51,11 @@
           ]
         },
         "checks": {
-          "keywords": true,
-          "chars": true,
+          "keywords": false,
+          "chars": false,
           "specialchars": true,
           "max_get_length": false,
-          "jsfuck": true
+          "jsfuck": false
         }
       },
       "dharma": {

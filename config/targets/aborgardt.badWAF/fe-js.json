@@ -6,7 +6,8 @@
         "target": "https://aborgardt.com/master/badWAF/waf/fe.phtml",
         "params": {
           "get": {
-            "input": "PAYLOAD"
+            "input": "PAYLOAD",
+            "context": "js"
           }
         }
       },
@@ -18,7 +19,8 @@
         "target": "https://aborgardt.com/master/badWAF/waf/fe.phtml",
         "params": {
           "get": {
-            "input": "PAYLOAD"
+            "input": "PAYLOAD",
+            "context": "js"
           }
         }
       }

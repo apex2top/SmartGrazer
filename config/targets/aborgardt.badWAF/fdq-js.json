@@ -6,7 +6,8 @@
         "target": "https://aborgardt.com/master/badWAF/waf/fdq.phtml",
         "params": {
           "get": {
-            "input": "PAYLOAD"
+            "input": "PAYLOAD",
+            "context": "js"
           }
         }
       },

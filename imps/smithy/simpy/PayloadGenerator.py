@@ -47,4 +47,5 @@ class PayloadGenerator(GeneratorGeneral):
         for key in self.config['stringgenerator']['specialchars']:
             elements.append(self.getElements().getElementForUsage(key))
 
-        return Attack(elements)
+        attack = Attack(elements)
+        return attack

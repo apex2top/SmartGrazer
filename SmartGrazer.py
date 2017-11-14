@@ -42,8 +42,9 @@ class SmartGrazer(object):
         confy.getConfig(clint.get('execute'), clint.parseOverwrites())
 
         logfile = confy.getConfig()["smartgrazer"]["logging"]["logfile"]
-        if logfile:
-            logdir = os.path.dirname(logfile)
+
+        logdir = os.path.dirname(logfile)
+        if logdir != '':
             if not os.path.exists(logdir):
                 os.makedirs(logdir)
 

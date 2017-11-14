@@ -3,11 +3,10 @@
     "valid": {
       "action": {
         "filesuffix": "valid",
-        "target": "https://aborgardt.com/master/badWAF/waf/fiveCombined.phtml",
+        "target": "https://aborgardt.com/master/badWAF/waf/fpb.phtml",
         "params": {
           "get": {
-            "input": "PAYLOAD",
-            "context": "js"
+            "input": "PAYLOAD"
           }
         }
       },
@@ -16,11 +15,10 @@
     "attack": {
       "action": {
         "filesuffix": "payload",
-        "target": "https://aborgardt.com/master/badWAF/waf/fiveCombined.phtml",
+        "target": "https://aborgardt.com/master/badWAF/waf/fpb.phtml",
         "params": {
           "get": {
-            "input": "PAYLOAD",
-            "context": "js"
+            "input": "PAYLOAD"
           }
         }
       }

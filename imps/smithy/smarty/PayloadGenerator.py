@@ -29,5 +29,7 @@ class PayloadGenerator(GeneratorGeneral):
         grammarGenerator.setOutbreakConfig(self._config['outbreaks'])
 
         grammars = []
+        #for i in range(0,3):
         grammars.append(grammarGenerator.getPayload())
+
         return grammars

@@ -1,3 +1,5 @@
+import logging
+
 from w3lib.html import replace_entities
 
 from imps.annelysa.Converter import Converter
@@ -9,11 +11,16 @@ class ResponseAnalyser(object):
     _config = {}
     _response = None
     _startIndex = None
+    _logger = None
+
+    AND = 38
+    SEMICOLON = 59
 
     _modifiedElements = {}
 
     def __init__(self, config):
         self._config = config
+        self._logger= logging.getLogger("SmartGrazer")
 
     def setResponseObject(self, response):
         self._response = response
@@ -49,43 +56,53 @@ class ResponseAnalyser(object):
         elements = self._response.getPayload().getElements()
 
         step = 0
-        suspicionMissing = None
         for element in elements:
             l = len(str(element))
-            current = sliceOfHTML[step:step + l]
 
-            if Converter.getString(current) == str(element):
-                # seems like an element is missing in the response.
-                if suspicionMissing:
-                    self._modifiedElements[suspicionMissing.getKey()] = suspicionMissing
-                    suspicionMissing = None
+            nextResponseElementDecList = self._getElementFromResponse(sliceOfHTML[step:])
+            nextResponseElementString = Converter.getString(nextResponseElementDecList)
 
-                step = step + len(str(element))
+            if str(element) == nextResponseElementString:
+                step = step + len(nextResponseElementDecList)
             else:
-                # search for escaped char
-                if Converter.getString(current) is "&":
-
-                    i = 2
-                    cs = step + i
-                    invest = sliceOfHTML[cs:cs + 1]
-                    while i < 5 and Converter.getString(invest) != ";":
-                        i = i + 1
-                        cs = step + i
-                        invest = sliceOfHTML[cs:cs + 1]
-
-                    escapedElement = replace_entities(Converter.getString(sliceOfHTML[step:i]))
-
-                    if str(element) == escapedElement:
+                next = int(nextResponseElementDecList[0])
+                if next == self.AND:
+                    escapedElement = replace_entities(nextResponseElementString)
+                    if escapedElement == str(element):
+                        self._logger.debug("Decreasing: " + str(element) + " - Life: " + str(element.getLife()))
                         element.decreaseLife()
-                        self._modifiedElements[element.getKey()] = element
-
-                    step = step + i + 1
+                        self._addToModified(element)
+                        step = step + len(nextResponseElementDecList)
+                    else:
+                        self._logger.debug("Missing element: " + str(element) + " - Life: " + str(element.getLife()))
+                        element.decreaseLife()
+                        self._addToModified(element)
                 else:
-                    # not escaped with & ... ; -> maybe missing
+                    self._logger.debug("Missing element: " + str(element) + " - Life: " + str(element.getLife()))
                     element.decreaseLife()
-                    suspicionMissing = element
+                    self._addToModified(element)
 
         return self.getModifiedElements()
+
+    def _addToModified(self, element):
+        if not element.getKey() in self._modifiedElements:
+            self._modifiedElements[element.getKey()] = element
+
+    def _getElementFromResponse(self, declist):
+        index = 0
+
+        firstchar = int(declist[index])
+        if firstchar != self.AND:
+            return [declist[index]]
+        else:
+            index = index + 1
+            nextchar = int(declist[index])
+
+            while nextchar != self.SEMICOLON:
+                index = index + 1
+                nextchar = int(declist[index])
+
+            return declist[0:index+1]
 
     def findSubList(self, sub, bigger):
         """ A method to search array in a nother array

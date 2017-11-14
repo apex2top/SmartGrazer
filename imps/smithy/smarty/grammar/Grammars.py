@@ -138,7 +138,7 @@ class Grammars(object):
         outbreak = outbreakGenerator.getOutbreak()
 
         candidates = []
-        for i in range(0, 3):
+        for i in range(0, 2):
             candidates.append(self._createPayload(outbreak, attack, text))
 
         return self._getWithMostPotential(candidates)
