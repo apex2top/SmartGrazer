@@ -3,7 +3,7 @@
     "valid": {
       "action": {
         "filesuffix": "valid",
-        "target": "https://aborgardt.com/master/badWAF/waf/fe.phtml",
+        "target": "https://aborgardt.com/master/badWAF/waf/fe.php",
         "params": {
           "get": {
             "input": "PAYLOAD",
@@ -16,7 +16,7 @@
     "attack": {
       "action": {
         "filesuffix": "payload",
-        "target": "https://aborgardt.com/master/badWAF/waf/fe.phtml",
+        "target": "https://aborgardt.com/master/badWAF/waf/fe.php",
         "params": {
           "get": {
             "input": "PAYLOAD",

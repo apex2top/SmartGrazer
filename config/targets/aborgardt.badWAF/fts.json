@@ -3,7 +3,7 @@
     "valid": {
       "action": {
         "filesuffix": "valid",
-        "target": "https://aborgardt.com/master/badWAF/waf/fts.phtml",
+        "target": "https://aborgardt.com/master/badWAF/waf/fts.php",
         "params": {
           "get": {
             "input": "PAYLOAD"
@@ -15,7 +15,7 @@
     "attack": {
       "action": {
         "filesuffix": "payload",
-        "target": "https://aborgardt.com/master/badWAF/waf/fts.phtml",
+        "target": "https://aborgardt.com/master/badWAF/waf/fts.php",
         "params": {
           "get": {
             "input": "PAYLOAD"

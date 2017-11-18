@@ -53,6 +53,7 @@ class ResponseAnalyser(object):
         if str(self._response.getPayload()) in Converter.getString(sliceOfHTML):
             return {}
 
+        self._logger.debug("#> Analyzing: " + str(self._response.getPayload()))
         elements = self._response.getPayload().getElements()
 
         step = 0
@@ -106,6 +107,7 @@ class ResponseAnalyser(object):
             nextchar = int(declist[index])
 
             while nextchar != self.SEMICOLON and len(declist)-1 <= index:
+                print(index)
                 index = index + 1
                 nextchar = int(declist[index])
 

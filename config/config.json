@@ -1,7 +1,7 @@
 {
   "smartgrazer": {
     "logging": {
-      "level": 20,
+      "level": 10,
       "logfile": "run.log"
     },
     "directories": {
