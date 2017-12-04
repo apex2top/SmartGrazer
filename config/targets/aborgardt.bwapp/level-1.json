@@ -2,7 +2,7 @@
   "runconfig": {
     "valid": {
       "precondition": {
-        "target": "https://aborgardt.com/master/bWAPP/login.php",
+        "target": "https://master.aborgardt.com/bWAPP/login.php",
         "params": {
           "post": {
             "login": "bee",
@@ -14,7 +14,7 @@
       },
       "action": {
         "filesuffix": "valid",
-        "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
+        "target": "https://master.aborgardt.com/bWAPP/xss_get.php",
         "params": {
           "get": {
             "firstname": "PAYLOAD",
@@ -26,7 +26,7 @@
     },
     "attack": {
       "precondition": {
-        "target": "https://aborgardt.com/master/bWAPP/login.php",
+        "target": "https://master.aborgardt.com/bWAPP/login.php",
         "params": {
           "post": {
             "login": "bee",
@@ -38,7 +38,7 @@
       },
       "action": {
         "filesuffix": "payload",
-        "target": "https://aborgardt.com/master/bWAPP/xss_get.php",
+        "target": "https://master.aborgardt.com/bWAPP/xss_get.php",
         "params": {
           "get": {
             "firstname": "PAYLOAD",

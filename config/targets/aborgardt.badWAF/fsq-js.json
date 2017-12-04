@@ -3,7 +3,7 @@
     "valid": {
       "action": {
         "filesuffix": "valid",
-        "target": "https://aborgardt.com/master/badWAF/waf/fsq.php",
+        "target": "https://master.aborgardt.com/badWAF/waf/fsq.php",
         "params": {
           "get": {
             "input": "PAYLOAD",
@@ -16,7 +16,7 @@
     "attack": {
       "action": {
         "filesuffix": "payload",
-        "target": "https://aborgardt.com/master/badWAF/waf/fsq.php",
+        "target": "https://master.aborgardt.com/badWAF/waf/fsq.php",
         "params": {
           "get": {
             "input": "PAYLOAD",
