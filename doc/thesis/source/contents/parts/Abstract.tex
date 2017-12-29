@@ -1,0 +1,29 @@
+\chapter*{Abstract}
+
+The aim of this master thesis was the implementation and evaluation of a context dependent, grammatical-based fuzzer for XSS attacks. The idea is to develop and evaluate a contextual generator which generates payloads depending on the websites answer. The basic data will be defined by construction rules, which will be filled during each generation. Elements will consist of keywords, strings and basic signs, which are used in JavaScript and HTML. The used signs are chosen during generation by calculating their potential.
+
+The built-in payload generator from SmartGrazer has been named ``Smarty'' and the software was realized with Python 3 and published as an open source project on GitHub\footnote{\url{https://github.com/b1tray3r/SmartGrazer}}. Subsequently, the developed software was tested against several web applications with XSS vulnerabilities and the results were compared to two alternative approaches: first, an XSS grammar was developed and prepared to be compatible with Dharma\footnote{\url{https://github.com/MozillaSecurity/dharma}}, a context free grammar generator, and second, burp suite scanner\footnote{\url{https://portswigger.net/burp}}, a proprietary pentest-solution, was used to test fixed predefined lists of XSS payloads.
+
+The evaluation initially included a list of simple XSS filters that protect against individual
+elements of XSS attacks. These were combined in a second step to test the generated
+payloads. In the final step, bWAPP, a pentest web application, was used to test the generated payloads.
+
+The following results were obtained after 25 test runs with random combinations of the simple XSS filters:
+
+\begin{enumerate}
+	\item The reliability of SmartGrazer and both used generators (Dharma \& Smarty) was about 99.86\%. In comparison, Burp Suite was able to achieve a reliability of about 88.57\%.
+	
+	\item By using the Dharma generator less generation rounds were needed to find a reflected payload, compared to the Smarty generator.
+\end{enumerate}
+
+In 25 test runs against the bWAPP application, SmartGrazer achieved a higher average
+reliability (Smarty: 93.33\%, Dharma: 77.22\%) than the Burp Suite (66.67\%).
+
+\subsection*{Executable payload generation}
+
+In addition, an evaluation was made to test how efficient the generated payloads of Smarty, Dharma and the Burp Suite are. For this purpose, ten generation rounds were carried out to check whether the payload was executed when loading the website in the browser.
+
+The results against the combined filters Smarty managed to achieve an average reliability of 66.07\%. Burp Suite took second place, by achieving a 52.14\% reliability. The Dharma generator only managed to achieve a reliability of 27.14\%.
+
+As a result, none of the used generators were able to create a working payload to the
+bWAPP application, when configured to the highest security level.

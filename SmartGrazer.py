@@ -6,7 +6,8 @@ import os
 import sys
 import time
 
-from imps.annelysa.ResponseAnalyser import ResponseAnalyser
+from imps.annelysa.ContextAnalyzer import ContextAnalyzer
+from imps.annelysa.ResponseAnalyzer import ResponseAnalyser
 from imps.annelysa.ResponseExecutor import ResponseExecutor
 from imps.clint.CLIManager import CLIManager as Clint
 from imps.confy.JSONConfigManager import JSONConfigManager as Confy

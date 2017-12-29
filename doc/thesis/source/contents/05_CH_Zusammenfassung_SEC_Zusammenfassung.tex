@@ -1,0 +1,23 @@
+\section{Zusammenfassung}\label{sec:summary}
+
+Im Rahmen der vorliegenden Masterthesis wurde ein kontextabhängiger grammatikbasierter Fuzzer implementiert. Um diesen Ansatz mit bestehenden Verfahren zu Vergleichen, wurde darüber hinaus eine \ac{XSS}-Grammatik für den kontextfreien Grammatik-Generator Dharma erstellt. 
+
+%Der kontextabhängige Ansatz wurde im Rahmen der Evaluierung zunächst mit dem kontextfreien Verfahren verglichen. Weiterhin wurden die Ergebnisse mit denen eines listen-basierenden Scanners verglichen. 
+%
+%Getestet wurden reflektierende XSS-Angriffe (Typ 1 XSS). Hierbei wurden zwei Webanwendungen für die Testläufe verwendet. Zunächst wurde gegen die bWAPP-Webanwendung getestet. Diese ist speziell für Webseitentests ausgelegt und beinhaltet eine Reihe verschiedener fehlerhafter Implementierungen. 
+%
+%Als weitere Testinstanz wurde eine neue Webanwendung (badWAF) implementiert, welche Benutzereingaben gezielt auf Teile von XSS-Angriffen durchsucht und diese entfernt. 
+
+In der anschließenden Evaluierungsphase dieser Masterthesis wurde der kontextabhängige Ansatz dem kontextfreien Ansatz und einem listenbasierten Scanner gegenübergestellt.
+
+Als Vergleichsmaß wurde auf reflektierende XSS-Angriffe zurückgegriffen. Für die Evaluation erfolgten sowohl Testläufe gegen die Webanwendung bWAPP als auch gegen die neu implementierte WebAnwendung badWAF.
+
+Im Gegensatz zu bWAPP, die auf einem breiten Spektrum von Implementierungsfehlern in der Webseitenprogrammierung basiert, werden bei badWAF Benutzereingaben gezielt auf Bestandteile von XSS-Angriffen durchsucht und gefiltert.
+
+Dabei liegt der Fokus darauf, dass zunächst nur einzelne Aspekte der Angriffe entfernt werden, sodass im Falle des entwickelten Payload-Generators, dieser alternative Angriffe bzw. andere Zeichen für den nächsten Angriff wählt.
+
+Weiterhin wurden einzelne Filter der badWAF-Anwendung kombiniert, um die Schwierigkeit der Testläufe für die verwendeten Verfahren zu erhöhen. Hierbei wurde jedes Verfahren gegen fünf Kombinationen mit zwei bis sechs enthaltenen Filtern getestet.
+
+Insgesamt wurden 25 Testläufe gegen beide Webapplikationen ausgewertet, bei denen der Fokus auf einer erfolgreiche Reflexion des gesendeten Payloads lag. Zusätzlich wurden zehn weitere Testläufe mit den drei genannten Anwendungen ausgeführt, bei denen der Fokus auf einem erfolgreich ausgeführten Payload lag.
+
+Das Ergebnis der Evaluierung ergibt, dass durch grammatikbasierte Ansätze die Zahl der Requests enorm steigen kann. Der Vorteil dieses Verfahrens ist, dass eine höhere Testabdeckung erreicht werden kann als mit statischen bzw. listen-orientierten Verfahren, wie beispielsweise im Burp-Suite-Scanner. Durch eine höhere Testabdeckung werden dementsprechend mehr Schwachstellen lokalisiert. Durch das automatisierte Testen der generierten bzw. reflektierten Payloads wird ein automatisiertes Testen von Anwendungen ermöglicht, welche autonom ausgeführt werden können. Dies kann helfen gegebene Qualitätsstandards zu erhöhen und dauerhaft zu halten.

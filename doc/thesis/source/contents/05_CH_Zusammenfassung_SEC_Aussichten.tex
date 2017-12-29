@@ -1,0 +1,47 @@
+\section{Aussichten}\label{sec:future}
+
+\subsection{Erweiterte Analyse der Antworten}
+
+Die textbasierte Analyse der Webseiten-Antworten deckt zum jetzigen Zeitpunkt drei Fälle ab: Ein Element fehlt, wurde mittels HTML-Entities-Kodierung verändert oder etwas Anderes. Der letztere Fall kann in zukünftigen Arbeiten genauer betrachtet werden, um das Analyse-Modul von SmartGrazer zu erweitern. Denkbar wäre es, mittels Mutation gängige Kodierungen von Servern nachzustellen, um so mehr über die WAF lernen zu können.
+
+\subsection{Mutationsklassen}
+
+\paragraph{... für Wortschachtelung}
+Wie in Kapitel \ref{ssec:evaluation-executed-bwapp} bereits erwähnt wurde, gibt es Möglichkeiten XSS-Filter durch Wortschachtelung wie z.B.: ``javajavascriptscript'' zu umgehen. Diese Funktion ist einfach zu implementieren und wird mit hoher Wahrscheinlichkeit einige der einfachen XSS-Filter der badWAF-Webanwendung überlisten können.
+
+\paragraph{... für Zeichenverschleierung}
+Wie in Quelltextbeispiel \ref{HTML5SRCDOCXSS} gezeigt, besteht die Möglichkeit Zeichen mittels des HTML-Encoding-Formats so zu verschleiern, dass ein XSS-Filter umgangen werden kann. Diese Erweiterung wird eine genauere Analyse des gewählten Payloads voraussetzen, um während der Generierung den aktuellen Kontext im Payload zu ermitteln. Hierdurch kann, wie anhand des \textbf{fpb}-Filters ersichtlich ist, eine Verbesserung der Qualität der generierten Payloads erreicht werden.
+
+\paragraph{... für JavaScript-Verschleierung}
+Wie bereits in Kapitel \ref{sec:attacksAndMutation} erwähnt, besteht die Möglichkeit, jeden JavaScript-Code in Form von sechs Zeichen zu verschleiern. Durch die Verbesserung des Analyse-Moduls von SmartGrazer lässt sich während der Laufzeit der Kontext automatisch ermitteln, um so entscheiden zu können, ob der gesendete JavaScript-Code vorher mittels ``JSFuck'' oder ``6chars.js'' verschleiert werden kann. Eine Portierung des ``JSFuck''-Pyhton-Projekts von Python2 auf Python3 wurde im Rahmen dieser Masterthesis bereits durchgeführt und veröffentlicht\footnote{\url{https://github.com/b1tray3r/jsfuck-py/tree/patch-1}}.
+
+\paragraph{... für Evasion-Techniken}
+Durch Umrechnen des Payloads in Kodierungen, die der Webseite nicht bekannt sind, können bestimmte Filter umgangen werden.
+
+\subsection{Laufzeit der Testanfragen}
+
+Während der Implementierung der Analyse-Komponente wurde auch in Betracht gezogen, die jeweiligen Requests an die Webseiten automatisch auf die Ausführung des Payloads zu testen. Dies erwies sich jedoch leider als nicht möglich, da es zwar eine Implementierung in Python3 für diesen Zweck gibt (``seleniumrequests''), diese jedoch noch nicht ausgereift ist. Es ist jedoch durchaus denkbar, dass eine zukünftige Integration von automatisierten Tests implementiert werden kann.
+
+\subsubsection{Testen von JavaScript-Events}
+
+Die bisherige Implementierung unterstützt automatisch ausgeführte Payloads. Zukünftig kann das automatische Testen anhand des Payloads ermitteln, welche Aktion (Mausklick, Mausbewegung, Tastendruck,...) im Browser ausgeführt werden muss, um den Payload zu aktivieren.
+
+\subsection{Weiterentwicklung von SmartGrazer}
+
+\subsubsection{Position des Payloads}
+
+Wie bereits in Kapitel \ref{sec:analyze} beschrieben geht SmartGrazer von einer unveränderlichen Position des Payloads aus. Dieser kann jedoch variieren und gegebenenfalls gar nicht in den Antwortseiten auftauchen. Die Suche des Payloads in der Webseitenantwort ist essentiell für die zukünftige Anwendung der Software in der Praxis.
+
+\subsubsection{Quantitative Auswertung der erzeugten Treffer hinsichtlich Falsch-Positiv-Meldungen}
+Die Zahl der erzeugten Falsch-Positiv-Meldungen ist in dieser Arbeit nicht beachtet worden. In zukünftigen Arbeiten kann dieser Aspekt berücksichtigt werden.
+
+\subsubsection{Analyse der Probleme mit ``<'' oder ``>''}
+Die Kodierung bzw. die Reflexion der spitzen Klammern ist momentan ausschlaggebend für den Erfolg von ``Smarty''. In diesem Bereich müssen Vorgehensweisen erarbeitet werden, um gegebenenfalls Reaktionsmöglichkeiten zu generieren.
+
+\subsubsection{Reduzierung der Request-Anzahl}
+
+Die Reduktion der Request-Anzahl könnte sowohl durch Verbesserungen des Generators ``Smarty'' als auch durch die Analyse-Komponente ``Annelysa'' erreicht werden.
+
+\paragraph{Smarty} Hier muss überprüft werden, ob es nicht effizientere Methoden gibt die Payloads einerseits zu generieren und andererseits die dazugehörigen Elemente zu verwalten. Auch kann ermittelt werden, wie sich alternative Verringerungsfaktoren im Vergleich zum eingesetzten Wert von 0,75 verhalten.
+
+\paragraph{Annelysa} Durch eine Verbesserung der Erkennung von veränderten oder entfernter Elemente könnten Wahrscheinlichkeiten gezielter angepasst und somit bessere Payloads generiert werden. Weiterhin können durch eine automatische Erkennung des umgebenden Kontexts gezielt Mutationsklassen de- bzw. aktiviert werden. Hierdurch können Verschleierungstechniken gezielt angewendet und somit qualitativ bessere Payloads generiert werden. Wie in Abbildung \ref{fig:textbasedsearch} im ``else''-Fall bereits gezeigt, existieren Fälle, deren genaue Bedeutung SmartGrazer nicht verstehen kann. Eine Erweiterung der Analyse hinsichtlich dieses Aspektes kann ebenfalls Einfluss auf die Anzahl der Requests haben.

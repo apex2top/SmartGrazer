@@ -1,0 +1,35 @@
+\chapter{Hintergrund}\label{Hintergrund}
+
+\section{Web 2.0}
+
+Der Begriff ''Web 2.0`` beschreibt eine veränderte Nutzung des Internets \cite{Lackes}. Während in der Vergangenheit überwiegend statische Inhalte in Form von Produktinformationen veröffentlicht wurden, neigt der Trend dazu, dass der Benutzer sich einbringt und selbst Inhalte einpflegt. Außerdem wird es Benutzern immer mehr erleichtert, ganze Webseiten innerhalb von Minuten zu erstellen und der Öffentlichkeit zur Verfügung zu stellen. Dies birgt jedoch die Gefahr, dass sich viele Autoren einfach nicht über die technischen Gefahren und Sicherheitsrisiken bewusst sind.
+
+\paragraph{Open Source Software:}
+Laut eines Beitrags des Infosecurity Magazines \cite{Seals2016} sind 87\% der Schwachstellen entweder \acl{XSS}- (67\%) oder SQL-Injections (20\%). Hierbei wurden ungefähr 400 Open Source Webapplikationen untersucht. Der Vorteil von Open Source Anwendungen gegenüber Closed Source Anwendungen liegt in der Möglichkeit dass der Quellcode von einer breiten Masse eingesehen und getestet werden kann.
+
+\paragraph{\ac{OWASP}:}
+Seit 2001 stellt diese Stiftung eine frei zugängliche Sammlung von sicherheitsbezogenen Informationen zur Verfügung. Diese sollen Entwicklern und Unternehmen helfen vertrauenswürdige und sichere Applikationen zu entwickeln.
+
+Neben vielen Ratschlägen, wie eine Webseite gegen XSS-Angriffe abgesichert werden kann, pflegen die Mitglieder der OWASP eine Liste mit bekannten XSS- Payloads, um XSS-Filter zu umgehen \cite{OWASP2012}. Diese dient in dieser Arbeit als Vorlage für die entwickelten Angriffsmuster.
+
+\section{Testen von Web-Anwendungen}
+
+Beim Testen von Software unterscheidet man grundlegend zwischen White-Box- und Black-Box-Testing. Die Vorgehe n unterscheiden sich dahingehend, dass beim White-Box-Testing der Quelltext vorhanden ist und so Programmpfade gezielt getestet werden können. Hierdurch können fehlerhafte Komponenten des Programms gefunden werden.
+
+Black-Box-Testing betrachtet die Software als abgeschlossenes System, von dem nur die öffentlichen Schnittstellen sichtbar sind. Bei diesem Testverfahren werden beispielsweise Grenzwerte als Eingabe gewählt, um fehlerhaftes Verhalten des Programms aufzudecken. Daher wird Black-Box-Testing verwendet, um die Anwendung auf Vollständigkeit gegenüber der Software-Spezifikation zu testen.
+
+Das Testen von dynamischen Webseiten erfordert eine Mischung aus beiden Vorgehensweisen. Zum Einen kann der enthaltene JavaScript- bzw. HTML-Quelltext eingesehen werden, wodurch die dynamischen Programmabläufe im Webbrowser offen liegen. Zum Anderen ist die serverseitige Generierung des JavaScript- bzw. HTML-Quelltextes nicht verfügbar.
+
+XSS-Angriffe nutzen die Möglichkeit, JavaScript-Code in fremde Webseiten einzubetten und diesen vom Webbrowser ausführen zu lassen. Sobald es dem Angreifer gelungen ist, Schadcode einzuschleusen, kann dieser versuchen, sensible Daten von Nutzern der Seite zu stehlen. Ein beliebtes Ziel solcher Angriffe sind HTTP-Cookies. Diese enthalten oft Informationen über Session-Daten der benutzten Webseite. 
+
+Um Webseiten gegen XSS-Angriffe abzusichern, müssen Benutzereingaben vor der Verarbeitung auf solchen ``Schadcode'' geprüft werden.
+
+Die Prüfung kann entweder per Hand oder mittels einer professionellen \ac{WAF} ausgeführt werden. Die Verwendung einer \ac{WAF} ist jedoch nicht immer die sicherere Wahl. \ac{WAF} kennen die Applikationslogik nicht und die \ac{WAF}-Datenbanken müssen auf dem aktuellsten Stand gehalten werden, um eine möglichst hohe Sicherheit gewährleisten zu können. Dem gegenübergestellt steht das immanente Risiko der Unvollständigkeit bei selbst programmierten Überprüfungen. Weitere Sicherheitslücken und Risiken können im Zuge der Weiterentwicklung der JavaScript-Sprache auftreten, die bis zu ihrer Fehlerbehebung neues Angriffspotential bieten.
+
+%Hierbei ist die Verwendung einer \acs{WAF} nicht immer die sicherere Wahl, da dieser die Applikationslogik nicht bekannt ist und die Datenbank der \acs{WAF} aktualisiert werden muss. Dem gegenübergestellt ist die Gefahr bei selbst programmierten Überprüfungen ist die Unvollständigkeit. Auch das Weiterentwickeln der JavaScript-Sprache kann eventuelle Fehler beinhalten, welche neue Angriffe bis zur Fehlerbehebung ermöglichen.
+
+Das Finden neuer Schwachstellen ist per Hand oft sehr arbeits- und zeitaufwändig. Daher wird versucht, mittels automatisierter Testfall-Generierung den Findungsprozess zu vereinfachen und zu beschleunigen. In der Praxis wird eine Webseite auf die gängigsten Angriffe getestet. Dies geht in der Regel schneller und deckt die gängigen Fehlerquellen hinreichend ab.
+
+Alternativ kann die Webanwendung durch Fuzzing, bei dem die Software mittels Zufallszahlen auf unerwartetes Verhalten geprüft wird, getestet werden. Solch unerwünschtes Verhalten ist beispielsweise ein Softwareabsturz oder ein \ac{DOS}.
+
+In Verbindung mit Fuzzing lassen sich bei XSS-Testing Konstruktionsgrammatiken einsetzten. Eine Konstruktionsgrammatik beschreibt die technische Zusammensetzung einer Sprache und die Möglichkeit, Elemente daraus zu erzeugen. Im Fall von XSS-Angriffen können durch eine Konstruktionsgrammatik automatisiert Testfälle für Webanwendungen generiert werden. 

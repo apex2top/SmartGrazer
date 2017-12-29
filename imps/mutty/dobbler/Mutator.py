@@ -1,6 +1,6 @@
 from random import randint, choice
 
-from math import ceil
+import math
 
 from imps.mutty.MutatorGeneral import MutatorGeneral
 
@@ -22,18 +22,16 @@ class Mutator(MutatorGeneral):
         if not self._isEnabled():
             return element
 
-        if randint(0, 1) > 0:
+        if randint(0, 3) < 3:
             return element
 
         strVal = str(element)
         strlen = len(str(strVal))
 
-        index = ceil(strlen/2)
+        index = math.ceil(strlen/2)
 
 
         newVal = strVal[:index-1] + strVal + strVal[index:]
-
-        print(newVal)
 
         element.setMutated(newVal)
         return element

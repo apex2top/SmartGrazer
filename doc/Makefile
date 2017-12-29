@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
 SPHINXPROJ    = SmartGrazer
-SOURCEDIR     = source
+SOURCEDIR     = "source documentation"
 BUILDDIR      = build
 
 # Put it first so that "make" without argument is like "make help".
